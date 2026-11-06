@@ -3068,6 +3068,10 @@ body {
   margin-bottom: 20px;
 }
 
+.service-modality-box .box-content .box-desc:last-child {
+  margin-bottom: 0;
+}
+
 .service-modality-box .box-btn {
   width: 100%;
   margin-top: auto;
