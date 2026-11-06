@@ -1,0 +1,1991 @@
+/**
+ * PERFECT DIAGNOSTIC ULTRASOUND - MASTER INTERACTIVE & BILINGUAL ENGINE
+ * Handles: FAQ Accordions, Mobile Drawer, Service Filters, Bilingual Switching, and Requisitions.
+ */
+
+var DICT_EN_TO_ES = {
+  "Patient Reviews": "Reseñas de Pacientes",
+  "Explore All Patient Reviews": "Explorar Todas las Reseñas de Pacientes",
+  "Patient Testimonials": "Testimonios de Pacientes",
+  "Frequently Asked Questions": "Preguntas Frecuentes",
+  "Share Your Ultrasound Experience": "Comparta su Experiencia de Ultrasonido",
+  "Write a Review on Google": "Escribir Reseña en Google",
+  "5.0 on Google Reviews": "5.0 en Reseñas de Google",
+  "Book Now": "Reservar Cita",
+  "What Our Patients Say": "Lo Quée Dicen Nuestáros Pacientes",
+  "Read genuine reviews from patients who experienced our compassionate ultrasound care in Chicago.": "Lea reseñas auténticas de pacientes que experimentaron nuestára atención compasiva en Chicago.",
+  "5.0 Star Rating": "Calificación de 5.0 Estrellas",
+  "Verified Patient Reviews on Google": "Reseñas de pacientes verificadas en Google",
+  "Google Review": "Reseña de Google",
+  "Verified Patient": "Paciente Verificado",
+  "How much does an ultrasound cost?": "Cuánto cuestáa un ultrasonido?",
+  "How soon can I get the results of my ultrasound exam?": "Qué tan pronto puedo obtener los resultados de mi examen de ultrasonido?",
+  "Who performs the ultrasound examination?": "Quéin realiza el examen de ultrasonido?",
+  "Are there any risks related to an ultrasound?": "Existen riesgos relacionados con un ultrasonido?",
+  "Do I need to fast or have a full bladder for my ultrasound?": "Necesito ayunar o tener la vejiga llena para mi ultrasonido?",
+  "Home": "Inicio",
+  "About": "Nosotros",
+  "About Us": "Sobre Nosotros",
+  "About Our Clinic": "Sobre Nuestára Clínica",
+  "Services": "Servicios",
+  "All Services": "Todos los Servicios",
+  "Physicians": "Médicos",
+  "Physician Referrals": "Referencias Médicas",
+  "Physician Orders": "Órdenes Médicas",
+  "Doctor Orders & Referrals": "Órdenes y Referencias de Médicos",
+  "Patient Prep": "Preparación",
+  "Preparation Guide": "Guía de Preparación",
+  "Patient Preparation Guide": "Guía de Preparación para Pacientes",
+  "Reviews": "Reseñas",
+  "FAQ": "Preguntas",
+  "Frequently Asked Quéestáions": "Preguntas Frecuentes",
+  "Contact": "Contacto",
+  "Contact Us": "Contáctenos",
+  "Booking": "Citas",
+  "Book Appointment": "Reservar Cita",
+  "Book Online": "Reservar en Línea",
+  "Book Appointment Online": "Reservar Cita en Línea",
+  "Schedule Scan Online": "Programar Examen en Línea",
+  "Schedule Appointment Online": "Programar Cita en Línea",
+  "Schedule Your Appointment": "Programe su Cita",
+  "Schedule Your Appointment Online": "Programe su Cita en Línea",
+  "Schedule Your Ultrasound Appointment": "Programe su Cita de Ultrasonido",
+  "View Ultrasound Services": "Ver Servicios de Ultrasonido",
+  "Call Clinic": "Llamar a la Clínica",
+  "Call Us": "Llamar",
+  "Call (872) 227-2321": "Llamar al (872) 227-2321",
+  "Directions": "Direcciones",
+  "Send Us a Message": "Envíenos un Mensaje",
+  "Find Our Chicago Clinic": "Encuentre Nuestára Clínica en Chicago",
+  "Operating By Appointment Only": "Atención Solo Con Cita Previa",
+  "Operating strictly by appointment only.": "Atención estárictamente solo con cita previa.",
+  "Operating By Appointment Only • HIPAA-Compliant Diagnostics": "Atención Solo Con Cita Previa • Diagnósticos Conforme a HIPAA",
+  "Board-Certified Radiologist Analysis": "Análisis de Radiólogo Certificado",
+  "Prompt Diagnostic Reports": "Reportes Diagnósticos Rápidos",
+  "Major Insurances Accepted": "Aceptamos los Principales Seguros",
+  "Self-Pay Options Available": "Opciones de Pago Directo Disponibles",
+  "100% Radiation-Free & Safe": "100% Libre de Radiación y Seguro",
+  "100% Radiation-Free Diagnostic Care": "Atención Diagnóstica 100% Libre de Radiación",
+  "Rapid 24–48hr Turnaround": "Resultados Rápidos en 24–48 Horas",
+  "Rapid 24-48hr Turnaround": "Resultados Rápidos en 24-48 Horas",
+  "Precision Diagnostic Ultrasound in Chicago.": "Ultrasonido Diagnóstico de Precisión en Chicago.",
+  "Precision Diagnostic Ultrasound in Chicago with Upfront Pricing.": "Ultrasonido Diagnóstico de Precisión en Chicago con Precios Claros.",
+  "Non-invasive, radiation-free medical diagnostic ultrasound evaluated by expert radiologists. We accept major health insurances, offer personalized health consultations, and provide multilingual care in English, Spanish, Russian, Punjabi, and Urdu.": "Ultrasonido diagnóstico médico no invasivo y libre de radiación, evaluado por radiólogos certificados. Aceptamos los principales seguros médicos, ofrecemos consultas de salud personalizadas y atención multilingüe en inglés, español, ruso, punjabi y urdu.",
+  "Select your required examination and book a convenient appointment time online. Our clinic operates by appointment only to ensure zero wait times and personalized patient care.": "Seleccione el examen requerido y reserve un horario conveniente en línea. Nuestára clínica opera exclusivamente con cita previa para garantizar cero tiempos de espera y atención personalizada.",
+  "Diagnostic Modalities": "Especialidades Diagnósticas",
+  "Languages Spoken": "Idiomas Hablados",
+  "Radiation-Free": "Libre de Radiación",
+  "Radiologist Analysis": "Evaluación de Radiólogos",
+  "Diagnostic Ultrasound Imaging Modalities": "Modalidades de Ecografía Diagnóstica",
+  "Obstetrical (OB) Ultrasound & 3D/4D Imaging": "Ecografía Obstétrica (OB) e Imágenes 3D/4D",
+  "First Trimestáer Ultrasound": "Ecografía del Primer Trimestáre",
+  "Second Trimestáer Anatomy Survey & 3D/4D": "Estudio Anatómico del Segundo Trimestáre y 3D/4D",
+  "Third Trimestáer Growth & Well-Being": "Crecimiento y Bienestáar del Tercer Trimestáre",
+  "General & Abdominal Ultrasound": "Ecografía General y Abdominal",
+  "Abdominal Ultrasound": "Ecografía Abdominal",
+  "Abdominal Complete": "Abdomen Completo",
+  "Targeted Organ Evaluations": "Evaluaciones de Órganos Específicos",
+  "Pelvic & Gynecological Ultrasound": "Ecografía Pélvica y Ginecológica",
+  "Pelvic Ultrasound": "Ecografía Pélvica",
+  "Clinical Indications & Findings": "Indicaciones Clínicas y Hallazgos",
+  "Echocardiography (Cardiac Echocardiogram)": "Ecocardiografía (Ecocardiograma Cardiaco)",
+  "Echocardiography (Echo)": "Ecocardiografía (Echo)",
+  "Echo (Cardiac)": "Ecocardiograma (Cardiaco)",
+  "What It Assesses": "Quéé Evalúa",
+  "Vascular Studies & Doppler Ultrasound": "Estudios Vasculares y Ecografía Doppler",
+  "Vascular Studies": "Estudios Vasculares",
+  "Vascular Doppler Studies": "Estudios Vasculares Doppler",
+  "Carotid Artery Duplex": "Dúplex de Arterias Carótidas",
+  "Lower Extremity Venous (LEV)": "Venoso de Extremidades Inferiores (LEV)",
+  "Lower Extremity Arterial (LEA)": "Arterial de Extremidades Inferiores (LEA)",
+  "Renal, Breast, Prostate & Small Parts Sonography": "Ecografía Renal, Mamaria, Prostática y Partes Pequeñas",
+  "Renal (Kidney) & Bladder": "Renal (Riñón) y Vejiga",
+  "Renal & Small Parts": "Renal y Partes Pequeñas",
+  "Breast Ultrasound": "Ecografía Mamaria",
+  "Prostate Ultrasound": "Ecografía de Próstata",
+  "Small Parts (Thyroid & Scrotal)": "Partes Pequeñas (Tiroides y Escroto)",
+  "Small Parts & Prostate": "Partes Pequeñas y Próstata",
+  "Personalized Health Consultations": "Consultas de Salud Personalizadas",
+  "Obstetrical & 3D/4D": "Obstétrico y 3D/4D",
+  "Obstetric & 3D/4D": "Obstetricia y 3D/4D",
+  "Abdominal & Renal": "Abdominal y Renal",
+  "Pelvic": "Pélvico",
+  "Diagnostic Ultrasound Examinations": "Exámenes de Ultrasonido Diagnóstico",
+  "We provide a comprehensive range of non-invasive, radiation-free diagnostic ultrasound services using advanced 2D, 3D/4D, and Doppler imaging technologies.": "Ofrecemos una gama integral de servicios de ultrasonido diagnóstico no invasivos y libres de radiación utilizando tecnologías avanzadas 2D, 3D/4D e imágenes Doppler.",
+  "Proper exam preparation ensures high-fidelity sonographic images for your radiologist report. Please follow the instructions below for your specific scan.": "Una preparación adecuada asegura imágenes ecográficas de alta calidad para el informe de su radiólogo. Siga las instrucciones a continuación para su examen específico.",
+  "Everything you need to know about our Chicago diagnostic ultrasound clinic, insurance coverage, radiologist reports, and appointment scheduling.": "Todo lo que necesita saber sobre nuestára clínica de ultrasonido diagnóstico en Chicago, cobertura de seguros, reportes médicos y programación de citas.",
+  "Ultrasound Modalities": "Modalidades de Ultrasonido",
+  "Patient Resources": "Recursos para Pacientes",
+  "Clinic Contact": "Contacto de la Clínica",
+  "Appointments & Phone": "Citas y Teléfono",
+  "Direct Doctor Fax": "Fax Directo para Médicos",
+  "HIPAA Support Email": "Correo Electrónico HIPAA",
+  "Operating Hours": "Horario de Atención",
+  "Clinic Address": "Dirección de la Clínica",
+  "Telephone": "Teléfono",
+  "Fax Referral Line": "Línea de Fax para Referencias",
+  "Email Support": "Soporte por Correo Electrónico",
+  "Do you accept health insurance?": "¿Aceptan seguro médico?",
+  "Who evaluates the ultrasound examinations?": "¿Quéién evalúa los exámenes de ultrasonido?",
+  "Does diagnostic ultrasound use radiation?": "¿El ultrasonido diagnóstico utiliza radiación?",
+  "How quickly will my doctor receive the results?": "¿Quéé tan rápido recibirá los resultados mi médico?",
+  "Can I schedule without a physician's referral?": "¿Puedo programar una cita sin una orden médica?",
+  "What should I bring to my appointment?": "¿Quéé debo llevar a mi cita?",
+  "Where are you located and is parking available?": "¿Dónde estáán ubicados y hay estáacionamiento disponible?",
+  "Do you accept orders on our clinic’s custom prescription pad or EHR printout?": "¿Aceptan órdenes en el recetario de nuestára clínica o impresión de EHR?",
+  "What is your turnaround time for final radiologist reports?": "¿Cuál es el tiempo de entrega de los informes finales de radiología?",
+  "How are urgent or critical findings communicated?": "¿Cómo se comunican los hallazgos urgentes o críticos?",
+  "About Perfect Diagnostic Ultrasound": "Sobre Perfect Diagnostic Ultrasound",
+  "Excellence in Outpatient Diagnostic Sonography": "Excelencia en Ecografía Diagnóstica Ambulatoria",
+  "Over 25 years of diagnostic medical sonography excellence serving Chicago patients and healthcare providers.": "Más de 25 años de excelencia en ecografía médica diagnóstica sirviendo a pacientes y médicos de Chicago.",
+  "25+ Years of Dedicated Clinical Excellence": "Más de 25 Años de Dedicada Excelencia Clínica",
+  "Years of Experience": "Años de Experiencia",
+  "Delivering Care with Perfection": "Brindando Atención con Perfección",
+  "Compassionate Care in 5 Languages": "Atención Compasiva en 5 Idiomas",
+  "Board-Certified Radiologists": "Radiólogos Certificados",
+  "Appointment Only Efficiency": "Eficiencia Solo con Cita Previa",
+  "Physician Referrals & Order Transmission": "Referencias Médicas y Transmisión de Órdenes",
+  "Direct, reliable clinical ultrasound order intake for Chicago healthcare providers with guaranteed 24–48hr board-certified radiologist reports.": "Recepción directa y confiable de órdenes médicas de ultrasonido para profesionales de la salud en Chicago con informes garantizados en 24–48 horas de radiólogos certificados.",
+  "Method 1: Direct Fax Transmission": "Método 1: Transmisión Directa por Fax",
+  "Method 2: Secure HIPAA Digital Email": "Método 2: Correo Electrónico Seguro HIPAA",
+  "Method 3: Patient Hand-Carry": "Método 3: Entrega Directa por el Paciente",
+  "At": "En",
+  "PA": "Pensilvania",
+  "RU": "RU",
+  "UR": "UR",
+  "No.": "No.",
+  "100%": "100%",
+  "اردو": "اردو",
+  "Expert": "Experto",
+  "ਪੰਜਾਬੀ": "ਪੰਜਾਬੀ",
+  "English": "Inglés",
+  "Español": "Español",
+  "Русский": "ruso",
+  "Fax Orders": "Órdenes por fax",
+  "Chicago, IL": "Chicago, IL",
+  "اردو (Urdu)": "اردو (urdu)",
+  "Clinic Hours": "Horario de la clínica",
+  "Copy Address": "Copiar dirección",
+  "Get in Touch": "Ponte en contacto",
+  "Book Online →": "Reserva en línea →",
+  "Physician FAQ": "Preguntas frecuentes del médico",
+  "Book on Square": "Reserva en la plaza",
+  "Carotid Duplex": "Dúplex carotídeo",
+  "Email Referral": "Referencia por correo electrónico",
+  "اردو میں خدمات": "اردو میں خدمات",
+  "Abdominal Aorta": "aorta abdominal",
+  "Clinic Address:": "Dirección de la clínica:",
+  "Contact Details": "Detalles de contacto",
+  "Order Generated": "Orden generada",
+  "2. What to Bring": "2. Quéé traer",
+  "Call to Schedule": "Llame para programar",
+  "Contact Clinic →": "Contacto Clínica →",
+  "Fax the order to": "Envíe el pedido por fax a",
+  "ਪੰਜਾਬੀ ਵਿੱਚ ਸੇਵਾ": "ਪੰਜਾਬੀ ਵਿੱਚ ਸੇਵਾ",
+  "Breast Sonography": "Ecografía mamaria",
+  "Chicago, IL 60634": "Chicago, Illinois 60634",
+  "Clinical Overview": "Descripción clínica",
+  "Clinical Services": "Servicios Clínicos",
+  "Direct Fax Orders": "Pedidos directos por fax",
+  "Order Transmitted": "Orden transmitida",
+  "Waveform Analysis": "Análisis de forma de onda",
+  "Говорим по-русски": "Говорим по-русски",
+  "ਮਰੀਜ਼ਾਂ ਦੀ ਦੇਖਭਾਲ": "ਮਰੀਜ਼ਾਂ ਦੀ ਦੇਖਭਾਲ",
+  "Aneurysm Detection": "Detección de aneurisma",
+  "Direct Medical Fax": "Fax médico directo",
+  "Endometrial Stripe": "Raya endometrial",
+  "Language / Idioma:": "Idioma/Idioma:",
+  "Patient Hand-Carry": "Transporte del paciente en mano",
+  "Radiologist Report": "Informe del radiólogo",
+  "Schedule Your Exam": "Programe su examen",
+  "Медицинская помощь": "Medicina médica",
+  "Atención en Español": "Atención en español",
+  "Fluent Patient Care": "Atención fluida al paciente",
+  "Open Online Booking": "Abrir reserva en línea",
+  "Patient Examination": "Examen del paciente",
+  "Ultrasound Services": "Servicios de ultrasonido",
+  "Uterus & Myometrium": "Útero y miometrio",
+  "مریضوں کی دیکھ بھال": "مریضوں کی دیکھ بھال",
+  "Abdominal Sonography": "Ecografía abdominal",
+  "Calf Vein Assessment": "Evaluación de las venas de la pantorrilla",
+  "Contact & Directions": "Contacto y direcciones",
+  "Venous Doppler (DVT)": "Doppler venoso (TVP)",
+  "Abdominal & Digestáive": "Abdominales y Digestáivos",
+  "All Services Overview": "Descripción general de todos los servicios",
+  "Open in Google Maps →": "Abrir en Google Maps →",
+  "Urological Sonography": "Ecografía urológica",
+  "3. By Appointment Only": "3. Sólo con cita previa",
+  "Pelvic & Gynecological": "Pélvica y ginecológica",
+  "Transvaginal Details →": "Detalles transvaginales →",
+  "Echo (Echocardiography)": "Eco (Ecocardiografía)",
+  "Targeted Scan Details →": "Detalles del escaneo dirigido →",
+  "7634 Westá Belmont Avenue": "7634 Oestáe de la Avenida Belmont",
+  "Adult Cardiac Sonography": "Ecografía cardíaca en adultos",
+  "Anatomy Survey Details →": "Detalles de la encuestáa de anatomía →",
+  "Arterial Segment Mapping": "Mapeo del segmento arterial",
+  "Cardiac Echocardiography": "Ecocardiografía cardíaca",
+  "Gynecological Sonography": "Ecografía ginecológica",
+  "Obstetrical (OB) Imaging": "Imágenes obstétricas (OB)",
+  "Our clinic is located at": "Nuestára clínica estáá ubicada en",
+  "Palpable Lump Assessment": "Evaluación de bultos palpables",
+  "Transabdominal Details →": "Detalles transabdominales →",
+  "View Venous (DVT) Page →": "Ver página venosa (TVP) →",
+  "Visit Our Chicago Clinic": "Visite nuestára clínica de Chicago",
+  "“We Speak Your Language”": "“Hablamos tu idioma”",
+  "✓ Online Self-Scheduling": "✓ Autoprogramación en línea",
+  "✓ Secure Clinical Intake": "✓ Ingreso clínico seguro",
+  "3 Dedicated Service Pages": "3 páginas de servicio dedicadas",
+  "4 Dedicated Service Pages": "4 páginas de servicio dedicadas",
+  "All Ultrasound Modalities": "Todas las modalidades de ultrasonido",
+  "First Trimestáer Details →": "Detalles del primer trimestáre →",
+  "Maternal-Fetal Sonography": "Ecografía materno-fetal",
+  "Multilingual Patient Care": "Atención al paciente multilingüe",
+  "Pericardium & Aortic Root": "Pericardio y raíz aórtica",
+  "Renal (Kidney) Ultrasound": "Ultrasonido renal (riñón)",
+  "Third Trimestáer Details →": "Detalles del tercer trimestáre →",
+  "Walk-In with Signed Order": "Sin cita previa con orden firmada",
+  "Axillary Lymph Node Survey": "Encuestáa de ganglios linfáticos axilares",
+  "Care in Multiple Languages": "Cuidado en varios idiomas",
+  "Cerebrovascular Sonography": "Ecografía cerebrovascular",
+  "Cervical Lymph Node Chains": "Cadenas de ganglios linfáticos cervicales",
+  "Direct Fax: (708) 671-6711": "Fax directo: (708) 671-6711",
+  "Liver (Hepatic Parenchyma)": "Hígado (parénquima hepático)",
+  "Median Lobe & Bladder Neck": "Lóbulo mediano y cuello de la vejiga",
+  "Valvular Doppler Details →": "Detalles del Doppler valvular →",
+  "View Arterial (PAD) Page →": "Ver página arterial (PAD) →",
+  "View Carotid Duplex Page →": "Ver página dúplex carotídea →",
+  "Ejection Fraction Details →": "Detalles de la fracción de eyección →",
+  "Gallbladder & Biliary Tract": "Vesícula biliar y vías biliares",
+  "HIPAA-Compliant Diagnostics": "Diagnóstico compatible con HIPAA",
+  "View Renal & Bladder Page →": "Ver página de riñones y vejiga →",
+  "24–48 Hr Radiologist Reports": "Informes radiólogos de 24 a 48 horas",
+  "Abdominal Complete Details →": "Detalles Abdominales Completos →",
+  "Appointments: (872) 227-2321": "Citas: (872) 227-2321",
+  "Clinical Fax: (708) 671-6711": "Fax clínico: (708) 671-6711",
+  "Hydronephrosis & Obstruction": "Hidronefrosis y obstrucción",
+  "Ovaries & Adnexal Structures": "Ovarios y estáructuras anexiales",
+  "Peripheral Venous Sonography": "Ecografía venosa periférica",
+  "Physician Referrals & Orders": "Referencias y pedidos de médicos",
+  "Stroke & TIA Risk Assessment": "Evaluación de riesgos de accidente cerebrovascular y AIT",
+  "Superficial Organ Sonography": "Ecografía de órganos superficiales",
+  "perfectultrasounds@gmail.com": "ultrasonidosperfectos@gmail.com",
+  "Assessment of prostate health": "Evaluación de la salud de la próstata.",
+  "Deep Vein Compression Testáing": "Prueba de compresión venosa profunda",
+  "How Outpatient Referrals Work": "Cómo funcionan las derivaciones para pacientes ambulatorios",
+  "Provider Line: (872) 227-2321": "Línea de proveedor: (872) 227-2321",
+  "Spectral Doppler Hemodynamics": "Hemodinámica Doppler espectral",
+  "View Breast Ultrasound Page →": "Ver página de ultrasonido mamario →",
+  "View Dedicated Service Page →": "Ver página de servicio dedicada →",
+  "View Thyroid & Scrotal Page →": "Ver página de tiroides y escrotal →",
+  "1. Exam Preparation Guidelines": "1. Pautas de preparación para el examen",
+  "Dense Breast Tissue Evaluation": "Evaluación del tejido mamario denso",
+  "Pancreas & Ductal Architecture": "Páncreas y arquitectura ductal",
+  "Patient Preparation Guidelines": "Pautas de preparación del paciente",
+  "Peripheral Arterial Sonography": "Ecografía arterial periférica",
+  "Prostate Diagnostic Ultrasound": "Ultrasonido Diagnóstico de Próstata",
+  "Diagnostic Modalities Available": "Modalidades de diagnóstico disponibles",
+  "Elective 3D/4D Fetal Sonography": "Ecografía fetal 3D/4D electiva",
+  "How to Transmit Referral Orders": "Cómo transmitir órdenes de referencia",
+  "Nephrolithiasis (Kidney Stones)": "Nefrolitiasis (cálculos renales)",
+  "Non-invasive diagnostic imaging": "Diagnóstico por imágenes no invasivo",
+  "Physician Orders & Requisitions": "Órdenes y solicitudes de médicos",
+  "Scrotal & Testáicular Sonography": "Ecografía escrotal y testáicular",
+  "Scrotal / testáicular sonography": "Ecografía escrotal/testáicular",
+  "Thyroid gland & neck evaluation": "Evaluación de la glándula tiroides y el cuello.",
+  "View Physician Intake Details →": "Ver detalles de admisión del médico →",
+  "View Prostate Ultrasound Page →": "Ver página de ultrasonido de próstata →",
+  "What This Examination Evaluates": "Quéé evalúa estáe examen",
+  "Call to Schedule: (872) 227-2321": "Llame para programar: (872) 227-2321",
+  "Scheduling Phone: (872) 227-2321": "Teléfono de programación: (872) 227-2321",
+  "Transabdominal Pelvic Ultrasound": "Ultrasonido pélvico transabdominal",
+  "Direct Doctor Fax: (708) 671-6711": "Fax médico directo: (708) 671-6711",
+  "Heart Valves & Color Doppler Flow": "Válvulas cardíacas y flujo Doppler color",
+  "Radiation-free diagnostic imaging": "Diagnóstico por imágenes sin radiación",
+  "STAT Urgent Findings Phone Alerts": "Alertas telefónicas de hallazgos urgentes STAT",
+  "Stenosis & Occlusion Localization": "Localización de estáenosis y oclusión",
+  "First Trimestáer Viability & Dating": "Viabilidad y citas del primer trimestáre",
+  "Non-Invasive Diagnostic Ultrasound": "Ultrasonido de diagnóstico no invasivo",
+  "Obstetrical (Pregnancy) Ultrasound": "Ultrasonido obstétrico (embarazo)",
+  "Prostate Gland Dimensions & Volume": "Dimensiones y volumen de la glándula prostática",
+  "Ready to Schedule Your Ultrasound?": "¿Listo para programar su ultrasonido?",
+  "Regional Wall Motion Abnormalities": "Anormalidades regionales del movimiento de la pared",
+  "✓ Dedicated 24/7 Clinical Fax Line": "✓ Línea de fax clínico dedicada 24 horas al día, 7 días a la semana",
+  "Individualized screening care plans": "Planes de atención de detección individualizados",
+  "Renal (Kidney) & Bladder Ultrasound": "Ultrasonido renal (riñón) y vejiga",
+  "Small Parts (Thyroid, Neck, Testáes)": "Partes pequeñas (tiroides, cuello, testáículos)",
+  "Spleen & Reticuloendothelial System": "Bazo y sistema reticuloendotelial",
+  "Superficial Venous Thrombophlebitis": "Tromboflebitis venosa superficial",
+  "Thyroid Gland Architecture & Volume": "Arquitectura y volumen de la glándula tiroides",
+  "Carotid artery blood flow evaluation": "Evaluación del flujo sanguíneo de la arteria carótida.",
+  "Cyst vs. Solid Mass Characterization": "Caracterización de quiste versus masa sólida",
+  "Kidneys & abdominal aorta assessment": "Evaluación de riñones y aorta abdominal.",
+  "Post-Void Residual (PVR) Measurement": "Medición del residuo posmiccional (PVR)",
+  "Pouch of Douglas & Pelvic Free Fluid": "Bolsa de líquido libre de Douglas y pélvico",
+  "7634 W Belmont Ave, Chicago, IL 60634": "7634 W Belmont Ave, Chicago, IL 60634",
+  "Cardiac valve Doppler flow assessment": "Evaluación del flujo Doppler de la válvula cardíaca",
+  "External Carotid & Vertebral Arteries": "Arterias carótida externa y vertebral",
+  "Renal Dimensions & Cortical Thickness": "Dimensiones renales y espesor cortical",
+  "Renal structure and parenchymal check": "Estructura renal y control parenquimatoso.",
+  "Targeted Diagnostic Breast Ultrasound": "Ultrasonido mamario de diagnóstico dirigido",
+  "Thyroid Nodules & ACR TI-RADS Scoring": "Nódulos tiroideos y puntuación ACR TI-RADS",
+  "Transabdominal and transvaginal views": "Vistas transabdominal y transvaginal.",
+  "Transvaginal (Endovaginal) Sonography": "Ecografía transvaginal (endovaginal)",
+  "What languages does your staff speak?": "¿Quéé idiomas habla su personal?",
+  "100% Radiation-Free Diagnostic Imaging": "Diagnóstico por imágenes 100 % libre de radiación",
+  "Board-Certified Radiologist Evaluation": "Evaluación de radiólogo certificado por la junta",
+  "Need Clinical Coordination Assistance?": "¿Necesita asistencia de coordinación clínica?",
+  "• Convenient On-Site Parking Available": "• Cómodo estáacionamiento disponible en el lugar",
+  "Atherosclerotic Plaque Characterization": "Caracterización de la placa aterosclerótica",
+  "Reproductive organs & pelvic evaluation": "Órganos reproductivos y evaluación pélvica.",
+  "Valvular Structure & Color Doppler Flow": "Estructura valvular y flujo Doppler color",
+  "Yes, we accept major health insurances.": "Sí, aceptamos los principales seguros médicos.",
+  "2D, 3D, and 4D imaging options available": "Opciones de imágenes 2D, 3D y 4D disponibles",
+  "Ventricular Function & Ejection Fraction": "Función ventricular y fracción de eyección",
+  "Available without a direct doctor's order": "Disponible sin orden médica directa",
+  "Lower extremity arterial & venous studies": "Estudios arteriales y venosos de las extremidades inferiores.",
+  ". Convenient on-site parking is available.": ". Hay un cómodo aparcamiento disponible.",
+  "Benign Prostatic Hyperplasia (BPH) Mapping": "Mapeo de hiperplasia prostática benigna (HPB)",
+  "Carotid Artery Duplex & Doppler Ultrasound": "Ultrasonido dúplex y Doppler de la arteria carótida",
+  "Urinary Bladder & Post-Void Residual (PVR)": "Vejiga urinaria y residuo posmiccional (PVR)",
+  "7634 Westá Belmont Avenue, Chicago, IL 60634": "7634 Westá Belmont Avenue, Chicago, IL 60634",
+  "General & Abdominal Ultrasound Examinations": "Exámenes de ultrasonido general y abdominal",
+  "Lower Extremity Arterial Doppler Ultrasound": "Ultrasonido Doppler arterial de las extremidades inferiores",
+  "Screening for kidney stones & abnormalities": "Detección de cálculos renales y anomalías",
+  "Thyroid & Small Parts Diagnostic Ultrasound": "Ultrasonido de diagnóstico de tiroides y piezas pequeñas",
+  "1st, 2nd, and 3rd trimestáer fetal monitoring": "Monitoreo fetal del primer, segundo y tercer trimestáre",
+  "English, Spanish, Russian, Punjabi, and Urdu": "Inglés, español, ruso, punjabi y urdu",
+  "Experience the Difference in Diagnostic Care": "Experimente la diferencia en la atención de diagnóstico",
+  "Schedule Your Prostate Diagnostic Ultrasound": "Programe su ultrasonido de diagnóstico de próstata",
+  "Evaluation of cysts, lumps, and breast tissue": "Evaluación de quistes, bultos y tejido mamario.",
+  "Lower Extremity Venous Duplex (DVT Screening)": "Dúplex venoso de las extremidades inferiores (detección de TVP)",
+  "Our Mission: Delivering Care with Perfection.": "Nuestára misión: brindar atención con perfección.",
+  "Second Trimestáer Anatomy Survey (18–22 Weeks)": "Encuestáa de anatomía del segundo trimestáre (18 a 22 semanas)",
+  "Transthoracic Echocardiography (Cardiac Echo)": "Ecocardiografía transtorácica (eco cardíaco)",
+  "Common & Internal Carotid Arteries (CCA / ICA)": "Arterias carótidas comunes e internas (CCA / ICA)",
+  "Direct patient line for scheduling & inquiries": "Línea directa al paciente para programación y consultas",
+  "Evaluation of heart structure & muscle function": "Evaluación de la estáructura del corazón y la función muscular.",
+  "Every scan is evaluated by expert radiologists.": "Cada estáudio es evaluado por radiólogos expertos.",
+  "For Referring Physicians & Healthcare Practices": "Para médicos remitentes y consultorios de atención médica",
+  "General correspondence & administrative queries": "Correspondencia general y consultas administrativas",
+  "Schedule Your Pelvic & Gynecological Ultrasound": "Programe su ultrasonido pélvico y ginecológico",
+  "About Us | Perfect Diagnostic Ultrasound Chicago": "Acerca de nosotros | Ultrasonido Diagnóstico Perfecto Chicago",
+  "Liver, gallbladder, pancreas & spleen evaluation": "Evaluación de hígado, vesícula biliar, páncreas y bazo.",
+  "Choose a method below or submit the message form.": "Elija un método a continuación o envíe el formulario de mensaje.",
+  "Schedule Your Renal (Kidney) & Bladder Ultrasound": "Programe su ultrasonido renal (riñón) y vejiga",
+  "Left Ventricular Function & Ejection Fraction (EF)": "Función del ventrículo izquierdo y fracción de eyección (FE)",
+  "Third Trimestáer Growth & Biophysical Profile (BPP)": "Crecimiento del tercer trimestáre y perfil biofísico (BPP)",
+  "Do I need a doctor's referral to get an ultrasound?": "¿Necesito la derivación de un médico para hacerme una ecografía?",
+  "Schedule Your Targeted Diagnostic Breast Ultrasound": "Programe su ultrasonido mamario de diagnóstico dirigido",
+  "Evaluated by expert radiologists with prompt reports": "Evaluado por radiólogos expertos con informes rápidos.",
+  "Direct fax delivery to referring healthcare providers": "Entrega directa de fax a proveedores de atención médica remitentes",
+  "Where is the clinic located and is parking available?": "¿Dónde estáá ubicada la clínica y hay estáacionamiento disponible?",
+  "Seamless Outpatient Ultrasound Referrals in Chicago, IL": "Referencias de ultrasonido para pacientes ambulatorios sin inconvenientes en Chicago, IL",
+  "We also provide options for patients without insurance.": "También ofrecemos opciones para pacientes sin seguro.",
+  "Dedicated line for doctor requisitions & clinical orders": "Línea dedicada para solicitudes de médicos y pedidos clínicos",
+  "Schedule Your Carotid Artery Duplex & Doppler Ultrasound": "Programe su ultrasonido dúplex y Doppler de la arteria carótida",
+  "7634 W Belmont Ave, Chicago, IL 60634 • Northwestá Chicago": "7634 W Belmont Ave, Chicago, IL 60634 • Noroestáe de Chicago",
+  "Free parking along Westá Belmont Ave & nearby side streets": "Estacionamiento gratuito a lo largo de Westá Belmont Ave y calles laterales cercanas",
+  "Schedule Your General & Abdominal Ultrasound Examinations": "Programe sus exámenes de ultrasonido general y abdominal",
+  "Schedule Your Lower Extremity Arterial Doppler Ultrasound": "Programe su ultrasonido Doppler arterial de las extremidades inferiores",
+  "Schedule Your Obstetrical (OB) Ultrasound & 3D/4D Imaging": "Programe su ultrasonido obstétrico (OB) e imágenes 3D/4D",
+  "Schedule Your Thyroid & Small Parts Diagnostic Ultrasound": "Programe su ultrasonido de diagnóstico de tiroides y partes pequeñas",
+  "Appointments scheduled in advance to ensure dedicated care": "Citas programadas con anticipación para garantizar una atención dedicada",
+  "Contact Perfect Diagnostic Ultrasound | Chicago, IL Clinic": "Contacto Ultrasonido Diagnóstico Perfecto | Clínica de Chicago, Illinois",
+  "High-Resolution Thyroid & Small Parts Ultrasound | Chicago": "Ultrasonido de tiroides de alta resolución y partes pequeñas | chicago",
+  "Pelvic & Gynecological Ultrasound Imaging | Chicago Clinic": "Imágenes por ultrasonido pélvico y ginecológico | Clínica Chicago",
+  "General & Abdominal Ultrasound Examination | Chicago Clinic": "Examen de ultrasonido general y abdominal | Clínica Chicago",
+  "Prostate Ultrasound Examination | Chicago Diagnostic Clinic": "Examen de ultrasonido de próstata | Clínica de diagnóstico de Chicago",
+  "Schedule Your Lower Extremity Venous Duplex (DVT Screening)": "Programe su dúplex venoso de extremidades inferiores (detección de TVP)",
+  "Schedule Your Transthoracic Echocardiography (Cardiac Echo)": "Programe su ecocardiografía transtorácica (ecocardiograma)",
+  "Complete the form below and our staff will respond promptly.": "Complete el siguiente formulario y nuestro personal le responderá a la brevedad.",
+  "Lower Extremity Venous Duplex (LEV) | DVT Ultrasound Chicago": "Dúplex venoso de las extremidades inferiores (LEV) | Ultrasonido TVP Chicago",
+  "Targeted Diagnostic Breast Ultrasound | Radiation-Free Chicago": "Ultrasonido mamario de diagnóstico dirigido | Chicago libre de radiación",
+  "Ultrasound Services in Chicago | Perfect Diagnostic Ultrasound": "Servicios de ultrasonido en Chicago | Ultrasonido Diagnóstico Perfecto",
+  "Lower Extremity Arterial Doppler Ultrasound (LEA) | Chicago PAD": "Ultrasonido Doppler arterial de las extremidades inferiores (LEA) | PAD de Chicago",
+  "Renal & Bladder Ultrasound Examination | Chicago Kidney Imaging": "Examen de ultrasonido renal y de vejiga | Imágenes del riñón de Chicago",
+  "Carotid Artery Duplex Ultrasound | Chicago Stroke Risk Screening": "Ultrasonido dúplex de la arteria carótida | Detección de riesgo de accidente cerebrovascular en Chicago",
+  "Common questions from clinical coordinators and medical offices.": "Preguntas comunes de coordinadores clínicos y consultorios médicos.",
+  "Obstetrical (OB) Ultrasound & 3D/4D Imaging | Chicago Sonography": "Ultrasonido obstétrico (OB) e imágenes 3D/4D | Sonografía de Chicago",
+  "Inquiries and scheduling assistance welcomed daily: (872) 227-2321": "Consultas y asistencia para programar son bienvenidas todos los días: (872) 227-2321",
+  "Transthoracic Echocardiography (Echo) | Chicago Cardiac Ultrasound": "Ecocardiografía Transtorácica (Eco) | Ultrasonido cardíaco de Chicago",
+  "Scans performed according to doctor recommendations & medical orders": "Exploraciones realizadas de acuerdo con las recomendaciones y órdenes médicas del médico.",
+  "Our staff is proud to offer services in multiple languages, including": "Nuestáro personal se enorgullece de ofrecer servicios en varios idiomas, incluidos",
+  "Schedule Ultrasound Appointment | Perfect Diagnostic Ultrasound Chicago": "Programe una cita de ultrasonido | Ultrasonido Diagnóstico Perfecto Chicago",
+  "Perfect Diagnostic Ultrasound | Premier Ultrasound Clinic in Chicago, IL": "Ultrasonido de diagnóstico perfecto | Clínica Premier de Ultrasonido en Chicago, IL",
+  "Book online via Square Appointments to choose your preferred day and time.": "Reserve en línea a través de Citas Square para elegir su día y hora preferidos.",
+  "For Referring Physicians & Practices | Perfect Diagnostic Ultrasound Chicago": "Para médicos y consultorios remitentes | Ultrasonido Diagnóstico Perfecto Chicago",
+  "Carotid Duplex, Upper/Lower Venous DVT evaluation, Arterial Extremity Duplex.": "Dúplex carotídeo, evaluación de TVP venosa superior/inferior, Dúplex de extremidades arteriales.",
+  "Diagnostic ultrasound technology is completely non-invasive and radiation-free.": "La tecnología de diagnóstico por ultrasonido es completamente no invasiva y estáá libre de radiación.",
+  "Advanced high-resolution 2D, 3D/4D, and Doppler diagnostic ultrasound protocols.": "Protocolos avanzados de ultrasonido de diagnóstico 2D, 3D/4D y Doppler de alta resolución.",
+  "Complete / Limited Abdomen, Gallbladder, Liver, Pancreas, Spleen, Abdominal Aorta.": "Abdomen Completo/Limitado, Vesícula Biliar, Hígado, Páncreas, Bazo, Aorta Abdominal.",
+  "Answers regarding ultrasound examinations, referrals, insurance, and clinic visits.": "Respuestáas sobre exámenes de ultrasonido, derivaciones, seguros y visitas a la clínica.",
+  "Transabdominal & Transvaginal Pelvic, Uterine, Ovarian, and Endometrial evaluation.": "Evaluación transabdominal y transvaginal pélvica, uterina, ovárica y endometrial.",
+  "© 2026 Perfect Diagnostic Ultrasound (Perfect Ultrasound LLC). All rights reserved.": "© 2026 Perfect Diagnostic Ultrasound (Perfect Ultrasound LLC). Reservados todos los derechos.",
+  "Fax patient demographic sheet and ultrasound order requisition directly to our clinic.": "Envíe por fax la hoja demográfica del paciente y la solicitud de pedido de ultrasonido directamente a nuestára clínica.",
+  "Prompt, accurate diagnostic reports are provided for you and your healthcare provider.": "Se proporcionan informes de diagnóstico rápidos y precisos para usted y su proveedor de atención médica.",
+  "Kidney / Bladder, Thyroid & Neck soft tissues, Breast ultrasound, Prostate, Testáicular.": "Riñón / Vejiga, Tiroides y Tejidos blandos del Cuello, Ecografía mamaria, Próstata, Testáicular.",
+  "Diagnostic ultrasound procedure for assessing prostate health and surrounding structures.": "Procedimiento de diagnóstico por ultrasonido para evaluar la salud de la próstata y las estáructuras circundantes.",
+  "1st, 2nd & 3rd Trimestáer Viability, Anatomical Surveys, Gestáational Age, 3D/4D Sonography.": "Viabilidad 1er, 2do y 3er Trimestáre, Estudios Anatómicos, Edad Gestáacional, Ecografía 3D/4D.",
+  "Transthoracic Echocardiogram (Echo) assessing cardiac chambers, valves & ejection fraction.": "Ecocardiograma transtorácico (Echo) que evalúa las cámaras, válvulas y fracción de eyección cardíacas.",
+  "Screening and diagnostic evaluation of kidney structures for stones, cysts, or abnormalities.": "Detección y evaluación diagnóstica de las estáructuras renales en busca de cálculos, quistes o anomalías.",
+  "No doctor's order is strictly required for personalized health consultations and screening exams.": "No se requiere estárictamente orden médica para consultas de salud personalizadas y exámenes de detección.",
+  "© 2026 Perfect Diagnostic Ultrasound. All rights reserved. Operating strictly by appointment only.": "© 2026 Ultrasonido Diagnóstico Perfecto. Reservados todos los derechos. Operando estárictamente solo con cita previa.",
+  "Non-invasive cardiac ultrasound examining cardiac structure and function, heart chambers, and valve blood flow.": "Ultrasonido cardíaco no invasivo que examina la estáructura y función cardíaca, las cámaras del corazón y el flujo sanguíneo de las válvulas.",
+  "Systematic evaluation of posterior tibial, peroneal, and gastrocnemius veins for isolated calf vein thrombosis.": "Evaluación sistemática de las venas tibial posterior, peronea y gastrocnemio para detectar trombosis aislada de la vena de la pantorrilla.",
+  "Evaluates regional axillary lymph node architecture, cortical thickness, and fatty hila when clinically indicated.": "Evalúa la arquitectura de los ganglios linfáticos axilares regionales, el espesor cortical y los hilios grasos cuando estáá clínicamente indicado.",
+  "High-resolution ultrasound imaging of superficial structures including thyroid gland, neck structures, and testáes.": "Imágenes por ultrasonido de alta resolución de estáructuras superficiales que incluyen la glándula tiroides, las estáructuras del cuello y los testáículos.",
+  "Inspection of the cul-de-sac for free fluid, pelvic inflammatory disease (PID) sequelae, or ruptured ovarian cysts.": "Inspección del callejón sin salida en busca de líquido libre, secuelas de enfermedad inflamatoria pélvica (EPI) o quistes ováricos rotos.",
+  "Non-invasive assessment of prostate gland volume, architecture, median lobe protrusion, and urinary outflow dynamics.": "Evaluación no invasiva del volumen, la arquitectura, la protrusión del lóbulo mediano y la dinámica del flujo urinario de la próstata.",
+  "Our clinic operates strictly by appointment only to ensure minimal waiting times and dedicated one-on-one patient care.": "Nuestára clínica opera estárictamente con cita previa para garantizar tiempos de espera mínimos y una atención personalizada y dedicada al paciente.",
+  "Differentiates homogeneous, heterogeneous, calcified, soft, or ulcerated plaques along the carotid bulb and bifurcation.": "Diferencia placas homogéneas, heterogéneas, calcificadas, blandas o ulceradas a lo largo del bulbo carotídeo y la bifurcación.",
+  "Standard turnaround is 24 to 48 business hours. Final signed reports are faxed directly back to your clinical fax number.": "El plazo de entrega estáándar es de 24 a 48 horas hábiles. Los informes finales firmados se envían por fax directamente a su número de fax clínico.",
+  "or hand it to the patient. We accept orders for all abdominal, pelvic, OB, vascular, cardiac, and small parts modalities.": "o entregárselo al paciente. Aceptamos pedidos para todas las modalidades abdominales, pélvicas, obstétricas, vasculares, cardíacas y de piezas pequeñas.",
+  "A frictionless coordination process designed to make ultrasound scheduling effortless for your medical staff and patients.": "Un proceso de coordinación sin fricciones diseñado para que la programación de ultrasonidos sea sencilla para su personal médico y sus pacientes.",
+  "Examines kidney size, parenchymal thickness, renal calculi (stones), hydronephrosis, and post-void residual bladder volume.": "Examina el tamaño del riñón, el espesor del parénquima, los cálculos renales (piedras), la hidronefrosis y el volumen residual de la vejiga posmiccional.",
+  "Non-invasive breast imaging for evaluation of breast tissue, cysts, and lumps, providing targeted anatomical visualization.": "Imágenes mamarias no invasivas para la evaluación del tejido mamario, quistes y bultos, proporcionando visualización anatómica específica.",
+  "Healthcare is personal. We are proud to serve Chicago’s diverse communities with a warm, welcoming multilingual medical team.": "La atención sanitaria es personal. Estamos orgullosos de servir a las diversas comunidades de Chicago con un equipo médico multilingüe cálido y acogedor.",
+  "We only work with appointments. Inquiries and scheduling assistance are welcomed daily. Convenient on-site parking available.": "Sólo trabajamos con citas. Se aceptan consultas y asistencia con la programación todos los días. Conveniente estáacionamiento en el lugar disponible.",
+  "Focused imaging for right upper quadrant pain, gallbladder stones, pancreatitis, or abdominal aortic aneurysm (AAA) screening.": "Imágenes enfocadas para detectar dolor en el cuadrante superior derecho, cálculos en la vesícula biliar, pancreatitis o detección de aneurisma aórtico abdominal (AAA).",
+  "Evaluation of anterior and lateral cervical lymph nodes to differentiate benign reactive lymphadenopathy from suspicious nodes.": "Evaluación de los ganglios linfáticos cervicales anteriores y laterales para diferenciar la linfadenopatía reactiva benigna de los ganglios sospechosos.",
+  "Examines common and internal carotid arteries for atherosclerotic plaque buildup, stenosis severity, and stroke risk screening.": "Examina las arterias carótidas interna y común en busca de acumulación de placa aterosclerótica, gravedad de la estáenosis y detección del riesgo de accidente cerebrovascular.",
+  "Provide your signed prescription pad or order form to the patient. Patients can schedule their appointment online or by calling": "Proporcione al paciente su recetario firmado o formulario de pedido. Los pacientes pueden programar su cita en línea o llamando",
+  "Evaluates bladder neck anatomy and assesses whether median lobe enlargement is contributing to urinary hesitancy or weak stream.": "Evalúa la anatomía del cuello de la vejiga y valora si el agrandamiento del lóbulo mediano contribuye a la vacilación o al flujo débil de la orina.",
+  "Non-invasive transabdominal ultrasound evaluating prostate gland volume, median lobe architecture, and bladder outflow dynamics.": "Ultrasonido transabdominal no invasivo que evalúa el volumen de la glándula prostática, la arquitectura del lóbulo mediano y la dinámica del flujo de salida de la vejiga.",
+  "Transmit orders, clinical indications, or insurance authorizations via email. We confirm receipt promptly during business hours.": "Transmitir órdenes, indicaciones clínicas o autorizaciones de seguros vía correo electrónico. Confirmamos la recepción con prontitud durante el horario comercial.",
+  "Non-invasive pregnancy imaging to monitor fetal development, viability, and gestáational age, with 2D, 3D, and 4D imaging options.": "Imágenes del embarazo no invasivas para monitorear el desarrollo fetal, la viabilidad y la edad gestáacional, con opciones de imágenes 2D, 3D y 4D.",
+  "Schedule your diagnostic ultrasound appointment with our experienced clinical team today. Operating strictly by appointment only.": "Programe hoy su cita de ultrasonido de diagnóstico con nuestro experimentado equipo clínico. Operando estárictamente solo con cita previa.",
+  "Accurately measures splenic bipolar length to assess for splenomegaly, splenic cysts, infarctions, or architectural abnormalities.": "Mide con precisión la longitud bipolar esplénica para evaluar si hay esplenomegalia, quistes esplénicos, infartos o anomalías arquitectónicas.",
+  "Detailed survey of fetal organs, cranial anatomy, spine, extremities, placental localization, and optional elective 3D/4D imaging.": "Estudio detallado de los órganos fetales, anatomía craneal, columna vertebral, extremidades, localización placentaria e imágenes 3D/4D electivas opcionales.",
+  "Determines post-micturition bladder retention volume to evaluate the functional impact of prostate enlargement on bladder emptying.": "Determina el volumen de retención de la vejiga después de la micción para evaluar el impacto funcional del agrandamiento de la próstata en el vaciado de la vejiga.",
+  "High-frequency internal assessment providing magnified resolution of the endometrial stripe, small ovarian cysts, PCOS, and adnexa.": "Evaluación interna de alta frecuencia que proporciona una resolución ampliada de la franja endometrial, pequeños quistes ováricos, síndrome de ovario poliquístico y sus anexos.",
+  "High-resolution sonographic evaluation of renal parenchyma, calculi, hydronephrosis, and urinary bladder post-void residual volume.": "Evaluación ecográfica de alta resolución del parénquima renal, cálculos, hidronefrosis y volumen residual posmiccional de la vejiga urinaria.",
+  "Confirmation of intrauterine pregnancy, early cardiac activity, accurate gestáational dating via CRL, and maternal pelvic assessment.": "Confirmación de embarazo intrauterino, actividad cardíaca temprana, datación gestáacional precisa mediante CRL y evaluación pélvica materna.",
+  "Tailored health consultations and individualized care plans, accommodating patients even if they do not have a prior doctor's order.": "Consultas de salud personalizadas y planes de atención individualizados, atendiendo a los pacientes incluso si no tienen orden médica previa.",
+  "Targeted, patient-guided imaging directly over areas of palpable concern, skin dimpling, focal breast pain, or localized tenderness.": "Imágenes dirigidas y guiadas por el paciente directamente sobre áreas de preocupación palpables, hoyuelos en la piel, dolor mamario focal o sensibilidad localizada.",
+  "Fetal growth tracking, fetal position/presentation, estáimated fetal weight (EFW), biophysical profile (BPP), and amniotic fluid volume.": "Seguimiento del crecimiento fetal, posición/presentación fetal, peso fetal estáimado (EFW), perfil biofísico (BPP) y volumen de líquido amniótico.",
+  "High-resolution superficial sonography of the thyroid gland (TI-RADS scoring), cervical lymph nodes, and scrotal/testáicular structures.": "Ecografía superficial de alta resolución de la glándula tiroides (puntuación TI-RADS), ganglios linfáticos cervicales y estáructuras escrotales/testáiculares.",
+  "Venous duplex examination to assess for deep vein thrombosis (DVT), acute clot formation, and chronic venous insufficiency in the legs.": "Examen venoso dúplex para evaluar la trombosis venosa profunda (TVP), la formación de coágulos agudos y la insuficiencia venosa crónica en las piernas.",
+  "Have questions about an ultrasound scan, physician orders, or insurance? Reach out to our team directly or send an online message below.": "¿Tiene preguntas sobre una ecografía, órdenes médicas o seguros? Comuníquese con nuestro equipo directamente o envíe un mensaje en línea a continuación.",
+  "Provides supplemental high-contrast imaging in patients with dense breast tissue where standard mammographic sensitivity may be reduced.": "Proporciona imágenes complementarias de alto contraste en pacientes con tejido mamario denso donde la sensibilidad mamográfica estáándar puede verse reducida.",
+  "Targeted, radiation-free evaluation of palpable lumps, focal tenderness, dense breast tissue, and cyst vs solid nodule characterization.": "Evaluación dirigida y sin radiación de bultos palpables, dolor focal, tejido mamario denso y caracterización de quistes versus nódulos sólidos.",
+  "Over two and a half decades of dedicated clinical expertise providing diagnostic ultrasound imaging across the Chicago metropolitan area.": "Más de dos décadas y media de experiencia clínica dedicada al suministro de imágenes de ultrasonido de diagnóstico en toda el área metropolitana de Chicago.",
+  "Doppler studies evaluating blood flow in arteries and veins, including carotid artery evaluation and lower extremity vascular circulation.": "Estudios Doppler que evalúan el flujo sanguíneo en arterias y venas, incluida la evaluación de la arteria carótida y la circulación vascular de las extremidades inferiores.",
+  "Evaluation of internal organs including the liver, gallbladder, pancreas, spleen, kidneys, and abdominal aorta to assess symptoms or pain.": "Evaluación de órganos internos, incluidos el hígado, la vesícula biliar, el páncreas, el bazo, los riñones y la aorta abdominal para evaluar los síntomas o el dolor.",
+  "Specialized hemodynamic Doppler assessment evaluating peripheral arterial blood flow, claudication, and peripheral arterial disease (PAD).": "Evaluación Doppler hemodinámica especializada que evalúa el flujo sanguíneo arterial periférico, la claudicación y la enfermedad arterial periférica (EAP).",
+  "Thorough assessment of the liver, gallbladder, common bile duct, pancreas, spleen, kidneys, and abdominal aorta for pain or abnormal LFTs.": "Evaluación exhaustiva del hígado, la vesícula biliar, el colédoco, el páncreas, el bazo, los riñones y la aorta abdominal para detectar dolor o LFT anormales.",
+  "Calculates left and right ventricular systolic function, stroke volume, myocardial wall motion, and overall cardiac ejection fraction (EF).": "Calcula la función sistólica de los ventrículos izquierdo y derecho, el volumen sistólico, el movimiento de la pared del miocardio y la fracción de eyección cardíaca (FE) general.",
+  "Our clinical provider desk is available to assist referring practices with order confirmations, modality inquiries, and patient scheduling.": "Nuestáro mostrador de proveedores clínicos estáá disponible para ayudar a los consultorios remitentes con confirmaciones de pedidos, consultas sobre modalidades y programación de pacientes.",
+  "Arterial Doppler evaluating peripheral arterial disease (PAD), intermittent claudication, arterial pulse waveforms, and vascular resistance.": "Doppler arterial que evalúa la enfermedad arterial periférica (EAP), la claudicación intermitente, las formas de onda del pulso arterial y la resistencia vascular.",
+  "Assesses spontaneous flow, respiratory phasicity, and response to distal augmentation maneuvers to rule out proximal pelvic vein obstruction.": "Evalúa el flujo espontáneo, la fasicidad respiratoria y la respuestáa a las maniobras de aumento distal para descartar la obstrucción de la vena pélvica proximal.",
+  "Screens for popliteal and femoral artery aneurysms, measuring transverse and longitudinal diameters and evaluating for intraluminal thrombus.": "Detección de aneurismas de las arterias poplítea y femoral, medición de diámetros transversales y longitudinales y evaluación de trombos intraluminales.",
+  "Wide-angle transabdominal evaluation of uterine size, contour, large fibroids, and gross pelvic anatomy using a full bladder acoustic window.": "Evaluación transabdominal de gran angular del tamaño y contorno del útero, fibromas grandes y anatomía pélvica macroscópica utilizando una ventana acústica de vejiga llena.",
+  "Evaluates transitional zone enlargement, glandular symmetry, and assesses intravesical prostatic protrusion (IPP) elevating the bladder floor.": "Evalúa el agrandamiento de la zona de transición, la simetría glandular y evalúa la protrusión prostática intravesical (PPI) que eleva el piso de la vejiga.",
+  "We accommodate patients with or without a direct doctor's order, and we also accept physician requisitions sent from your healthcare provider.": "Atendemos a pacientes con o sin orden médica directa y también aceptamos solicitudes de médicos enviadas por su proveedor de atención médica.",
+  "Screening and surveillance of the infrarenal abdominal aorta to measure caliber and rule out abdominal aortic aneurysm (AAA) or mural thrombus.": "Cribado y vigilancia de la aorta abdominal infrarrenal para medir calibre y descartar aneurisma de aorta abdominal (AAA) o trombo mural.",
+  "Pinpoints focal atherosclerotic plaques, calculates velocity ratios across narrowed segments, and identifies collateral reconstitution pathways.": "Identifica placas ateroscleróticas focales, calcula relaciones de velocidad a través de segmentos estárechados e identifica vías de reconstitución colateral.",
+  "Identifies echogenic calculi, measures stone size, evaluates posterior acoustic shadowing, and checks for twinkling artifacts with color Doppler.": "Identifica cálculos ecogénicos, mide el tamaño de los cálculos, evalúa la sombra acústica posterior y comprueba si hay artefactos centelleantes con Doppler color.",
+  "Rapid, accurate ultrasound duplex evaluation of deep and superficial leg veins to rule out deep vein thrombosis (DVT) and evaluate venous reflux.": "Evaluación dúplex por ultrasonido rápida y precisa de las venas profundas y superficiales de las piernas para descartar la trombosis venosa profunda (TVP) y evaluar el reflujo venoso.",
+  "Accurately measures transverse, anteroposterior, and longitudinal prostate diameters, calculating total prostate volume in cubic centimeters (cc).": "Mide con precisión los diámetros transversal, anteroposterior y longitudinal de la próstata, calculando el volumen total de la próstata en centímetros cúbicos (cc).",
+  "Evaluates external carotid flow patterns and assesses vertebral artery flow direction to identify subclavian steal syndrome or vertebral hypoplasia.": "Evalúa los patrones de flujo de la carótida externa y evalúa la dirección del flujo de la arteria vertebral para identificar el síndrome de robo de la subclavia o la hipoplasia vertebral.",
+  "Examines the great saphenous vein (GSV) and small saphenous vein (SSV) for superficial clot, wall thickening, and saphenofemoral junction competence.": "Examina la vena safena mayor (GSV) y la vena safena menor (SSV) en busca de coágulos superficiales, engrosamiento de la pared y competencia de la unión safenofemoral.",
+  "We operate strictly by appointment to ensure prompt attention and comfortable patient care. Convenient on-site parking is available for all visitors.": "Operamos estárictamente con cita previa para garantizar una atención rápida y una atención cómoda al paciente. Un cómodo estáacionamiento en el lugar estáá disponible para todos los visitantes.",
+  "Examines bladder lumen, wall thickness, diverticula, and calculates precise pre-void and post-void residual urine volumes to assess urinary retention.": "Examina la luz de la vejiga, el grosor de la pared, los divertículos y calcula con precisión los volúmenes de orina residual premiccional y posmiccional para evaluar la retención urinaria.",
+  "Focused high-resolution ultrasound imaging targeting specific organs and superficial soft-tissue structures evaluated by board-certified radiologists.": "Imágenes de ultrasonido enfocadas de alta resolución dirigidas a órganos específicos y estáructuras superficiales de tejidos blandos evaluadas por radiólogos certificados.",
+  "Focused, 100% radiation-free ultrasound imaging providing targeted characterization of palpable breast lumps, localized pain, and dense breast tissue.": "Imágenes de ultrasonido enfocadas y 100% libres de radiación que brindan una caracterización específica de bultos mamarios palpables, dolor localizado y tejido mamario denso.",
+  "High-resolution hemodynamic duplex ultrasound screening the extracranial carotid arteries to detect stenosis, atherosclerotic plaque, and stroke risk.": "Ultrasonido dúplex hemodinámico de alta resolución que examina las arterias carótidas extracraneales para detectar estáenosis, placa aterosclerótica y riesgo de accidente cerebrovascular.",
+  "High-frequency imaging assessing testáicular pain, swelling, hydrocele, varicocele, epididymitis, orchitis, and testáicular microcalcifications or masses.": "Imágenes de alta frecuencia que evalúan dolor testáicular, hinchazón, hidrocele, varicocele, epididimitis, orquitis y microcalcificaciones o masas testáiculares.",
+  "High-frequency superficial ultrasound providing detailed evaluation of thyroid nodules, goiter, cervical lymph nodes, and scrotal/testáicular structures.": "Ultrasonido superficial de alta frecuencia que proporciona una evaluación detallada de los nódulos tiroideos, el bocio, los ganglios linfáticos cervicales y las estáructuras escrotales/testáiculares.",
+  "Quéantifies peak systolic velocity (PSV), end-diastolic velocity (EDV), and the ICA/CCA velocity ratio to grade stenosis according to consensus criteria.": "Cuantifica la velocidad sistólica máxima (PSV), la velocidad telediastólica (EDV) y la relación de velocidad ICA/CCA con respecto al grado de estáenosis según criterios de consenso.",
+  "Real-time spectral and color Doppler measuring blood velocities across the aortic, mitral, tricuspid, and pulmonary valves for stenosis or regurgitation.": "Doppler espectral y color en tiempo real que mide las velocidades de la sangre a través de las válvulas aórtica, mitral, tricúspide y pulmonar para detectar estáenosis o regurgitación.",
+  "Differentiates healthy high-resistance triphasic waveforms from biphasic, monophasic, or dampened tardus-parvus waveforms indicative of upstream stenosis.": "Diferencia las formas de onda trifásicas saludables de alta resistencia de las formas de onda bifásicas, monofásicas o de tardus-parvus amortiguadas que indican una estáenosis aguas arriba.",
+  "Diagnostic findings are processed and transmitted to referring doctors within 24 to 48 hours, with prompt phone notifications for urgent clinical findings.": "Los resultados del diagnóstico se procesan y transmiten a los médicos remitentes en un plazo de 24 a 48 horas, con notificaciones telefónicas inmediatas en caso de hallazgos clínicos urgentes.",
+  "Visualizes the pancreatic head, uncinate process, body, and tail to detect pancreatitis, parenchymal calcifications, ductal dilation, or pancreatic masses.": "Visualiza la cabeza pancreática, el proceso uncinado, el cuerpo y la cola para detectar pancreatitis, calcificaciones parenquimatosas, dilatación ductal o masas pancreáticas.",
+  "Fax your patient's signed clinical requisition or EHR face sheet directly to our intake desk. Our team immediately coordinates scheduling with your patient.": "Envíe por fax la solicitud clínica firmada de su paciente o la hoja frontal de EHR directamente a nuestro mostrador de admisión. Nuestáro equipo coordina inmediatamente la programación con su paciente.",
+  "No special preparation or fasting is needed. Wear a loose, comfortable collarless shirt or blouse. Avoid wearing neck jewelry on the day of the examination.": "No se necesita preparación especial ni ayuno. Use una camisa o blusa holgada y cómoda sin cuello. Evite usar joyas en el cuello el día del examen.",
+  "Complete non-invasive transthoracic echocardiogram (TTE) evaluating left ventricular ejection fraction, myocardial wall motion, and heart valve hemodynamics.": "Ecocardiograma transtorácico (ETT) no invasivo completo que evalúa la fracción de eyección del ventrículo izquierdo, el movimiento de la pared del miocardio y la hemodinámica de la válvula cardíaca.",
+  "Detailed sonographic assessment of the female reproductive anatomy. Evaluates uterine architecture, myometrium, endometrial thickness, and bilateral ovaries.": "Evaluación ecográfica detallada de la anatomía reproductiva femenina. Evalúa la arquitectura uterina, el miometrio, el grosor del endometrio y los ovarios bilaterales.",
+  "Every scan is formally evaluated and signed by licensed, board-certified radiologists, providing high-fidelity diagnostic reports your physician can rely upon.": "Cada exploración es evaluada y firmada formalmente por radiólogos autorizados y certificados, lo que proporciona informes de diagnóstico de alta fidelidad en los que su médico puede confiar.",
+  "Volumetric 3D surface rendering and real-time 4D motion capturing expressive fetal facial movements, yawns, and smiles in a warm, welcoming outpatient setting.": "Representación volumétrica de superficies en 3D y movimiento 4D en tiempo real que captura movimientos faciales fetales expresivos, bostezos y sonrisas en un entorno ambulatorio cálido y acogedor.",
+  "Comprehensive evaluation of solid internal organs in the upper and mid-abdomen. Assesses organ size, parenchymal architecture, focal lesions, cysts, and stones.": "Evaluación integral de órganos internos sólidos en el abdomen superior y medio. Evalúa el tamaño de los órganos, la arquitectura parenquimatosa, las lesiones focales, los quistes y los cálculos.",
+  "Includes full 2D, M-Mode, Color Flow Doppler, and Spectral Doppler quantitative analysis with guaranteed radiologist/cardiologist turnaround within 24–48 hours.": "Incluye análisis cuantitativo completo 2D, modo M, Doppler de flujo color y Doppler espectral con respuestáa garantizada del radiólogo/cardiólogo en un plazo de 24 a 48 horas.",
+  "Our Chicago clinic operates strictly by appointment only to eliminate waiting room delays. Reserve your appointment online or call our clinical scheduling team.": "Nuestára clínica de Chicago opera estárictamente con cita previa para eliminar demoras en la sala de espera. Reserve su cita en línea o llame a nuestro equipo de programación clínica.",
+  "Full coaptation testáing of the common femoral vein (CFV), femoral vein (FV), deep femoral vein (profunda), and popliteal vein to confirm complete lumen collapse.": "Prueba de coaptación completa de la vena femoral común (CFV), la vena femoral (FV), la vena femoral profunda (profunda) y la vena poplítea para confirmar el colapso completo de la luz.",
+  "Precise measurement of left ventricular systolic and diastolic function, calculation of ejection fraction, and stroke volume using Simpson's biplane methodology.": "Medición precisa de la función sistólica y diastólica del ventrículo izquierdo, cálculo de la fracción de eyección y volumen sistólico utilizando la metodología biplano de Simpson.",
+  "We accept all standard clinic order pads, EHR printed requisitions, or our downloadable order form. Choose the transmission method most convenient for your staff:": "Aceptamos todos los talonarios de pedidos de clínicas estáándar, solicitudes impresas de EHR o nuestro formulario de pedido descargable. Elija el método de transmisión más conveniente para su personal:",
+  "Accurate 3D volume measurements of right and left thyroid lobes and isthmus, assessing parenchymal echotexture for thyroiditis (e.g. Hashimoto's, Graves' disease).": "Mediciones precisas de volumen en 3D de los lóbulos tiroideos derecho e izquierdo y del istmo, evaluando la ecotextura parenquimatosa para detectar tiroiditis (p. ej., enfermedad de Hashimoto, enfermedad de Graves).",
+  "Grades caliectasis and pelviectasis (mild, moderate, severe) to identify urinary tract obstruction caused by ureteral calculi, strictures, or external compression.": "Califica las caliectasias y pelviectasias (leve, moderada, grave) para identificar la obstrucción del tracto urinario causada por cálculos ureterales, estáenosis o compresión externa.",
+  "Measures bipolar renal length and assesses parenchymal cortical thickness and corticomedullary differentiation to evaluate chronic kidney disease (CKD) or atrophy.": "Mide la longitud renal bipolar y evalúa el espesor cortical parenquimatoso y la diferenciación corticomedular para evaluar la enfermedad renal crónica (ERC) o la atrofia.",
+  "Please bring a valid photo ID, your health insurance card (if utilizing insurance), and any medical order or requisition form provided by your referring physician.": "Traiga una identificación con fotografía válida, su tarjeta de seguro médico (si utiliza un seguro) y cualquier orden médica o formulario de solicitud proporcionado por su médico remitente.",
+  "Positive DVT findings are treated with urgent physician notification. A board-certified radiologist report is faxed immediately to the referring provider's office.": "Los hallazgos positivos de TVP se tratan con notificación urgente al médico. Un informe de un radiólogo certificado se envía inmediatamente por fax al consultorio del proveedor remitente.",
+  "Your provider creates an ultrasound requisition on your standard clinic order pad, hospital EHR sheet, or prescription pad specifying clinical indication & ICD-10.": "Su proveedor crea una solicitud de ultrasonido en su libreta de pedidos clínica estáándar, hoja de HCE del hospital o talonario de recetas que especifica la indicación clínica y la CIE-10.",
+  "Evaluated by board-certified radiologists with detailed measurements of both kidneys, cortical thickness, hydronephrosis grading, and pre/post-void bladder volumes.": "Evaluado por radiólogos certificados con mediciones detalladas de ambos riñones, grosor cortical, clasificación de hidronefrosis y volúmenes de la vejiga antes y después de la micción.",
+  "Evaluation of major arterial and venous pathways throughout the body using pulse-wave and color Doppler to assess blood velocity, stenosis, and circulatory patency.": "Evaluación de las principales vías arteriales y venosas de todo el cuerpo mediante onda de pulso y Doppler color para evaluar la velocidad de la sangre, la estáenosis y la permeabilidad circulatoria.",
+  "Non-OB transabdominal and transvaginal ultrasound evaluating reproductive organs, urinary tract, pelvic floor, and checking for conditions like ectopic pregnancies.": "Ultrasonido transabdominal y transvaginal no obstétrico que evalúa los órganos reproductivos, el tracto urinario, el suelo pélvico y detecta afecciones como embarazos ectópicos.",
+  "Comprehensive, radiation-free ultrasound imaging of the liver, gallbladder, pancreas, kidneys, spleen, and abdominal aorta evaluated by board-certified radiologists.": "Imágenes ecográficas completas y sin radiación del hígado, la vesícula biliar, el páncreas, los riñones, el bazo y la aorta abdominal evaluadas por radiólogos certificados.",
+  "A board-certified radiologist evaluates and signs the diagnostic report, transmitted to your office within 24–48 hours. STAT critical findings are phoned immediately.": "Un radiólogo certificado evalúa y firma el informe de diagnóstico, que se transmite a su consultorio en un plazo de 24 a 48 horas. Los hallazgos críticos de STAT se comunican de inmediato.",
+  "Definitively distinguishes simple benign fluid-filled cysts (anechoic with posterior enhancement) from complex cysts or solid lesions requiring radiologist follow-up.": "Distingue definitivamente los quistes benignos simples llenos de líquido (anecoicos con realce posterior) de los quistes complejos o lesiones sólidas que requieren seguimiento radiólogo.",
+  "Detailed sonographic characterization of nodule size, composition, echogenicity, margins, shape, and microcalcifications with TI-RADS radiologist risk stratification.": "Caracterización ecográfica detallada del tamaño, composición, ecogenicidad, márgenes, forma y microcalcificaciones del nódulo con estáratificación de riesgo radiólogo TI-RADS.",
+  "The patient receives a dedicated, radiation-free ultrasound in our Chicago facility. Operating by appointment only ensures zero wait times and complete patient focus.": "El paciente recibe una ecografía exclusiva y sin radiación en nuestáras instalaciones de Chicago. Operar con cita previa solo garantiza cero tiempos de espera y una completa atención al paciente.",
+  "All examinations at Perfect Diagnostic Ultrasound are 100% radiation-free, non-invasive, and evaluated by expert radiologists with prompt, accurate diagnostic reports.": "Todos los exámenes realizados en Perfect Diagnostic Ultrasound son 100% libres de radiación, no invasivos y evaluados por radiólogos expertos con informes de diagnóstico rápidos y precisos.",
+  "By operating strictly by appointment, we ensure our clinical team is completely prepared for your arrival, eliminating waiting room congestáion and respecting your time.": "Al operar estárictamente con cita previa, nos aseguramos de que nuestro equipo clínico estáé completamente preparado para su llegada, eliminando la congestáión de la sala de espera y respetando su tiempo.",
+  "Confirmation of intrauterine pregnancy, precise gestáational age dating via crown-rump length (CRL), early fetal heartbeat detection, and exclusion of ectopic pregnancy.": "Confirmación de embarazo intrauterino, datación precisa de la edad gestáacional mediante la longitud cráneo-rabadilla (CRL), detección temprana de latidos cardíacos fetales y exclusión de embarazo ectópico.",
+  "Essential workup for patients with transient ischemic attacks (TIA), carotid bruits, amaurosis fugax, focal neurological deficits, syncope, or high cardiovascular risk.": "Estudio esencial para pacientes con ataques isquémicos transitorios (AIT), soplos carotídeos, amaurosis fugaz, déficits neurológicos focales, síncope o alto riesgo cardiovascular.",
+  "Detection and quantification of pericardial effusions, measurement of the ascending aorta and aortic root dimensions, and right ventricular systolic pressure estáimation.": "Detección y cuantificación de derrames pericárdicos, medición de las dimensiones de la aorta ascendente y de la raíz aórtica y estáimación de la presión sistólica del ventrículo derecho.",
+  "Transthoracic echocardiogram (TTE) provides non-invasive imaging of heart chambers, valves, and surrounding great vessels to assess cardiac performance and hemodynamics.": "El ecocardiograma transtorácico (ETT) proporciona imágenes no invasivas de las cámaras del corazón, las válvulas y los grandes vasos circundantes para evaluar el rendimiento cardíaco y la hemodinámica.",
+  "Evaluates uterine size, contour, and position. Accurately maps and measures uterine fibroids (leiomyomas), detects adenomyosis, and assesses congenital uterine anomalies.": "Evalúa el tamaño, el contorno y la posición del útero. Mapea y mide con precisión los fibromas uterinos (leiomiomas), detecta adenomiosis y evalúa anomalías uterinas congénitas.",
+  "High-resolution transabdominal and endovaginal sonography assessing uterine architecture, endometrial lining, and ovarian structures for comprehensive gynecological care.": "Ecografía transabdominal y endovaginal de alta resolución que evalúa la arquitectura uterina, el revestáimiento endometrial y las estáructuras ováricas para una atención ginecológica integral.",
+  "Monitoring fetal growth parameters (BPD, HC, AC, FL), estáimated fetal weight (EFW), fetal position/presentation, umbilical artery Doppler flow, and amniotic fluid volume.": "Monitoreo de los parámetros de crecimiento fetal (BPD, HC, AC, FL), peso fetal estáimado (EFW), posición/presentación fetal, flujo Doppler de la arteria umbilical y volumen de líquido amniótico.",
+  "Systematic evaluation of 16-17 myocardial segments to identify hypokinesia, akinesia, or dyskinesia associated with coronary artery disease or past myocardial infarction.": "Evaluación sistemática de 16 a 17 segmentos de miocardio para identificar hipocinesia, acinesia o discinesia asociada con enfermedad de las arterias coronarias o infarto de miocardio pasado.",
+  "Preparation instructions depend on the specific ultrasound exam being performed. Our clinical staff provides clear, tailored instructions when scheduling your appointment.": "Las instrucciones de preparación dependen del examen de ultrasonido específico que se estáé realizando. Nuestáro personal clínico brinda instrucciones claras y personalizadas al programar su cita.",
+  "To ensure all patients feel comfortable and fully understood, we are proud to offer services in multiple languages, including English, Spanish, Russian, Punjabi, and Urdu.": "Para garantizar que todos los pacientes se sientan cómodos y completamente comprendidos, estáamos orgullosos de ofrecer servicios en varios idiomas, incluidos inglés, español, ruso, punjabi y urdu.",
+  "Detailed radiologist reports quantify endometrial thickness and provide exact three-plane measurements of all fibroids and ovarian cysts with color Doppler flow assessment.": "Los informes detallados del radiólogo cuantifican el grosor del endometrio y proporcionan mediciones exactas en tres planos de todos los fibromas y quistes ováricos con evaluación del flujo Doppler color.",
+  "Arrive with a comfortably full bladder by drinking 24–32 oz of water completed 1 hour prior to the exam. Do not void before the initial ultrasound measurements are captured.": "Llegue con la vejiga cómodamente llena bebiendo entre 24 y 32 onzas de agua 1 hora antes del examen. No anule antes de que se capturen las mediciones ecográficas iniciales.",
+  "Independent outpatient diagnostic ultrasound clinic in Chicago providing clinical ultrasound evaluated by board-certified radiologists. Operating strictly by appointment only.": "Clínica independiente de ultrasonido de diagnóstico para pacientes ambulatorios en Chicago que brinda ultrasonido clínico evaluado por radiólogos certificados. Operando estárictamente solo con cita previa.",
+  "No fasting or special preparation is necessary. Wear loose-fitting trousers or shorts that can be easily rolled up or removed. Continue all medications, including anticoagulants.": "No es necesario ayunar ni realizar ninguna preparación especial. Use pantalones o pantalones cortos holgados que se puedan enrollar o quitar fácilmente. Continúe con todos los medicamentos, incluidos los anticoagulantes.",
+  "Your trusted clinical imaging partner in Chicago. Dedicated to medical precision, patient compassion, and rapid diagnostic turnaround with over 25 years of sonography experience.": "Su socio de confianza en imágenes clínicas en Chicago. Dedicado a la precisión médica, la compasión del paciente y la rápida respuestáa diagnóstica con más de 25 años de experiencia en ecografía.",
+  "All thyroid nodule reports feature formal ACR TI-RADS scoring with precise millimeter measurements and vascular color Doppler documentation to guide follow-up or biopsy decisions.": "Todos los informes de nódulos tiroideos cuentan con puntuación formal ACR TI-RADS con mediciones milimétricas precisas y documentación vascular Doppler color para guiar las decisiones de seguimiento o biopsia.",
+  "Comprehensive color Doppler and spectral Doppler velocity assessment of the aortic, mitral, tricuspid, and pulmonary valves for stenosis, regurgitation, prolapse, or calcification.": "Evaluación integral de la velocidad Doppler color y Doppler espectral de las válvulas aórtica, mitral, tricúspide y pulmonar para detectar estáenosis, regurgitación, prolapso o calcificación.",
+  "Comprehensive prenatal sonography evaluated by board-certified radiologists, from early pregnancy viability to detailed second-trimestáer anatomy surveys and elective 3D/4D fetal imaging.": "Ecografía prenatal integral evaluada por radiólogos certificados, desde la viabilidad temprana del embarazo hasta estáudios detallados de la anatomía del segundo trimestáre e imágenes fetales electivas en 3D/4D.",
+  "Comprehensive segmental documentation with Doppler velocity ratios, waveform classification, and anatomical localization of arterial obstruction for vascular and primary care physicians.": "Documentación segmentaria completa con índices de velocidad Doppler, clasificación de formas de onda y localización anatómica de la obstrucción arterial para médicos vasculares y de atención primaria.",
+  "We accept obstetrical orders on any standard physician requisition pad or EHR printout. Routine and high-risk pregnancy evaluations receive prompt radiologist reports within 24–48 hours.": "Aceptamos órdenes obstétricas en cualquier cuaderno de solicitudes de médico estáándar o en una copia impresa de EHR. Las evaluaciones de embarazos de rutina y de alto riesgo reciben informes rápidos del radiólogo dentro de las 24 a 48 horas.",
+  "Ideal for patients presenting with right upper quadrant (RUQ) pain, epigastric distress, elevated LFTs, or routine screening. STAT phone reports are available for acute surgical findings.": "Ideal para pacientes que presentan dolor en el cuadrante superior derecho (RUQ), malestáar epigástrico, LFT elevados o exámenes de detección de rutina. Los informes telefónicos urgentes estáán disponibles para hallazgos quirúrgicos agudos.",
+  "Identifies gallstones (cholelithiasis), gallbladder wall thickening, pericholecystic fluid indicative of acute cholecystitis, biliary sludge, and measures the common bile duct (CBD) caliber.": "Identifica cálculos biliares (colelitiasis), engrosamiento de la pared de la vesícula biliar, líquido pericolecístico indicativo de colecistitis aguda, lodo biliar y mide el calibre del conducto biliar común (CBD).",
+  "Bilateral evaluation of ovarian dimensions, follicle count, detection of simple cysts, hemorrhagic cysts, endometriomas, dermoids (teratomas), and polycystic ovary syndrome (PCOS) morphology.": "Evaluación bilateral de dimensiones ováricas, recuento de folículos, detección de quistes simples, quistes hemorrágicos, endometriomas, dermoides (teratomas) y morfología del síndrome de ovario poliquístico (SOP).",
+  "Complete volume calculations and post-void residual analysis are included in every final radiologist report, assisting primary care physicians and urologists with targeted treatment planning.": "En cada informe final del radiólogo se incluyen cálculos de volumen completos y análisis de residuos posmiccionales, lo que ayuda a los médicos de atención primaria y a los urólogos con la planificación del tratamiento específico.",
+  "Preparation instructions depend entirely on the specific ultrasound exam being performed. Our clinical team provides clear, tailored guidance directly to you when scheduling your appointment.": "Las instrucciones de preparación dependen completamente del examen de ultrasonido específico que se estáé realizando. Nuestáro equipo clínico le brinda orientación clara y personalizada directamente al programar su cita.",
+  "Evaluates hepatic dimensions, diffuse fatty infiltration (steatosis), cirrhosis, surface nodularity, vascular patency (portal and hepatic veins), and identifies focal hepatic lesions or cysts.": "Evalúa las dimensiones hepáticas, la infiltración grasa difusa (estáeatosis), la cirrosis, la nodularidad de la superficie, la permeabilidad vascular (venas porta y hepática) e identifica quistes o lesiones hepáticas focales.",
+  "All breast ultrasound examinations are categorized according to the ACR BI-RADS (Breast Imaging Reporting and Data System) lexicon by board-certified radiologists with prompt 24-48hr turnaround.": "Todos los exámenes de ultrasonido de mama se clasifican de acuerdo con el léxico ACR BI-RADS (Sistema de datos e informes de imágenes de mama) realizados por radiólogos certificados con un tiempo de respuestáa rápido de 24 a 48 horas.",
+  "STAT and critical findings (such as acute deep vein thrombosis, ectopic pregnancy, or severe acute abnormalities) are immediately telephoned to your office by our staff or interpreting radiologist.": "Nuestáro personal o el radiólogo intérprete llaman inmediatamente a su consultorio por teléfono a su consultorio con las pruebas urgentes y los hallazgos críticos (como trombosis venosa profunda aguda, embarazo ectópico o anomalías agudas graves).",
+  "Precise measurement of endometrial thickness to evaluate abnormal uterine bleeding (AUB), postmenopausal bleeding, endometrial hyperplasia, polyps, or intrauterine contraceptive device (IUD) localization.": "Medición precisa del espesor endometrial para evaluar sangrado uterino anormal (SUA), sangrado posmenopáusico, hiperplasia endometrial, pólipos o localización del dispositivo anticonceptivo intrauterino (DIU).",
+  "Every ultrasound examination is evaluated and interpreted by board-certified radiologists, ensuring your physician receives the detailed anatomical insights needed for timely diagnosis and treatment planning.": "Cada examen de ultrasonido es evaluado e interpretado por radiólogos certificados, lo que garantiza que su médico reciba la información anatómica detallada necesaria para un diagnóstico y una planificación del tratamiento oportunos.",
+  "For thyroid imaging: Wear a comfortable, loose open-collar shirt or blouse; avoid turtlenecks. Remove necklaces before the scan. For scrotal imaging: No special prep is needed; wear loose, comfortable clothing.": "Para imágenes de tiroides: use una camisa o blusa cómoda y holgada con cuello abierto; Evite los cuellos de tortuga. Quéítese los collares antes del escaneo. Para imágenes escrotales: no se necesita ninguna preparación especial; use ropa holgada y cómoda.",
+  "No fasting required. Avoid smoking, vaping, or consuming heavy caffeine for at least 2 hours before the examination, as nicotine and caffeine induce peripheral vasoconstriction that can alter Doppler waveforms.": "No se requiere ayuno. Evite fumar, vapear o consumir mucha cafeína durante al menos 2 horas antes del examen, ya que la nicotina y la cafeína inducen vasoconstricción periférica que puede alterar las formas de onda Doppler.",
+  "Detailed reports include grayscale plaque morphological descriptions, color Doppler documentation, and spectral velocity waveforms conforming to the Society of Radiologists in Ultrasound (SRU) consensus criteria.": "Los informes detallados incluyen descripciones morfológicas de la placa en escala de grises, documentación Doppler color y formas de onda de velocidad espectral que cumplen con los criterios de consenso de la Sociedad de Radiólogos en Ultrasonido (SRU).",
+  "Partner with Perfect Diagnostic Ultrasound for hospital-grade diagnostic sonography, prompt patient scheduling, and 24–48 hour board-certified radiologist reports — without hospital delays or excessive facility fees.": "Asóciese con Perfect Diagnostic Ultrasound para obtener ecografías de diagnóstico de nivel hospitalario, programación rápida de pacientes e informes de radiólogos certificados de 24 a 48 horas, sin demoras hospitalarias ni tarifas excesivas de las instalaciones.",
+  "Direct visualization and Doppler velocity measurements along the common femoral artery (CFA), superficial femoral artery (SFA), popliteal artery, anterior tibial (ATA), posterior tibial (PTA), and dorsalis pedis (DPA).": "Visualización directa y mediciones de velocidad Doppler a lo largo de la arteria femoral común (CFA), la arteria femoral superficial (SFA), la arteria poplítea, la tibial anterior (ATA), la tibial posterior (PTA) y el dorsal del pie (DPA).",
+  "No dietary restárictions or fasting are required for a transthoracic echocardiogram. Please wear a comfortable two-piece outfit that allows easy access to the chestá. Continue taking all regular cardiac medications as prescribed.": "No se requieren restáricciones dietéticas ni ayuno para un ecocardiograma transtorácico. Utilice un traje cómodo de dos piezas que permita un fácil acceso al pecho. Continúe tomando todos los medicamentos cardíacos habituales según lo prescrito.",
+  "We believe quality healthcare should be accessible to all patients regardless of insurance coverage. We offer personalized consultations to review your imaging requisitions and coordinate diagnostic reports with your physician.": "Creemos que todos los pacientes deben tener acceso a atención médica de calidad, independientemente de su cobertura de seguro. Ofrecemos consultas personalizadas para revisar sus solicitudes de imágenes y coordinar informes de diagnóstico con su médico.",
+  "Yes. We accept any valid medical order signed by a licensed physician (MD/DO), nurse practitioner (NP), or physician assistant (PA) that includes patient demographics, requested examination, and clinical indication or ICD-10 code.": "Sí. Aceptamos cualquier orden médica válida firmada por un médico autorizado (MD/DO), una enfermera practicante (NP) o un asistente médico (PA) que incluya datos demográficos del paciente, examen solicitado e indicación clínica o código ICD-10.",
+  "Obstetrical sonography monitors fetal development, anatomy, and maternal health across all trimestáers of pregnancy. Ultrasound uses gentle sound waves with zero ionizing radiation, ensuring complete safety for both parent and baby.": "La ecografía obstétrica monitorea el desarrollo fetal, la anatomía y la salud materna en todos los trimestáres del embarazo. El ultrasonido utiliza ondas sonoras suaves sin radiación ionizante, lo que garantiza una seguridad total tanto para los padres como para el bebé.",
+  "Detailed evaluation of fetal organs including cranial ventricles, facial profile, four-chamber cardiac views and outflow tracts, spine alignment, kidneys, stomach bubble, bladder, limbs, placental location, and amniotic fluid index.": "Evaluación detallada de los órganos fetales, incluidos los ventrículos craneales, el perfil facial, las vistas cardíacas de cuatro cámaras y los tractos de salida, la alineación de la columna, los riñones, la burbuja estáomacal, la vejiga, las extremidades, la ubicación de la placenta y el índice de líquido amniótico.",
+  "We perform medical ultrasound scans in accordance with doctor recommendations and medical orders. Every scan is evaluated by expert radiologists with prompt, accurate diagnostic reports provided for you and your healthcare provider.": "Realizamos ecografías médicas de acuerdo con las recomendaciones y órdenes médicas. Cada exploración es evaluada por radiólogos expertos y se proporcionan informes de diagnóstico rápidos y precisos para usted y su proveedor de atención médica.",
+  "Major health insurances are accepted. Patients without insurance benefit from our transparent self-pay pricing with no surprise hospital bills. Our multilingual staff provides compassionate care in English, Spanish, Russian, Punjabi, and Urdu.": "Se aceptan los principales seguros de salud. Los pacientes sin seguro se benefician de nuestros precios transparentes de pago por cuenta propia sin facturas hospitalarias sorpresa. Nuestáro personal multilingüe brinda atención compasiva en inglés, español, ruso, punjabi y urdu.",
+  "No dietary restárictions. Wear a comfortable two-piece outfit. Do not apply deodorants, antiperspirants, talcum powders, lotions, or perfumes under the arms or on the breast area on the day of the exam, as residues can create sonographic artifacts.": "Sin restáricciones dietéticas. Lleva un conjunto cómodo de dos piezas. No aplique desodorantes, antitranspirantes, talco, lociones o perfumes debajo de los brazos o en el área de los senos el día del examen, ya que los residuos pueden crear artefactos ecográficos.",
+  "Drink 24–32 oz of water finished 1 hour before your appointment so that your urinary bladder is comfortably distended. Do not urinate until the sonographer completes the pre-void bladder measurements. You will then be given time to void for the post-void evaluation.": "Beba de 24 a 32 onzas de agua terminada 1 hora antes de su cita para que su vejiga urinaria estáé cómodamente distendida. No orine hasta que el ecografista complete las mediciones previas a la evacuación de la vejiga. Luego se le dará tiempo para anular para la evaluación posterior a la anulación.",
+  "Prostate diagnostic ultrasound offers a comfortable, non-invasive assessment of the prostate gland and bladder base. It helps physicians evaluate benign prostatic hyperplasia (BPH), urinary outflow obstruction, and elevated PSA levels without radiation or invasive discomfort.": "La ecografía de diagnóstico de próstata ofrece una evaluación cómoda y no invasiva de la glándula prostática y la base de la vejiga. Ayuda a los médicos a evaluar la hiperplasia prostática benigna (HPB), la obstrucción del flujo urinario y los niveles elevados de PSA sin radiación ni molestáias invasivas.",
+  "For the transabdominal portion, arrive with a fully distended bladder by drinking 32–40 oz of water finished 1 hour before your scan; do not void. If a transvaginal scan is clinically indicated and consented to, you will be instructed to empty your bladder completely just before the procedure.": "Para la porción transabdominal, llegue con la vejiga completamente distendida bebiendo entre 32 y 40 onzas de agua 1 hora antes de la exploración; no anules. Si estáá clínicamente indicado y se acepta una exploración transvaginal, se le indicará que vacíe la vejiga por completo justo antes del procedimiento.",
+  "For first-trimestáer examinations (< 14 weeks), please drink 32 oz of water finished 1 hour before your appointment and do not empty your bladder. For second- and third-trimestáer anatomy surveys, normal hydration is recommended, along with a light snack 30 minutes prior to encourage fetal activity.": "Para los exámenes del primer trimestáre (<14 semanas), beba 32 oz de agua terminada 1 hora antes de su cita y no vacíe la vejiga. Para los estáudios de anatomía del segundo y tercer trimestáre, se recomienda una hidratación normal, junto con un refrigerio ligero 30 minutos antes para estáimular la actividad fetal.",
+  ", we provide hospital-grade diagnostic ultrasound examinations in a comfortable, personal outpatient setting. With an unwavering commitment to precision, compassion, and professional integrity, we fulfill your imaging needs without the long waits or high facility fees of hospital radiology departments.": ", brindamos exámenes de ultrasonido de diagnóstico de nivel hospitalario en un ambiente ambulatorio cómodo y personal. Con un compromiso inquebrantable con la precisión, la compasión y la integridad profesional, satisfacemos sus necesidades de imágenes sin las largas esperas ni las altas tarifas de los departamentos de radiología de los hospitales.",
+  "Pelvic ultrasound is a delicate, compassionate diagnostic evaluation designed to provide detailed anatomical insight into the female reproductive system. Our certified female sonographers provide respectful, private care, utilizing high-frequency digital probes evaluated by board-certified radiologists.": "La ecografía pélvica es una evaluación diagnóstica delicada y compasiva diseñada para proporcionar una visión anatómica detallada del sistema reproductivo femenino. Nuestáras ecografistas certificadas brindan atención privada y respetuosa, utilizando sondas digitales de alta frecuencia evaluadas por radiólogos certificados.",
+  "Renal and bladder ultrasound is a non-invasive, radiation-free diagnostic testá assessing the upper and lower urinary tracts. It is the initial imaging study of choice for evaluating flank pain, suspected kidney stones, hematuria (blood in urine), recurrent urinary tract infections, and renal impairment.": "La ecografía renal y vesical es una prueba de diagnóstico no invasiva y sin radiación que evalúa las vías urinarias superiores e inferiores. Es el estáudio de imagen inicial de elección para evaluar el dolor en el flanco, la sospecha de cálculos renales, la hematuria (sangre en la orina), las infecciones recurrentes del tracto urinario y la insuficiencia renal.",
+  "High-frequency linear ultrasound probes deliver extraordinary spatial resolution for superficial soft-tissue structures located close to the skin surface. Our clinic specializes in detailed sonography of the thyroid gland, neck lymph nodes, and scrotal structures evaluated by board-certified radiologists.": "Las sondas de ultrasonido lineal de alta frecuencia brindan una resolución espacial extraordinaria para estáructuras superficiales de tejidos blandos ubicadas cerca de la superficie de la piel. Nuestára clínica se especializa en ecografía detallada de la glándula tiroides, los ganglios linfáticos del cuello y las estáructuras escrotales evaluadas por radiólogos certificados.",
+  "Carotid duplex sonography combines high-resolution B-mode imaging with pulse-wave spectral Doppler and color Doppler to measure blood velocity and visualize the walls of the carotid arteries. It is the gold standard, non-invasive method for detecting carotid artery narrowing and preventing ischemic stroke.": "La ecografía dúplex carotídea combina imágenes en modo B de alta resolución con Doppler espectral de onda de pulso y Doppler color para medir la velocidad de la sangre y visualizar las paredes de las arterias carótidas. Es el método no invasivo de referencia para detectar el estárechamiento de la arteria carótida y prevenir el accidente cerebrovascular isquémico.",
+  "Deep vein thrombosis (DVT) is a potentially life-threatening condition where a blood clot forms in the deep veins of the legs, posing a risk of pulmonary embolism (PE). Our clinic provides prompt, appointment-based venous duplex evaluations performed with compression sonography and spectral Doppler flow analysis.": "La trombosis venosa profunda (TVP) es una afección potencialmente mortal en la que se forma un coágulo de sangre en las venas profundas de las piernas, lo que supone un riesgo de embolia pulmonar (EP). Nuestára clínica ofrece evaluaciones venosas dúplex rápidas y basadas en citas realizadas con ecografía de compresión y análisis de flujo Doppler espectral.",
+  "Abdominal ultrasound provides high-resolution cross-sectional visualization of solid organs and major vascular structures within the peritoneal and retroperitoneal cavity. It is the primary frontline diagnostic exam for unexplained abdominal pain, abnormal liver function testás, jaundice, and palpable abdominal masses.": "La ecografía abdominal proporciona una visualización transversal de alta resolución de órganos sólidos y estáructuras vasculares importantes dentro de la cavidad peritoneal y retroperitoneal. Es el examen de diagnóstico de primera línea para dolor abdominal inexplicable, pruebas de función hepática anormales, ictericia y masas abdominales palpables.",
+  "Fasting (NPO) for 6 to 8 hours prior to your examination is strictly required. Do not eat, drink, or chew gum. Fasting ensures optimal distension of the gallbladder and reduces overlying bowel gas for clear visualization of the pancreas and aorta. Small sips of water are permitted for necessary prescription medications.": "Es estárictamente necesario ayunar (NPO) durante 6 a 8 horas antes de su examen. No coma, beba ni mastique chicle. El ayuno asegura una distensión óptima de la vesícula biliar y reduce el gas intestáinal suprayacente para una visualización clara del páncreas y la aorta. Se permiten pequeños sorbos de agua para los medicamentos recetados necesarios.",
+  "An echocardiogram uses acoustic sound waves to generate real-time moving images of heart chambers, muscular walls, and cardiac valves. Evaluated by board-certified specialists, our echocardiograms provide primary care physicians, cardiologists, and surgeons with the comprehensive hemodynamic data needed to guide clinical management.": "Un ecocardiograma utiliza ondas sonoras acústicas para generar imágenes en movimiento en tiempo real de las cámaras del corazón, las paredes musculares y las válvulas cardíacas. Evaluados por especialistas certificados, nuestros ecocardiogramas brindan a los médicos de atención primaria, cardiólogos y cirujanos los datos hemodinámicos completos necesarios para guiar el manejo clínico.",
+  "Diagnostic breast ultrasound uses high-frequency acoustic sound waves to inspect targeted areas of breast tissue in high detail. It is completely free of ionizing radiation and serves as an essential diagnostic tool for evaluating palpable lumps, clarifying mammographic findings, and differentiating cystic lesions from solid masses.": "La ecografía mamaria de diagnóstico utiliza ondas sonoras acústicas de alta frecuencia para inspeccionar áreas específicas del tejido mamario con gran detalle. Está completamente libre de radiación ionizante y sirve como una herramienta de diagnóstico esencial para evaluar bultos palpables, aclarar los hallazgos mamográficos y diferenciar las lesiones quísticas de las masas sólidas.",
+  "Lower extremity arterial duplex sonography evaluates blood flow through the arterial supply of the legs and feet. It provides critical diagnostic evidence for peripheral arterial disease (PAD), helps determine the severity of arterial narrowing, and guides treatment decisions for patients suffering from leg pain, cold extremities, or poor wound healing.": "La ecografía dúplex arterial de las extremidades inferiores evalúa el flujo sanguíneo a través del suministro arterial de las piernas y los pies. Proporciona evidencia diagnóstica crítica para la enfermedad arterial periférica (EAP), ayuda a determinar la gravedad del estárechamiento arterial y guía las decisiones de tratamiento para pacientes que sufren dolor en las piernas, extremidades frías o mala cicatrización de heridas.",
+  "Obstetrical ultrasound is a non-invasive, radiation-free diagnostic imaging modality used to monitor pregnancy, assess fetal growth and anatomical development, and ensure maternal health. Every examination at Perfect Diagnostic Ultrasound is performed using advanced digital sonography systems and interpreted by board-certified radiologists with rapid 24–48hr report delivery to your obstetrician or midwife.": "La ecografía obstétrica es una modalidad de diagnóstico por imágenes no invasiva y sin radiación que se utiliza para controlar el embarazo, evaluar el crecimiento fetal y el desarrollo anatómico y garantizar la salud materna. Cada examen en Perfect Diagnostic Ultrasound se realiza utilizando sistemas avanzados de ecografía digital y es interpretado por radiólogos certificados con entrega rápida de informes a su obstetra o partera en 24 a 48 horas.",
+  "Prompt, accurate diagnostic reports are provided for physician follow-up.": "Se proporcionan informes diagnósticos rápidos y precisos para el seguimiento médico.",
+  "Physician Referrals & Doctor Orders": "Referencias Médicas y Órdenes de Doctores",
+  "Physician Orders & Fast Turnaround": "Órdenes Médicas y Resultados Rápidos",
+  "Physician Order / Requisition": "Orden Médica / Requisición",
+  "Need Assistance Scheduling?": "¿Necesita Ayuda para Programar?",
+  "Select an Ultrasound Modality": "Seleccione una Modalidad de Ultrasonido",
+  "Select & Book": "Seleccionar y Reservar",
+  "Schedule Online": "Programar en Línea",
+  "(872) 227-2321": "(872) 227-2321",
+  "Fax: (708) 671-6711": "Fax: (708) 671-6711",
+  "info@perfectdiagnosticultrasound.com": "info@perfectdiagnosticultrasound.com",
+  "Submit Requisition Online": "Enviar Requisición en Línea",
+  "Print Requisition Form": "Imprimir Formulario de Requisición",
+  "Official Clinical Order": "Orden Clínica Oficial",
+  "Physician Ultrasound Requisition Form": "Formulario de Requisición de Ultrasonido Médico",
+  "Submit clinical orders electronically or print for office signature. Direct Fax:": "Envíe las órdenes clínicas electrónicamente o imprímalas para firmarlas en la oficina. Fax directo:",
+  "Print Order Form": "Imprimir Formulario de Orden",
+  "Referring Physician & Practice Information": "Información del Médico Remitente y Consultorio",
+  "Physician Full Name *": "Nombre Completo del Médico *",
+  "Clinic / Practice Name *": "Nombre de la Clínica / Consultorio *",
+  "Physician NPI Number": "Número NPI del Médico",
+  "Office Phone *": "Teléfono del Consultorio *",
+  "Report Fax Number *": "Número de Fax para Informes *",
+  "Office Contact / Email": "Contacto / Correo del Consultorio",
+  "Patient Information": "Información del Paciente",
+  "Patient Full Name *": "Nombre Completo del Paciente *",
+  "Date of Birth (DOB) *": "Fecha de Nacimiento *",
+  "Patient Phone Number *": "Teléfono del Paciente *",
+  "Insurance / Billing Type": "Tipo de Seguro / Facturación",
+  "Commercial Health Insurance": "Seguro Médico Comercial",
+  "Medicare": "Medicare",
+  "Medicaid": "Medicaid",
+  "Self-Pay / Direct Billing": "Pago Directo / Cuenta Propia",
+  "Workers Comp / Personal Injury": "Compensación Laboral / Accidente",
+  "Ultrasound Modality Requested (Check All That Apply) *": "Modalidad de Ultrasonido Solicitada (Marque las que correspondan) *",
+  "Select specific anatomical examination(s) to be performed and evaluated:": "Seleccione los exámenes anatómicos específicos a realizar y evaluar:",
+  "Abdominal & Renal:": "Abdominales y Renales:",
+  "Abdomen Complete": "Abdomen completo",
+  "RUQ / Gallbladder": "CSI / Vesícula Biliar (RUQ)",
+  "Renal & Urinary Bladder": "Vejiga renal y urinaria",
+  "Aorta (AAA Screen)": "Aorta Abdominal (Despistaje de AAA)",
+  "Obstetrical & Pelvic:": "Obstétrica y pélvica:",
+  "OB 1st Trimestáer Viability": "OB 1er Trimestáre Viabilidad",
+  "OB 2nd Trimestáer Anatomy": "OB 2do Trimestáre Anatomía",
+  "OB 3rd Trimestáer Growth": "OB 3er Trimestáre Crecimiento",
+  "Pelvic (Transabdominal)": "Pélvica (Transabdominal)",
+  "Pelvic (Transvaginal)": "Pélvica (Transvaginal)",
+  "Vascular & Cardiac:": "Vasculares y cardíacas:",
+  "Echocardiogram (Echo)": "Ecocardiograma (Eco)",
+  "Lower Ext. Venous (DVT)": "Venoso Extremidad Inferior (TVP)",
+  "Lower Ext. Arterial Duplex": "Dúplex Arterial Extremidad Inferior",
+  "Small Parts & Soft Tissue:": "Partes Pequeñas y Tejidos Blandos:",
+  "Thyroid & Neck Nodes": "Tiroides y Ganglios Cervicales",
+  "Scrotal & Testáicular": "Escrotal y testáicular",
+  "Soft Tissue / Palpable Mass": "Tejido Blando / Masa Palpable",
+  "Clinical Indications, Symptoms & Report Priority": "Indicaciones Clínicas, Síntomas y Prioridad del Informe",
+  "Clinical Indications / Symptoms / ICD-10 Code *": "Indicaciones Clínicas / Síntomas / Código ICD-10 *",
+  "Report Turnaround Priority:": "Prioridad de Entrega del Informe:",
+  "Routine:": "Rutina:",
+  "Written Radiologist Report in 24–48 Hours": "Informe Escrito del Radiólogo en 24–48 Horas",
+  "STAT / Urgent:": "STAT / Urgente:",
+  "Same-day scan & immediate verbal phone call for acute findings": "Estudio el mismo día y llamada telefónica inmediata por hallazgos agudos",
+  "Upload Signed Requisition / Prescription Pad (Optional)": "Cargar Requisición Firmada / Recetario Médico (Opcional)",
+  "Click to upload signed physician order pad or referral sheet": "Haga clic para cargar el recetario médico firmado o la hoja de referencia",
+  "PDF, JPG, PNG up to 10MB": "PDF, JPG, PNG hasta 10MB",
+  "I certify that I am a licensed healthcare provider (or authorized clinical staff member) ordering diagnostic ultrasound imaging for the patient indicated above in accordance with medical necessity.": "Certifico que soy un proveedor de atención médica con licencia (o miembro autorizado del personal clínico) que ordena imágenes de ultrasonido diagnóstico para el paciente indicado de acuerdo con la necesidad médica.",
+  "Physician Requisition Received Successfully!": "¡Requisición Médica Recibida con Éxito!",
+  "Our clinical scheduling team will contact the patient promptly to coordinate appointment booking. Official radiologist reports will be faxed directly to the number provided.": "Nuestáro equipo de coordinación clínica se comunicará con el paciente a la brevedad para programar la cita. Los informes oficiales de los radiólogos se enviarán por fax directamente al número proporcionado.",
+  "Transmit Requisition Order Securely": "Transmitir Orden de Requisición de Forma Segura",
+  "Prefer paper fax? Fax signed orders directly to": "¿Prefiere el fax en papel? Envíe por fax los pedidos firmados directamente a",
+  "STAT": "STAT / Urgente",
+  "Transmitting Requisition Order...": "Transmitiendo Orden de Requisición...",
+  "Requisition Tracking #: ": "N.° de Seguimiento de Requisición: "
+};
+
+var DICT_ES_TO_EN = {
+  "Qué idiomas habla su personal?": "What languages does your staff speak?",
+  "Dónde está ubicada la clínica y hay estáacionamiento disponible?": "Where is the clinic located and is parking available?",
+  "Inicio": "Home",
+  "Nosotros": "About",
+  "Sobre Nosotros": "About Us",
+  "Sobre Nuestára Clínica": "About Our Clinic",
+  "Servicios": "Services",
+  "Todos los Servicios": "All Services",
+  "Médicos": "Physicians",
+  "Referencias Médicas": "Physician Referrals",
+  "Órdenes Médicas": "Physician Orders",
+  "Órdenes y Referencias de Médicos": "Doctor Orders & Referrals",
+  "Preparación": "Patient Prep",
+  "Guía de Preparación": "Preparation Guide",
+  "Guía de Preparación para Pacientes": "Patient Preparation Guide",
+  "Preguntas": "FAQ",
+  "Preguntas Frecuentes": "Frequently Asked Quéestáions",
+  "Contacto": "Contact",
+  "Contáctenos": "Contact Us",
+  "Citas": "Booking",
+  "Reservar Cita": "Book Appointment",
+  "Reservar en Línea": "Book Online",
+  "Reservar Cita en Línea": "Book Appointment Online",
+  "Programar Examen en Línea": "Schedule Scan Online",
+  "Programar Cita en Línea": "Schedule Appointment Online",
+  "Programe su Cita": "Schedule Your Appointment",
+  "Programe su Cita en Línea": "Schedule Your Appointment Online",
+  "Programe su Cita de Ultrasonido": "Schedule Your Ultrasound Appointment",
+  "Ver Servicios de Ultrasonido": "View Ultrasound Services",
+  "Llamar a la Clínica": "Call Clinic",
+  "Llamar": "Call Us",
+  "Llamar al (872) 227-2321": "Call (872) 227-2321",
+  "Direcciones": "Directions",
+  "Envíenos un Mensaje": "Send Us a Message",
+  "Encuentre Nuestára Clínica en Chicago": "Find Our Chicago Clinic",
+  "Atención Solo Con Cita Previa": "Operating By Appointment Only",
+  "Atención estárictamente solo con cita previa.": "Operating strictly by appointment only.",
+  "Atención Solo Con Cita Previa • Diagnósticos Conforme a HIPAA": "Operating By Appointment Only • HIPAA-Compliant Diagnostics",
+  "Análisis de Radiólogo Certificado": "Board-Certified Radiologist Analysis",
+  "Reportes Diagnósticos Rápidos": "Prompt Diagnostic Reports",
+  "Aceptamos los Principales Seguros": "Major Insurances Accepted",
+  "Opciones de Pago Directo Disponibles": "Self-Pay Options Available",
+  "100% Libre de Radiación y Seguro": "100% Radiation-Free & Safe",
+  "Atención Diagnóstica 100% Libre de Radiación": "100% Radiation-Free Diagnostic Care",
+  "Resultados Rápidos en 24–48 Horas": "Rapid 24–48hr Turnaround",
+  "Resultados Rápidos en 24-48 Horas": "Rapid 24-48hr Turnaround",
+  "Ultrasonido Diagnóstico de Precisión en Chicago.": "Precision Diagnostic Ultrasound in Chicago.",
+  "Ultrasonido Diagnóstico de Precisión en Chicago con Precios Claros.": "Precision Diagnostic Ultrasound in Chicago with Upfront Pricing.",
+  "Ultrasonido diagnóstico médico no invasivo y libre de radiación, evaluado por radiólogos certificados. Aceptamos los principales seguros médicos, ofrecemos consultas de salud personalizadas y atención multilingüe en inglés, español, ruso, punjabi y urdu.": "Non-invasive, radiation-free medical diagnostic ultrasound evaluated by expert radiologists. We accept major health insurances, offer personalized health consultations, and provide multilingual care in English, Spanish, Russian, Punjabi, and Urdu.",
+  "Seleccione el examen requerido y reserve un horario conveniente en línea. Nuestára clínica opera exclusivamente con cita previa para garantizar cero tiempos de espera y atención personalizada.": "Select your required examination and book a convenient appointment time online. Our clinic operates by appointment only to ensure zero wait times and personalized patient care.",
+  "Especialidades Diagnósticas": "Diagnostic Modalities",
+  "Idiomas Hablados": "Languages Spoken",
+  "Libre de Radiación": "Radiation-Free",
+  "Evaluación de Radiólogos": "Radiologist Analysis",
+  "Modalidades de Ecografía Diagnóstica": "Diagnostic Ultrasound Imaging Modalities",
+  "Ecografía Obstétrica (OB) e Imágenes 3D/4D": "Obstetrical (OB) Ultrasound & 3D/4D Imaging",
+  "Ecografía del Primer Trimestáre": "First Trimestáer Ultrasound",
+  "Estudio Anatómico del Segundo Trimestáre y 3D/4D": "Second Trimestáer Anatomy Survey & 3D/4D",
+  "Crecimiento y Bienestáar del Tercer Trimestáre": "Third Trimestáer Growth & Well-Being",
+  "Ecografía General y Abdominal": "General & Abdominal Ultrasound",
+  "Ecografía Abdominal": "Abdominal Ultrasound",
+  "Abdomen Completo": "Abdominal Complete",
+  "Evaluaciones de Órganos Específicos": "Targeted Organ Evaluations",
+  "Ecografía Pélvica y Ginecológica": "Pelvic & Gynecological Ultrasound",
+  "Ecografía Pélvica": "Pelvic Ultrasound",
+  "Indicaciones Clínicas y Hallazgos": "Clinical Indications & Findings",
+  "Ecocardiografía (Ecocardiograma Cardiaco)": "Echocardiography (Cardiac Echocardiogram)",
+  "Ecocardiografía (Echo)": "Echocardiography (Echo)",
+  "Ecocardiograma (Cardiaco)": "Echo (Cardiac)",
+  "Quéé Evalúa": "What It Assesses",
+  "Estudios Vasculares y Ecografía Doppler": "Vascular Studies & Doppler Ultrasound",
+  "Estudios Vasculares": "Vascular Studies",
+  "Estudios Vasculares Doppler": "Vascular Doppler Studies",
+  "Dúplex de Arterias Carótidas": "Carotid Artery Duplex",
+  "Venoso de Extremidades Inferiores (LEV)": "Lower Extremity Venous (LEV)",
+  "Arterial de Extremidades Inferiores (LEA)": "Lower Extremity Arterial (LEA)",
+  "Ecografía Renal, Mamaria, Prostática y Partes Pequeñas": "Renal, Breast, Prostate & Small Parts Sonography",
+  "Renal (Riñón) y Vejiga": "Renal (Kidney) & Bladder",
+  "Renal y Partes Pequeñas": "Renal & Small Parts",
+  "Ecografía Mamaria": "Breast Ultrasound",
+  "Ecografía de Próstata": "Prostate Ultrasound",
+  "Partes Pequeñas (Tiroides y Escroto)": "Small Parts (Thyroid & Scrotal)",
+  "Partes Pequeñas y Próstata": "Small Parts & Prostate",
+  "Consultas de Salud Personalizadas": "Personalized Health Consultations",
+  "Obstétrico y 3D/4D": "Obstetrical & 3D/4D",
+  "Obstetricia y 3D/4D": "Obstetric & 3D/4D",
+  "Abdominal y Renal": "Abdominal & Renal",
+  "Pélvico": "Pelvic",
+  "Exámenes de Ultrasonido Diagnóstico": "Diagnostic Ultrasound Examinations",
+  "Ofrecemos una gama integral de servicios de ultrasonido diagnóstico no invasivos y libres de radiación utilizando tecnologías avanzadas 2D, 3D/4D e imágenes Doppler.": "We provide a comprehensive range of non-invasive, radiation-free diagnostic ultrasound services using advanced 2D, 3D/4D, and Doppler imaging technologies.",
+  "Una preparación adecuada asegura imágenes ecográficas de alta calidad para el informe de su radiólogo. Siga las instrucciones a continuación para su examen específico.": "Proper exam preparation ensures high-fidelity sonographic images for your radiologist report. Please follow the instructions below for your specific scan.",
+  "Todo lo que necesita saber sobre nuestára clínica de ultrasonido diagnóstico en Chicago, cobertura de seguros, reportes médicos y programación de citas.": "Everything you need to know about our Chicago diagnostic ultrasound clinic, insurance coverage, radiologist reports, and appointment scheduling.",
+  "Modalidades de Ultrasonido": "Ultrasound Modalities",
+  "Recursos para Pacientes": "Patient Resources",
+  "Contacto de la Clínica": "Clinic Contact",
+  "Citas y Teléfono": "Appointments & Phone",
+  "Fax Directo para Médicos": "Direct Doctor Fax",
+  "Correo Electrónico HIPAA": "HIPAA Support Email",
+  "Horario de Atención": "Operating Hours",
+  "Dirección de la Clínica": "Clinic Address",
+  "Teléfono": "Telephone",
+  "Línea de Fax para Referencias": "Fax Referral Line",
+  "Soporte por Correo Electrónico": "Email Support",
+  "¿Aceptan seguro médico?": "Do you accept health insurance?",
+  "¿Quéién evalúa los exámenes de ultrasonido?": "Who evaluates the ultrasound examinations?",
+  "¿El ultrasonido diagnóstico utiliza radiación?": "Does diagnostic ultrasound use radiation?",
+  "¿Quéé tan rápido recibirá los resultados mi médico?": "How quickly will my doctor receive the results?",
+  "¿Puedo programar una cita sin una orden médica?": "Can I schedule without a physician's referral?",
+  "¿Quéé debo llevar a mi cita?": "What should I bring to my appointment?",
+  "¿Dónde estáán ubicados y hay estáacionamiento disponible?": "Where are you located and is parking available?",
+  "¿Aceptan órdenes en el recetario de nuestára clínica o impresión de EHR?": "Do you accept orders on our clinic’s custom prescription pad or EHR printout?",
+  "¿Cuál es el tiempo de entrega de los informes finales de radiología?": "What is your turnaround time for final radiologist reports?",
+  "¿Cómo se comunican los hallazgos urgentes o críticos?": "How are urgent or critical findings communicated?",
+  "Sobre Perfect Diagnostic Ultrasound": "About Perfect Diagnostic Ultrasound",
+  "Excelencia en Ecografía Diagnóstica Ambulatoria": "Excellence in Outpatient Diagnostic Sonography",
+  "Más de 25 años de excelencia en ecografía médica diagnóstica sirviendo a pacientes y médicos de Chicago.": "Over 25 years of diagnostic medical sonography excellence serving Chicago patients and healthcare providers.",
+  "Más de 25 Años de Dedicada Excelencia Clínica": "25+ Years of Dedicated Clinical Excellence",
+  "Años de Experiencia": "Years of Experience",
+  "Brindando Atención con Perfección": "Delivering Care with Perfection",
+  "Atención Compasiva en 5 Idiomas": "Compassionate Care in 5 Languages",
+  "Radiólogos Certificados": "Board-Certified Radiologists",
+  "Eficiencia Solo con Cita Previa": "Appointment Only Efficiency",
+  "Referencias Médicas y Transmisión de Órdenes": "Physician Referrals & Order Transmission",
+  "Recepción directa y confiable de órdenes médicas de ultrasonido para profesionales de la salud en Chicago con informes garantizados en 24–48 horas de radiólogos certificados.": "Direct, reliable clinical ultrasound order intake for Chicago healthcare providers with guaranteed 24–48hr board-certified radiologist reports.",
+  "Método 1: Transmisión Directa por Fax": "Method 1: Direct Fax Transmission",
+  "Método 2: Correo Electrónico Seguro HIPAA": "Method 2: Secure HIPAA Digital Email",
+  "Método 3: Entrega Directa por el Paciente": "Method 3: Patient Hand-Carry",
+  "En": "At",
+  "Pensilvania": "PA",
+  "RU": "RU",
+  "UR": "UR",
+  "No.": "No.",
+  "100%": "100%",
+  "اردو": "اردو",
+  "Experto": "Expert",
+  "ਪੰਜਾਬੀ": "ਪੰਜਾਬੀ",
+  "Inglés": "English",
+  "Español": "Español",
+  "ruso": "Русский",
+  "Órdenes por fax": "Fax Orders",
+  "Chicago, IL": "Chicago, IL",
+  "اردو (urdu)": "اردو (Urdu)",
+  "Horario de la clínica": "Clinic Hours",
+  "Copiar dirección": "Copy Address",
+  "Ponte en contacto": "Get in Touch",
+  "Reserva en línea →": "Book Online →",
+  "Preguntas frecuentes del médico": "Physician FAQ",
+  "Reserva en la plaza": "Book on Square",
+  "Dúplex carotídeo": "Carotid Duplex",
+  "Referencia por correo electrónico": "Email Referral",
+  "اردو میں خدمات": "اردو میں خدمات",
+  "aorta abdominal": "Abdominal Aorta",
+  "Dirección de la clínica:": "Clinic Address:",
+  "Detalles de contacto": "Contact Details",
+  "Orden generada": "Order Generated",
+  "2. Quéé traer": "2. What to Bring",
+  "Llame para programar": "Call to Schedule",
+  "Contacto Clínica →": "Contact Clinic →",
+  "Envíe el pedido por fax a": "Fax the order to",
+  "ਪੰਜਾਬੀ ਵਿੱਚ ਸੇਵਾ": "ਪੰਜਾਬੀ ਵਿੱਚ ਸੇਵਾ",
+  "Ecografía mamaria": "Breast Sonography",
+  "Chicago, Illinois 60634": "Chicago, IL 60634",
+  "Descripción clínica": "Clinical Overview",
+  "Servicios Clínicos": "Clinical Services",
+  "Pedidos directos por fax": "Direct Fax Orders",
+  "Orden transmitida": "Order Transmitted",
+  "Análisis de forma de onda": "Waveform Analysis",
+  "Говорим по-русски": "Говорим по-русски",
+  "ਮਰੀਜ਼ਾਂ ਦੀ ਦੇਖਭਾਲ": "ਮਰੀਜ਼ਾਂ ਦੀ ਦੇਖਭਾਲ",
+  "Detección de aneurisma": "Aneurysm Detection",
+  "Fax médico directo": "Direct Medical Fax",
+  "Raya endometrial": "Endometrial Stripe",
+  "Idioma/Idioma:": "Language / Idioma:",
+  "Transporte del paciente en mano": "Patient Hand-Carry",
+  "Informe del radiólogo": "Radiologist Report",
+  "Programe su examen": "Schedule Your Exam",
+  "Medicina médica": "Медицинская помощь",
+  "Atención en español": "Atención en Español",
+  "Atención fluida al paciente": "Fluent Patient Care",
+  "Abrir reserva en línea": "Open Online Booking",
+  "Examen del paciente": "Patient Examination",
+  "Servicios de ultrasonido": "Ultrasound Services",
+  "Útero y miometrio": "Uterus & Myometrium",
+  "مریضوں کی دیکھ بھال": "مریضوں کی دیکھ بھال",
+  "Ecografía abdominal": "Abdominal Sonography",
+  "Evaluación de las venas de la pantorrilla": "Calf Vein Assessment",
+  "Contacto y direcciones": "Contact & Directions",
+  "Doppler venoso (TVP)": "Venous Doppler (DVT)",
+  "Abdominales y Digestáivos": "Abdominal & Digestáive",
+  "Descripción general de todos los servicios": "All Services Overview",
+  "Abrir en Google Maps →": "Open in Google Maps →",
+  "Ecografía urológica": "Urological Sonography",
+  "3. Sólo con cita previa": "3. By Appointment Only",
+  "Pélvica y ginecológica": "Pelvic & Gynecological",
+  "Detalles transvaginales →": "Transvaginal Details →",
+  "Eco (Ecocardiografía)": "Echo (Echocardiography)",
+  "Detalles del escaneo dirigido →": "Targeted Scan Details →",
+  "7634 Oestáe de la Avenida Belmont": "7634 Westá Belmont Avenue",
+  "Ecografía cardíaca en adultos": "Adult Cardiac Sonography",
+  "Detalles de la encuestáa de anatomía →": "Anatomy Survey Details →",
+  "Mapeo del segmento arterial": "Arterial Segment Mapping",
+  "Ecocardiografía cardíaca": "Cardiac Echocardiography",
+  "Ecografía ginecológica": "Gynecological Sonography",
+  "Imágenes obstétricas (OB)": "Obstetrical (OB) Imaging",
+  "Nuestára clínica estáá ubicada en": "Our clinic is located at",
+  "Evaluación de bultos palpables": "Palpable Lump Assessment",
+  "Detalles transabdominales →": "Transabdominal Details →",
+  "Ver página venosa (TVP) →": "View Venous (DVT) Page →",
+  "Visite nuestára clínica de Chicago": "Visit Our Chicago Clinic",
+  "“Hablamos tu idioma”": "“We Speak Your Language”",
+  "✓ Autoprogramación en línea": "✓ Online Self-Scheduling",
+  "✓ Ingreso clínico seguro": "✓ Secure Clinical Intake",
+  "3 páginas de servicio dedicadas": "3 Dedicated Service Pages",
+  "4 páginas de servicio dedicadas": "4 Dedicated Service Pages",
+  "Todas las modalidades de ultrasonido": "All Ultrasound Modalities",
+  "Detalles del primer trimestáre →": "First Trimestáer Details →",
+  "Ecografía materno-fetal": "Maternal-Fetal Sonography",
+  "Atención al paciente multilingüe": "Multilingual Patient Care",
+  "Pericardio y raíz aórtica": "Pericardium & Aortic Root",
+  "Ultrasonido renal (riñón)": "Renal (Kidney) Ultrasound",
+  "Detalles del tercer trimestáre →": "Third Trimestáer Details →",
+  "Sin cita previa con orden firmada": "Walk-In with Signed Order",
+  "Encuestáa de ganglios linfáticos axilares": "Axillary Lymph Node Survey",
+  "Cuidado en varios idiomas": "Care in Multiple Languages",
+  "Ecografía cerebrovascular": "Cerebrovascular Sonography",
+  "Cadenas de ganglios linfáticos cervicales": "Cervical Lymph Node Chains",
+  "Fax directo: (708) 671-6711": "Direct Fax: (708) 671-6711",
+  "Hígado (parénquima hepático)": "Liver (Hepatic Parenchyma)",
+  "Lóbulo mediano y cuello de la vejiga": "Median Lobe & Bladder Neck",
+  "Detalles del Doppler valvular →": "Valvular Doppler Details →",
+  "Ver página arterial (PAD) →": "View Arterial (PAD) Page →",
+  "Ver página dúplex carotídea →": "View Carotid Duplex Page →",
+  "Detalles de la fracción de eyección →": "Ejection Fraction Details →",
+  "Vesícula biliar y vías biliares": "Gallbladder & Biliary Tract",
+  "Diagnóstico compatible con HIPAA": "HIPAA-Compliant Diagnostics",
+  "Ver página de riñones y vejiga →": "View Renal & Bladder Page →",
+  "Informes radiólogos de 24 a 48 horas": "24–48 Hr Radiologist Reports",
+  "Detalles Abdominales Completos →": "Abdominal Complete Details →",
+  "Citas: (872) 227-2321": "Appointments: (872) 227-2321",
+  "Fax clínico: (708) 671-6711": "Clinical Fax: (708) 671-6711",
+  "Hidronefrosis y obstrucción": "Hydronephrosis & Obstruction",
+  "Ovarios y estáructuras anexiales": "Ovaries & Adnexal Structures",
+  "Ecografía venosa periférica": "Peripheral Venous Sonography",
+  "Referencias y pedidos de médicos": "Physician Referrals & Orders",
+  "Evaluación de riesgos de accidente cerebrovascular y AIT": "Stroke & TIA Risk Assessment",
+  "Ecografía de órganos superficiales": "Superficial Organ Sonography",
+  "ultrasonidosperfectos@gmail.com": "perfectultrasounds@gmail.com",
+  "Evaluación de la salud de la próstata.": "Assessment of prostate health",
+  "Prueba de compresión venosa profunda": "Deep Vein Compression Testáing",
+  "Cómo funcionan las derivaciones para pacientes ambulatorios": "How Outpatient Referrals Work",
+  "Línea de proveedor: (872) 227-2321": "Provider Line: (872) 227-2321",
+  "Hemodinámica Doppler espectral": "Spectral Doppler Hemodynamics",
+  "Ver página de ultrasonido mamario →": "View Breast Ultrasound Page →",
+  "Ver página de servicio dedicada →": "View Dedicated Service Page →",
+  "Ver página de tiroides y escrotal →": "View Thyroid & Scrotal Page →",
+  "1. Pautas de preparación para el examen": "1. Exam Preparation Guidelines",
+  "Evaluación del tejido mamario denso": "Dense Breast Tissue Evaluation",
+  "Páncreas y arquitectura ductal": "Pancreas & Ductal Architecture",
+  "Pautas de preparación del paciente": "Patient Preparation Guidelines",
+  "Ecografía arterial periférica": "Peripheral Arterial Sonography",
+  "Ultrasonido Diagnóstico de Próstata": "Prostate Diagnostic Ultrasound",
+  "Modalidades de diagnóstico disponibles": "Diagnostic Modalities Available",
+  "Ecografía fetal 3D/4D electiva": "Elective 3D/4D Fetal Sonography",
+  "Cómo transmitir órdenes de referencia": "How to Transmit Referral Orders",
+  "Nefrolitiasis (cálculos renales)": "Nephrolithiasis (Kidney Stones)",
+  "Diagnóstico por imágenes no invasivo": "Non-invasive diagnostic imaging",
+  "Órdenes y solicitudes de médicos": "Physician Orders & Requisitions",
+  "Ecografía escrotal y testáicular": "Scrotal & Testáicular Sonography",
+  "Ecografía escrotal/testáicular": "Scrotal / testáicular sonography",
+  "Evaluación de la glándula tiroides y el cuello.": "Thyroid gland & neck evaluation",
+  "Ver detalles de admisión del médico →": "View Physician Intake Details →",
+  "Ver página de ultrasonido de próstata →": "View Prostate Ultrasound Page →",
+  "Quéé evalúa estáe examen": "What This Examination Evaluates",
+  "Llame para programar: (872) 227-2321": "Call to Schedule: (872) 227-2321",
+  "Teléfono de programación: (872) 227-2321": "Scheduling Phone: (872) 227-2321",
+  "Ultrasonido pélvico transabdominal": "Transabdominal Pelvic Ultrasound",
+  "Fax médico directo: (708) 671-6711": "Direct Doctor Fax: (708) 671-6711",
+  "Válvulas cardíacas y flujo Doppler color": "Heart Valves & Color Doppler Flow",
+  "Diagnóstico por imágenes sin radiación": "Radiation-free diagnostic imaging",
+  "Alertas telefónicas de hallazgos urgentes STAT": "STAT Urgent Findings Phone Alerts",
+  "Localización de estáenosis y oclusión": "Stenosis & Occlusion Localization",
+  "Viabilidad y citas del primer trimestáre": "First Trimestáer Viability & Dating",
+  "Ultrasonido de diagnóstico no invasivo": "Non-Invasive Diagnostic Ultrasound",
+  "Ultrasonido obstétrico (embarazo)": "Obstetrical (Pregnancy) Ultrasound",
+  "Dimensiones y volumen de la glándula prostática": "Prostate Gland Dimensions & Volume",
+  "¿Listo para programar su ultrasonido?": "Ready to Schedule Your Ultrasound?",
+  "Anormalidades regionales del movimiento de la pared": "Regional Wall Motion Abnormalities",
+  "✓ Línea de fax clínico dedicada 24 horas al día, 7 días a la semana": "✓ Dedicated 24/7 Clinical Fax Line",
+  "Planes de atención de detección individualizados": "Individualized screening care plans",
+  "Ultrasonido renal (riñón) y vejiga": "Renal (Kidney) & Bladder Ultrasound",
+  "Partes pequeñas (tiroides, cuello, testáículos)": "Small Parts (Thyroid, Neck, Testáes)",
+  "Bazo y sistema reticuloendotelial": "Spleen & Reticuloendothelial System",
+  "Tromboflebitis venosa superficial": "Superficial Venous Thrombophlebitis",
+  "Arquitectura y volumen de la glándula tiroides": "Thyroid Gland Architecture & Volume",
+  "Evaluación del flujo sanguíneo de la arteria carótida.": "Carotid artery blood flow evaluation",
+  "Caracterización de quiste versus masa sólida": "Cyst vs. Solid Mass Characterization",
+  "Evaluación de riñones y aorta abdominal.": "Kidneys & abdominal aorta assessment",
+  "Medición del residuo posmiccional (PVR)": "Post-Void Residual (PVR) Measurement",
+  "Bolsa de líquido libre de Douglas y pélvico": "Pouch of Douglas & Pelvic Free Fluid",
+  "7634 W Belmont Ave, Chicago, IL 60634": "7634 W Belmont Ave, Chicago, IL 60634",
+  "Evaluación del flujo Doppler de la válvula cardíaca": "Cardiac valve Doppler flow assessment",
+  "Arterias carótida externa y vertebral": "External Carotid & Vertebral Arteries",
+  "Dimensiones renales y espesor cortical": "Renal Dimensions & Cortical Thickness",
+  "Estructura renal y control parenquimatoso.": "Renal structure and parenchymal check",
+  "Ultrasonido mamario de diagnóstico dirigido": "Targeted Diagnostic Breast Ultrasound",
+  "Nódulos tiroideos y puntuación ACR TI-RADS": "Thyroid Nodules & ACR TI-RADS Scoring",
+  "Vistas transabdominal y transvaginal.": "Transabdominal and transvaginal views",
+  "Ecografía transvaginal (endovaginal)": "Transvaginal (Endovaginal) Sonography",
+  "¿Quéé idiomas habla su personal?": "What languages does your staff speak?",
+  "Diagnóstico por imágenes 100 % libre de radiación": "100% Radiation-Free Diagnostic Imaging",
+  "Evaluación de radiólogo certificado por la junta": "Board-Certified Radiologist Evaluation",
+  "¿Necesita asistencia de coordinación clínica?": "Need Clinical Coordination Assistance?",
+  "• Cómodo estáacionamiento disponible en el lugar": "• Convenient On-Site Parking Available",
+  "Caracterización de la placa aterosclerótica": "Atherosclerotic Plaque Characterization",
+  "Órganos reproductivos y evaluación pélvica.": "Reproductive organs & pelvic evaluation",
+  "Estructura valvular y flujo Doppler color": "Valvular Structure & Color Doppler Flow",
+  "Sí, aceptamos los principales seguros médicos.": "Yes, we accept major health insurances.",
+  "Opciones de imágenes 2D, 3D y 4D disponibles": "2D, 3D, and 4D imaging options available",
+  "Función ventricular y fracción de eyección": "Ventricular Function & Ejection Fraction",
+  "Disponible sin orden médica directa": "Available without a direct doctor's order",
+  "Estudios arteriales y venosos de las extremidades inferiores.": "Lower extremity arterial & venous studies",
+  ". Hay un cómodo aparcamiento disponible.": ". Convenient on-site parking is available.",
+  "Mapeo de hiperplasia prostática benigna (HPB)": "Benign Prostatic Hyperplasia (BPH) Mapping",
+  "Ultrasonido dúplex y Doppler de la arteria carótida": "Carotid Artery Duplex & Doppler Ultrasound",
+  "Vejiga urinaria y residuo posmiccional (PVR)": "Urinary Bladder & Post-Void Residual (PVR)",
+  "7634 Westá Belmont Avenue, Chicago, IL 60634": "7634 Westá Belmont Avenue, Chicago, IL 60634",
+  "Exámenes de ultrasonido general y abdominal": "General & Abdominal Ultrasound Examinations",
+  "Ultrasonido Doppler arterial de las extremidades inferiores": "Lower Extremity Arterial Doppler Ultrasound",
+  "Detección de cálculos renales y anomalías": "Screening for kidney stones & abnormalities",
+  "Ultrasonido de diagnóstico de tiroides y piezas pequeñas": "Thyroid & Small Parts Diagnostic Ultrasound",
+  "Monitoreo fetal del primer, segundo y tercer trimestáre": "1st, 2nd, and 3rd trimestáer fetal monitoring",
+  "Inglés, español, ruso, punjabi y urdu": "English, Spanish, Russian, Punjabi, and Urdu",
+  "Experimente la diferencia en la atención de diagnóstico": "Experience the Difference in Diagnostic Care",
+  "Programe su ultrasonido de diagnóstico de próstata": "Schedule Your Prostate Diagnostic Ultrasound",
+  "Evaluación de quistes, bultos y tejido mamario.": "Evaluation of cysts, lumps, and breast tissue",
+  "Dúplex venoso de las extremidades inferiores (detección de TVP)": "Lower Extremity Venous Duplex (DVT Screening)",
+  "Nuestára misión: brindar atención con perfección.": "Our Mission: Delivering Care with Perfection.",
+  "Encuestáa de anatomía del segundo trimestáre (18 a 22 semanas)": "Second Trimestáer Anatomy Survey (18–22 Weeks)",
+  "Ecocardiografía transtorácica (eco cardíaco)": "Transthoracic Echocardiography (Cardiac Echo)",
+  "Arterias carótidas comunes e internas (CCA / ICA)": "Common & Internal Carotid Arteries (CCA / ICA)",
+  "Línea directa al paciente para programación y consultas": "Direct patient line for scheduling & inquiries",
+  "Evaluación de la estáructura del corazón y la función muscular.": "Evaluation of heart structure & muscle function",
+  "Cada estáudio es evaluado por radiólogos expertos.": "Every scan is evaluated by expert radiologists.",
+  "Para médicos remitentes y consultorios de atención médica": "For Referring Physicians & Healthcare Practices",
+  "Correspondencia general y consultas administrativas": "General correspondence & administrative queries",
+  "Programe su ultrasonido pélvico y ginecológico": "Schedule Your Pelvic & Gynecological Ultrasound",
+  "Acerca de nosotros | Ultrasonido Diagnóstico Perfecto Chicago": "About Us | Perfect Diagnostic Ultrasound Chicago",
+  "Evaluación de hígado, vesícula biliar, páncreas y bazo.": "Liver, gallbladder, pancreas & spleen evaluation",
+  "Elija un método a continuación o envíe el formulario de mensaje.": "Choose a method below or submit the message form.",
+  "Programe su ultrasonido renal (riñón) y vejiga": "Schedule Your Renal (Kidney) & Bladder Ultrasound",
+  "Función del ventrículo izquierdo y fracción de eyección (FE)": "Left Ventricular Function & Ejection Fraction (EF)",
+  "Crecimiento del tercer trimestáre y perfil biofísico (BPP)": "Third Trimestáer Growth & Biophysical Profile (BPP)",
+  "¿Necesito la derivación de un médico para hacerme una ecografía?": "Do I need a doctor's referral to get an ultrasound?",
+  "Programe su ultrasonido mamario de diagnóstico dirigido": "Schedule Your Targeted Diagnostic Breast Ultrasound",
+  "Evaluado por radiólogos expertos con informes rápidos.": "Evaluated by expert radiologists with prompt reports",
+  "Entrega directa de fax a proveedores de atención médica remitentes": "Direct fax delivery to referring healthcare providers",
+  "¿Dónde estáá ubicada la clínica y hay estáacionamiento disponible?": "Where is the clinic located and is parking available?",
+  "Referencias de ultrasonido para pacientes ambulatorios sin inconvenientes en Chicago, IL": "Seamless Outpatient Ultrasound Referrals in Chicago, IL",
+  "También ofrecemos opciones para pacientes sin seguro.": "We also provide options for patients without insurance.",
+  "Línea dedicada para solicitudes de médicos y pedidos clínicos": "Dedicated line for doctor requisitions & clinical orders",
+  "Programe su ultrasonido dúplex y Doppler de la arteria carótida": "Schedule Your Carotid Artery Duplex & Doppler Ultrasound",
+  "7634 W Belmont Ave, Chicago, IL 60634 • Noroestáe de Chicago": "7634 W Belmont Ave, Chicago, IL 60634 • Northwestá Chicago",
+  "Estacionamiento gratuito a lo largo de Westá Belmont Ave y calles laterales cercanas": "Free parking along Westá Belmont Ave & nearby side streets",
+  "Programe sus exámenes de ultrasonido general y abdominal": "Schedule Your General & Abdominal Ultrasound Examinations",
+  "Programe su ultrasonido Doppler arterial de las extremidades inferiores": "Schedule Your Lower Extremity Arterial Doppler Ultrasound",
+  "Programe su ultrasonido obstétrico (OB) e imágenes 3D/4D": "Schedule Your Obstetrical (OB) Ultrasound & 3D/4D Imaging",
+  "Programe su ultrasonido de diagnóstico de tiroides y partes pequeñas": "Schedule Your Thyroid & Small Parts Diagnostic Ultrasound",
+  "Citas programadas con anticipación para garantizar una atención dedicada": "Appointments scheduled in advance to ensure dedicated care",
+  "Contacto Ultrasonido Diagnóstico Perfecto | Clínica de Chicago, Illinois": "Contact Perfect Diagnostic Ultrasound | Chicago, IL Clinic",
+  "Ultrasonido de tiroides de alta resolución y partes pequeñas | chicago": "High-Resolution Thyroid & Small Parts Ultrasound | Chicago",
+  "Imágenes por ultrasonido pélvico y ginecológico | Clínica Chicago": "Pelvic & Gynecological Ultrasound Imaging | Chicago Clinic",
+  "Examen de ultrasonido general y abdominal | Clínica Chicago": "General & Abdominal Ultrasound Examination | Chicago Clinic",
+  "Examen de ultrasonido de próstata | Clínica de diagnóstico de Chicago": "Prostate Ultrasound Examination | Chicago Diagnostic Clinic",
+  "Programe su dúplex venoso de extremidades inferiores (detección de TVP)": "Schedule Your Lower Extremity Venous Duplex (DVT Screening)",
+  "Programe su ecocardiografía transtorácica (ecocardiograma)": "Schedule Your Transthoracic Echocardiography (Cardiac Echo)",
+  "Complete el siguiente formulario y nuestro personal le responderá a la brevedad.": "Complete the form below and our staff will respond promptly.",
+  "Dúplex venoso de las extremidades inferiores (LEV) | Ultrasonido TVP Chicago": "Lower Extremity Venous Duplex (LEV) | DVT Ultrasound Chicago",
+  "Ultrasonido mamario de diagnóstico dirigido | Chicago libre de radiación": "Targeted Diagnostic Breast Ultrasound | Radiation-Free Chicago",
+  "Servicios de ultrasonido en Chicago | Ultrasonido Diagnóstico Perfecto": "Ultrasound Services in Chicago | Perfect Diagnostic Ultrasound",
+  "Ultrasonido Doppler arterial de las extremidades inferiores (LEA) | PAD de Chicago": "Lower Extremity Arterial Doppler Ultrasound (LEA) | Chicago PAD",
+  "Examen de ultrasonido renal y de vejiga | Imágenes del riñón de Chicago": "Renal & Bladder Ultrasound Examination | Chicago Kidney Imaging",
+  "Ultrasonido dúplex de la arteria carótida | Detección de riesgo de accidente cerebrovascular en Chicago": "Carotid Artery Duplex Ultrasound | Chicago Stroke Risk Screening",
+  "Preguntas comunes de coordinadores clínicos y consultorios médicos.": "Common questions from clinical coordinators and medical offices.",
+  "Ultrasonido obstétrico (OB) e imágenes 3D/4D | Sonografía de Chicago": "Obstetrical (OB) Ultrasound & 3D/4D Imaging | Chicago Sonography",
+  "Consultas y asistencia para programar son bienvenidas todos los días: (872) 227-2321": "Inquiries and scheduling assistance welcomed daily: (872) 227-2321",
+  "Ecocardiografía Transtorácica (Eco) | Ultrasonido cardíaco de Chicago": "Transthoracic Echocardiography (Echo) | Chicago Cardiac Ultrasound",
+  "Exploraciones realizadas de acuerdo con las recomendaciones y órdenes médicas del médico.": "Scans performed according to doctor recommendations & medical orders",
+  "Nuestáro personal se enorgullece de ofrecer servicios en varios idiomas, incluidos": "Our staff is proud to offer services in multiple languages, including",
+  "Programe una cita de ultrasonido | Ultrasonido Diagnóstico Perfecto Chicago": "Schedule Ultrasound Appointment | Perfect Diagnostic Ultrasound Chicago",
+  "Ultrasonido de diagnóstico perfecto | Clínica Premier de Ultrasonido en Chicago, IL": "Perfect Diagnostic Ultrasound | Premier Ultrasound Clinic in Chicago, IL",
+  "Reserve en línea a través de Citas Square para elegir su día y hora preferidos.": "Book online via Square Appointments to choose your preferred day and time.",
+  "Para médicos y consultorios remitentes | Ultrasonido Diagnóstico Perfecto Chicago": "For Referring Physicians & Practices | Perfect Diagnostic Ultrasound Chicago",
+  "Dúplex carotídeo, evaluación de TVP venosa superior/inferior, Dúplex de extremidades arteriales.": "Carotid Duplex, Upper/Lower Venous DVT evaluation, Arterial Extremity Duplex.",
+  "La tecnología de diagnóstico por ultrasonido es completamente no invasiva y estáá libre de radiación.": "Diagnostic ultrasound technology is completely non-invasive and radiation-free.",
+  "Protocolos avanzados de ultrasonido de diagnóstico 2D, 3D/4D y Doppler de alta resolución.": "Advanced high-resolution 2D, 3D/4D, and Doppler diagnostic ultrasound protocols.",
+  "Abdomen Completo/Limitado, Vesícula Biliar, Hígado, Páncreas, Bazo, Aorta Abdominal.": "Complete / Limited Abdomen, Gallbladder, Liver, Pancreas, Spleen, Abdominal Aorta.",
+  "Respuestáas sobre exámenes de ultrasonido, derivaciones, seguros y visitas a la clínica.": "Answers regarding ultrasound examinations, referrals, insurance, and clinic visits.",
+  "Evaluación transabdominal y transvaginal pélvica, uterina, ovárica y endometrial.": "Transabdominal & Transvaginal Pelvic, Uterine, Ovarian, and Endometrial evaluation.",
+  "© 2026 Perfect Diagnostic Ultrasound (Perfect Ultrasound LLC). Reservados todos los derechos.": "© 2026 Perfect Diagnostic Ultrasound (Perfect Ultrasound LLC). All rights reserved.",
+  "Envíe por fax la hoja demográfica del paciente y la solicitud de pedido de ultrasonido directamente a nuestára clínica.": "Fax patient demographic sheet and ultrasound order requisition directly to our clinic.",
+  "Se proporcionan informes de diagnóstico rápidos y precisos para usted y su proveedor de atención médica.": "Prompt, accurate diagnostic reports are provided for you and your healthcare provider.",
+  "Riñón / Vejiga, Tiroides y Tejidos blandos del Cuello, Ecografía mamaria, Próstata, Testáicular.": "Kidney / Bladder, Thyroid & Neck soft tissues, Breast ultrasound, Prostate, Testáicular.",
+  "Procedimiento de diagnóstico por ultrasonido para evaluar la salud de la próstata y las estáructuras circundantes.": "Diagnostic ultrasound procedure for assessing prostate health and surrounding structures.",
+  "Viabilidad 1er, 2do y 3er Trimestáre, Estudios Anatómicos, Edad Gestáacional, Ecografía 3D/4D.": "1st, 2nd & 3rd Trimestáer Viability, Anatomical Surveys, Gestáational Age, 3D/4D Sonography.",
+  "Ecocardiograma transtorácico (Echo) que evalúa las cámaras, válvulas y fracción de eyección cardíacas.": "Transthoracic Echocardiogram (Echo) assessing cardiac chambers, valves & ejection fraction.",
+  "Detección y evaluación diagnóstica de las estáructuras renales en busca de cálculos, quistes o anomalías.": "Screening and diagnostic evaluation of kidney structures for stones, cysts, or abnormalities.",
+  "No se requiere estárictamente orden médica para consultas de salud personalizadas y exámenes de detección.": "No doctor's order is strictly required for personalized health consultations and screening exams.",
+  "© 2026 Ultrasonido Diagnóstico Perfecto. Reservados todos los derechos. Operando estárictamente solo con cita previa.": "© 2026 Perfect Diagnostic Ultrasound. All rights reserved. Operating strictly by appointment only.",
+  "Ultrasonido cardíaco no invasivo que examina la estáructura y función cardíaca, las cámaras del corazón y el flujo sanguíneo de las válvulas.": "Non-invasive cardiac ultrasound examining cardiac structure and function, heart chambers, and valve blood flow.",
+  "Evaluación sistemática de las venas tibial posterior, peronea y gastrocnemio para detectar trombosis aislada de la vena de la pantorrilla.": "Systematic evaluation of posterior tibial, peroneal, and gastrocnemius veins for isolated calf vein thrombosis.",
+  "Evalúa la arquitectura de los ganglios linfáticos axilares regionales, el espesor cortical y los hilios grasos cuando estáá clínicamente indicado.": "Evaluates regional axillary lymph node architecture, cortical thickness, and fatty hila when clinically indicated.",
+  "Imágenes por ultrasonido de alta resolución de estáructuras superficiales que incluyen la glándula tiroides, las estáructuras del cuello y los testáículos.": "High-resolution ultrasound imaging of superficial structures including thyroid gland, neck structures, and testáes.",
+  "Inspección del callejón sin salida en busca de líquido libre, secuelas de enfermedad inflamatoria pélvica (EPI) o quistes ováricos rotos.": "Inspection of the cul-de-sac for free fluid, pelvic inflammatory disease (PID) sequelae, or ruptured ovarian cysts.",
+  "Evaluación no invasiva del volumen, la arquitectura, la protrusión del lóbulo mediano y la dinámica del flujo urinario de la próstata.": "Non-invasive assessment of prostate gland volume, architecture, median lobe protrusion, and urinary outflow dynamics.",
+  "Nuestára clínica opera estárictamente con cita previa para garantizar tiempos de espera mínimos y una atención personalizada y dedicada al paciente.": "Our clinic operates strictly by appointment only to ensure minimal waiting times and dedicated one-on-one patient care.",
+  "Diferencia placas homogéneas, heterogéneas, calcificadas, blandas o ulceradas a lo largo del bulbo carotídeo y la bifurcación.": "Differentiates homogeneous, heterogeneous, calcified, soft, or ulcerated plaques along the carotid bulb and bifurcation.",
+  "El plazo de entrega estáándar es de 24 a 48 horas hábiles. Los informes finales firmados se envían por fax directamente a su número de fax clínico.": "Standard turnaround is 24 to 48 business hours. Final signed reports are faxed directly back to your clinical fax number.",
+  "o entregárselo al paciente. Aceptamos pedidos para todas las modalidades abdominales, pélvicas, obstétricas, vasculares, cardíacas y de piezas pequeñas.": "or hand it to the patient. We accept orders for all abdominal, pelvic, OB, vascular, cardiac, and small parts modalities.",
+  "Un proceso de coordinación sin fricciones diseñado para que la programación de ultrasonidos sea sencilla para su personal médico y sus pacientes.": "A frictionless coordination process designed to make ultrasound scheduling effortless for your medical staff and patients.",
+  "Examina el tamaño del riñón, el espesor del parénquima, los cálculos renales (piedras), la hidronefrosis y el volumen residual de la vejiga posmiccional.": "Examines kidney size, parenchymal thickness, renal calculi (stones), hydronephrosis, and post-void residual bladder volume.",
+  "Imágenes mamarias no invasivas para la evaluación del tejido mamario, quistes y bultos, proporcionando visualización anatómica específica.": "Non-invasive breast imaging for evaluation of breast tissue, cysts, and lumps, providing targeted anatomical visualization.",
+  "La atención sanitaria es personal. Estamos orgullosos de servir a las diversas comunidades de Chicago con un equipo médico multilingüe cálido y acogedor.": "Healthcare is personal. We are proud to serve Chicago’s diverse communities with a warm, welcoming multilingual medical team.",
+  "Sólo trabajamos con citas. Se aceptan consultas y asistencia con la programación todos los días. Conveniente estáacionamiento en el lugar disponible.": "We only work with appointments. Inquiries and scheduling assistance are welcomed daily. Convenient on-site parking available.",
+  "Imágenes enfocadas para detectar dolor en el cuadrante superior derecho, cálculos en la vesícula biliar, pancreatitis o detección de aneurisma aórtico abdominal (AAA).": "Focused imaging for right upper quadrant pain, gallbladder stones, pancreatitis, or abdominal aortic aneurysm (AAA) screening.",
+  "Evaluación de los ganglios linfáticos cervicales anteriores y laterales para diferenciar la linfadenopatía reactiva benigna de los ganglios sospechosos.": "Evaluation of anterior and lateral cervical lymph nodes to differentiate benign reactive lymphadenopathy from suspicious nodes.",
+  "Examina las arterias carótidas interna y común en busca de acumulación de placa aterosclerótica, gravedad de la estáenosis y detección del riesgo de accidente cerebrovascular.": "Examines common and internal carotid arteries for atherosclerotic plaque buildup, stenosis severity, and stroke risk screening.",
+  "Proporcione al paciente su recetario firmado o formulario de pedido. Los pacientes pueden programar su cita en línea o llamando": "Provide your signed prescription pad or order form to the patient. Patients can schedule their appointment online or by calling",
+  "Evalúa la anatomía del cuello de la vejiga y valora si el agrandamiento del lóbulo mediano contribuye a la vacilación o al flujo débil de la orina.": "Evaluates bladder neck anatomy and assesses whether median lobe enlargement is contributing to urinary hesitancy or weak stream.",
+  "Ultrasonido transabdominal no invasivo que evalúa el volumen de la glándula prostática, la arquitectura del lóbulo mediano y la dinámica del flujo de salida de la vejiga.": "Non-invasive transabdominal ultrasound evaluating prostate gland volume, median lobe architecture, and bladder outflow dynamics.",
+  "Transmitir órdenes, indicaciones clínicas o autorizaciones de seguros vía correo electrónico. Confirmamos la recepción con prontitud durante el horario comercial.": "Transmit orders, clinical indications, or insurance authorizations via email. We confirm receipt promptly during business hours.",
+  "Imágenes del embarazo no invasivas para monitorear el desarrollo fetal, la viabilidad y la edad gestáacional, con opciones de imágenes 2D, 3D y 4D.": "Non-invasive pregnancy imaging to monitor fetal development, viability, and gestáational age, with 2D, 3D, and 4D imaging options.",
+  "Programe hoy su cita de ultrasonido de diagnóstico con nuestro experimentado equipo clínico. Operando estárictamente solo con cita previa.": "Schedule your diagnostic ultrasound appointment with our experienced clinical team today. Operating strictly by appointment only.",
+  "Mide con precisión la longitud bipolar esplénica para evaluar si hay esplenomegalia, quistes esplénicos, infartos o anomalías arquitectónicas.": "Accurately measures splenic bipolar length to assess for splenomegaly, splenic cysts, infarctions, or architectural abnormalities.",
+  "Estudio detallado de los órganos fetales, anatomía craneal, columna vertebral, extremidades, localización placentaria e imágenes 3D/4D electivas opcionales.": "Detailed survey of fetal organs, cranial anatomy, spine, extremities, placental localization, and optional elective 3D/4D imaging.",
+  "Determina el volumen de retención de la vejiga después de la micción para evaluar el impacto funcional del agrandamiento de la próstata en el vaciado de la vejiga.": "Determines post-micturition bladder retention volume to evaluate the functional impact of prostate enlargement on bladder emptying.",
+  "Evaluación interna de alta frecuencia que proporciona una resolución ampliada de la franja endometrial, pequeños quistes ováricos, síndrome de ovario poliquístico y sus anexos.": "High-frequency internal assessment providing magnified resolution of the endometrial stripe, small ovarian cysts, PCOS, and adnexa.",
+  "Evaluación ecográfica de alta resolución del parénquima renal, cálculos, hidronefrosis y volumen residual posmiccional de la vejiga urinaria.": "High-resolution sonographic evaluation of renal parenchyma, calculi, hydronephrosis, and urinary bladder post-void residual volume.",
+  "Confirmación de embarazo intrauterino, actividad cardíaca temprana, datación gestáacional precisa mediante CRL y evaluación pélvica materna.": "Confirmation of intrauterine pregnancy, early cardiac activity, accurate gestáational dating via CRL, and maternal pelvic assessment.",
+  "Consultas de salud personalizadas y planes de atención individualizados, atendiendo a los pacientes incluso si no tienen orden médica previa.": "Tailored health consultations and individualized care plans, accommodating patients even if they do not have a prior doctor's order.",
+  "Imágenes dirigidas y guiadas por el paciente directamente sobre áreas de preocupación palpables, hoyuelos en la piel, dolor mamario focal o sensibilidad localizada.": "Targeted, patient-guided imaging directly over areas of palpable concern, skin dimpling, focal breast pain, or localized tenderness.",
+  "Seguimiento del crecimiento fetal, posición/presentación fetal, peso fetal estáimado (EFW), perfil biofísico (BPP) y volumen de líquido amniótico.": "Fetal growth tracking, fetal position/presentation, estáimated fetal weight (EFW), biophysical profile (BPP), and amniotic fluid volume.",
+  "Ecografía superficial de alta resolución de la glándula tiroides (puntuación TI-RADS), ganglios linfáticos cervicales y estáructuras escrotales/testáiculares.": "High-resolution superficial sonography of the thyroid gland (TI-RADS scoring), cervical lymph nodes, and scrotal/testáicular structures.",
+  "Examen venoso dúplex para evaluar la trombosis venosa profunda (TVP), la formación de coágulos agudos y la insuficiencia venosa crónica en las piernas.": "Venous duplex examination to assess for deep vein thrombosis (DVT), acute clot formation, and chronic venous insufficiency in the legs.",
+  "¿Tiene preguntas sobre una ecografía, órdenes médicas o seguros? Comuníquese con nuestro equipo directamente o envíe un mensaje en línea a continuación.": "Have questions about an ultrasound scan, physician orders, or insurance? Reach out to our team directly or send an online message below.",
+  "Proporciona imágenes complementarias de alto contraste en pacientes con tejido mamario denso donde la sensibilidad mamográfica estáándar puede verse reducida.": "Provides supplemental high-contrast imaging in patients with dense breast tissue where standard mammographic sensitivity may be reduced.",
+  "Evaluación dirigida y sin radiación de bultos palpables, dolor focal, tejido mamario denso y caracterización de quistes versus nódulos sólidos.": "Targeted, radiation-free evaluation of palpable lumps, focal tenderness, dense breast tissue, and cyst vs solid nodule characterization.",
+  "Más de dos décadas y media de experiencia clínica dedicada al suministro de imágenes de ultrasonido de diagnóstico en toda el área metropolitana de Chicago.": "Over two and a half decades of dedicated clinical expertise providing diagnostic ultrasound imaging across the Chicago metropolitan area.",
+  "Estudios Doppler que evalúan el flujo sanguíneo en arterias y venas, incluida la evaluación de la arteria carótida y la circulación vascular de las extremidades inferiores.": "Doppler studies evaluating blood flow in arteries and veins, including carotid artery evaluation and lower extremity vascular circulation.",
+  "Evaluación de órganos internos, incluidos el hígado, la vesícula biliar, el páncreas, el bazo, los riñones y la aorta abdominal para evaluar los síntomas o el dolor.": "Evaluation of internal organs including the liver, gallbladder, pancreas, spleen, kidneys, and abdominal aorta to assess symptoms or pain.",
+  "Evaluación Doppler hemodinámica especializada que evalúa el flujo sanguíneo arterial periférico, la claudicación y la enfermedad arterial periférica (EAP).": "Specialized hemodynamic Doppler assessment evaluating peripheral arterial blood flow, claudication, and peripheral arterial disease (PAD).",
+  "Evaluación exhaustiva del hígado, la vesícula biliar, el colédoco, el páncreas, el bazo, los riñones y la aorta abdominal para detectar dolor o LFT anormales.": "Thorough assessment of the liver, gallbladder, common bile duct, pancreas, spleen, kidneys, and abdominal aorta for pain or abnormal LFTs.",
+  "Calcula la función sistólica de los ventrículos izquierdo y derecho, el volumen sistólico, el movimiento de la pared del miocardio y la fracción de eyección cardíaca (FE) general.": "Calculates left and right ventricular systolic function, stroke volume, myocardial wall motion, and overall cardiac ejection fraction (EF).",
+  "Nuestáro mostrador de proveedores clínicos estáá disponible para ayudar a los consultorios remitentes con confirmaciones de pedidos, consultas sobre modalidades y programación de pacientes.": "Our clinical provider desk is available to assist referring practices with order confirmations, modality inquiries, and patient scheduling.",
+  "Doppler arterial que evalúa la enfermedad arterial periférica (EAP), la claudicación intermitente, las formas de onda del pulso arterial y la resistencia vascular.": "Arterial Doppler evaluating peripheral arterial disease (PAD), intermittent claudication, arterial pulse waveforms, and vascular resistance.",
+  "Evalúa el flujo espontáneo, la fasicidad respiratoria y la respuestáa a las maniobras de aumento distal para descartar la obstrucción de la vena pélvica proximal.": "Assesses spontaneous flow, respiratory phasicity, and response to distal augmentation maneuvers to rule out proximal pelvic vein obstruction.",
+  "Detección de aneurismas de las arterias poplítea y femoral, medición de diámetros transversales y longitudinales y evaluación de trombos intraluminales.": "Screens for popliteal and femoral artery aneurysms, measuring transverse and longitudinal diameters and evaluating for intraluminal thrombus.",
+  "Evaluación transabdominal de gran angular del tamaño y contorno del útero, fibromas grandes y anatomía pélvica macroscópica utilizando una ventana acústica de vejiga llena.": "Wide-angle transabdominal evaluation of uterine size, contour, large fibroids, and gross pelvic anatomy using a full bladder acoustic window.",
+  "Evalúa el agrandamiento de la zona de transición, la simetría glandular y evalúa la protrusión prostática intravesical (PPI) que eleva el piso de la vejiga.": "Evaluates transitional zone enlargement, glandular symmetry, and assesses intravesical prostatic protrusion (IPP) elevating the bladder floor.",
+  "Atendemos a pacientes con o sin orden médica directa y también aceptamos solicitudes de médicos enviadas por su proveedor de atención médica.": "We accommodate patients with or without a direct doctor's order, and we also accept physician requisitions sent from your healthcare provider.",
+  "Cribado y vigilancia de la aorta abdominal infrarrenal para medir calibre y descartar aneurisma de aorta abdominal (AAA) o trombo mural.": "Screening and surveillance of the infrarenal abdominal aorta to measure caliber and rule out abdominal aortic aneurysm (AAA) or mural thrombus.",
+  "Identifica placas ateroscleróticas focales, calcula relaciones de velocidad a través de segmentos estárechados e identifica vías de reconstitución colateral.": "Pinpoints focal atherosclerotic plaques, calculates velocity ratios across narrowed segments, and identifies collateral reconstitution pathways.",
+  "Identifica cálculos ecogénicos, mide el tamaño de los cálculos, evalúa la sombra acústica posterior y comprueba si hay artefactos centelleantes con Doppler color.": "Identifies echogenic calculi, measures stone size, evaluates posterior acoustic shadowing, and checks for twinkling artifacts with color Doppler.",
+  "Evaluación dúplex por ultrasonido rápida y precisa de las venas profundas y superficiales de las piernas para descartar la trombosis venosa profunda (TVP) y evaluar el reflujo venoso.": "Rapid, accurate ultrasound duplex evaluation of deep and superficial leg veins to rule out deep vein thrombosis (DVT) and evaluate venous reflux.",
+  "Mide con precisión los diámetros transversal, anteroposterior y longitudinal de la próstata, calculando el volumen total de la próstata en centímetros cúbicos (cc).": "Accurately measures transverse, anteroposterior, and longitudinal prostate diameters, calculating total prostate volume in cubic centimeters (cc).",
+  "Evalúa los patrones de flujo de la carótida externa y evalúa la dirección del flujo de la arteria vertebral para identificar el síndrome de robo de la subclavia o la hipoplasia vertebral.": "Evaluates external carotid flow patterns and assesses vertebral artery flow direction to identify subclavian steal syndrome or vertebral hypoplasia.",
+  "Examina la vena safena mayor (GSV) y la vena safena menor (SSV) en busca de coágulos superficiales, engrosamiento de la pared y competencia de la unión safenofemoral.": "Examines the great saphenous vein (GSV) and small saphenous vein (SSV) for superficial clot, wall thickening, and saphenofemoral junction competence.",
+  "Operamos estárictamente con cita previa para garantizar una atención rápida y una atención cómoda al paciente. Un cómodo estáacionamiento en el lugar estáá disponible para todos los visitantes.": "We operate strictly by appointment to ensure prompt attention and comfortable patient care. Convenient on-site parking is available for all visitors.",
+  "Examina la luz de la vejiga, el grosor de la pared, los divertículos y calcula con precisión los volúmenes de orina residual premiccional y posmiccional para evaluar la retención urinaria.": "Examines bladder lumen, wall thickness, diverticula, and calculates precise pre-void and post-void residual urine volumes to assess urinary retention.",
+  "Imágenes de ultrasonido enfocadas de alta resolución dirigidas a órganos específicos y estáructuras superficiales de tejidos blandos evaluadas por radiólogos certificados.": "Focused high-resolution ultrasound imaging targeting specific organs and superficial soft-tissue structures evaluated by board-certified radiologists.",
+  "Imágenes de ultrasonido enfocadas y 100% libres de radiación que brindan una caracterización específica de bultos mamarios palpables, dolor localizado y tejido mamario denso.": "Focused, 100% radiation-free ultrasound imaging providing targeted characterization of palpable breast lumps, localized pain, and dense breast tissue.",
+  "Ultrasonido dúplex hemodinámico de alta resolución que examina las arterias carótidas extracraneales para detectar estáenosis, placa aterosclerótica y riesgo de accidente cerebrovascular.": "High-resolution hemodynamic duplex ultrasound screening the extracranial carotid arteries to detect stenosis, atherosclerotic plaque, and stroke risk.",
+  "Imágenes de alta frecuencia que evalúan dolor testáicular, hinchazón, hidrocele, varicocele, epididimitis, orquitis y microcalcificaciones o masas testáiculares.": "High-frequency imaging assessing testáicular pain, swelling, hydrocele, varicocele, epididymitis, orchitis, and testáicular microcalcifications or masses.",
+  "Ultrasonido superficial de alta frecuencia que proporciona una evaluación detallada de los nódulos tiroideos, el bocio, los ganglios linfáticos cervicales y las estáructuras escrotales/testáiculares.": "High-frequency superficial ultrasound providing detailed evaluation of thyroid nodules, goiter, cervical lymph nodes, and scrotal/testáicular structures.",
+  "Cuantifica la velocidad sistólica máxima (PSV), la velocidad telediastólica (EDV) y la relación de velocidad ICA/CCA con respecto al grado de estáenosis según criterios de consenso.": "Quéantifies peak systolic velocity (PSV), end-diastolic velocity (EDV), and the ICA/CCA velocity ratio to grade stenosis according to consensus criteria.",
+  "Doppler espectral y color en tiempo real que mide las velocidades de la sangre a través de las válvulas aórtica, mitral, tricúspide y pulmonar para detectar estáenosis o regurgitación.": "Real-time spectral and color Doppler measuring blood velocities across the aortic, mitral, tricuspid, and pulmonary valves for stenosis or regurgitation.",
+  "Diferencia las formas de onda trifásicas saludables de alta resistencia de las formas de onda bifásicas, monofásicas o de tardus-parvus amortiguadas que indican una estáenosis aguas arriba.": "Differentiates healthy high-resistance triphasic waveforms from biphasic, monophasic, or dampened tardus-parvus waveforms indicative of upstream stenosis.",
+  "Los resultados del diagnóstico se procesan y transmiten a los médicos remitentes en un plazo de 24 a 48 horas, con notificaciones telefónicas inmediatas en caso de hallazgos clínicos urgentes.": "Diagnostic findings are processed and transmitted to referring doctors within 24 to 48 hours, with prompt phone notifications for urgent clinical findings.",
+  "Visualiza la cabeza pancreática, el proceso uncinado, el cuerpo y la cola para detectar pancreatitis, calcificaciones parenquimatosas, dilatación ductal o masas pancreáticas.": "Visualizes the pancreatic head, uncinate process, body, and tail to detect pancreatitis, parenchymal calcifications, ductal dilation, or pancreatic masses.",
+  "Envíe por fax la solicitud clínica firmada de su paciente o la hoja frontal de EHR directamente a nuestro mostrador de admisión. Nuestáro equipo coordina inmediatamente la programación con su paciente.": "Fax your patient's signed clinical requisition or EHR face sheet directly to our intake desk. Our team immediately coordinates scheduling with your patient.",
+  "No se necesita preparación especial ni ayuno. Use una camisa o blusa holgada y cómoda sin cuello. Evite usar joyas en el cuello el día del examen.": "No special preparation or fasting is needed. Wear a loose, comfortable collarless shirt or blouse. Avoid wearing neck jewelry on the day of the examination.",
+  "Ecocardiograma transtorácico (ETT) no invasivo completo que evalúa la fracción de eyección del ventrículo izquierdo, el movimiento de la pared del miocardio y la hemodinámica de la válvula cardíaca.": "Complete non-invasive transthoracic echocardiogram (TTE) evaluating left ventricular ejection fraction, myocardial wall motion, and heart valve hemodynamics.",
+  "Evaluación ecográfica detallada de la anatomía reproductiva femenina. Evalúa la arquitectura uterina, el miometrio, el grosor del endometrio y los ovarios bilaterales.": "Detailed sonographic assessment of the female reproductive anatomy. Evaluates uterine architecture, myometrium, endometrial thickness, and bilateral ovaries.",
+  "Cada exploración es evaluada y firmada formalmente por radiólogos autorizados y certificados, lo que proporciona informes de diagnóstico de alta fidelidad en los que su médico puede confiar.": "Every scan is formally evaluated and signed by licensed, board-certified radiologists, providing high-fidelity diagnostic reports your physician can rely upon.",
+  "Representación volumétrica de superficies en 3D y movimiento 4D en tiempo real que captura movimientos faciales fetales expresivos, bostezos y sonrisas en un entorno ambulatorio cálido y acogedor.": "Volumetric 3D surface rendering and real-time 4D motion capturing expressive fetal facial movements, yawns, and smiles in a warm, welcoming outpatient setting.",
+  "Evaluación integral de órganos internos sólidos en el abdomen superior y medio. Evalúa el tamaño de los órganos, la arquitectura parenquimatosa, las lesiones focales, los quistes y los cálculos.": "Comprehensive evaluation of solid internal organs in the upper and mid-abdomen. Assesses organ size, parenchymal architecture, focal lesions, cysts, and stones.",
+  "Incluye análisis cuantitativo completo 2D, modo M, Doppler de flujo color y Doppler espectral con respuestáa garantizada del radiólogo/cardiólogo en un plazo de 24 a 48 horas.": "Includes full 2D, M-Mode, Color Flow Doppler, and Spectral Doppler quantitative analysis with guaranteed radiologist/cardiologist turnaround within 24–48 hours.",
+  "Nuestára clínica de Chicago opera estárictamente con cita previa para eliminar demoras en la sala de espera. Reserve su cita en línea o llame a nuestro equipo de programación clínica.": "Our Chicago clinic operates strictly by appointment only to eliminate waiting room delays. Reserve your appointment online or call our clinical scheduling team.",
+  "Prueba de coaptación completa de la vena femoral común (CFV), la vena femoral (FV), la vena femoral profunda (profunda) y la vena poplítea para confirmar el colapso completo de la luz.": "Full coaptation testáing of the common femoral vein (CFV), femoral vein (FV), deep femoral vein (profunda), and popliteal vein to confirm complete lumen collapse.",
+  "Medición precisa de la función sistólica y diastólica del ventrículo izquierdo, cálculo de la fracción de eyección y volumen sistólico utilizando la metodología biplano de Simpson.": "Precise measurement of left ventricular systolic and diastolic function, calculation of ejection fraction, and stroke volume using Simpson's biplane methodology.",
+  "Aceptamos todos los talonarios de pedidos de clínicas estáándar, solicitudes impresas de EHR o nuestro formulario de pedido descargable. Elija el método de transmisión más conveniente para su personal:": "We accept all standard clinic order pads, EHR printed requisitions, or our downloadable order form. Choose the transmission method most convenient for your staff:",
+  "Mediciones precisas de volumen en 3D de los lóbulos tiroideos derecho e izquierdo y del istmo, evaluando la ecotextura parenquimatosa para detectar tiroiditis (p. ej., enfermedad de Hashimoto, enfermedad de Graves).": "Accurate 3D volume measurements of right and left thyroid lobes and isthmus, assessing parenchymal echotexture for thyroiditis (e.g. Hashimoto's, Graves' disease).",
+  "Califica las caliectasias y pelviectasias (leve, moderada, grave) para identificar la obstrucción del tracto urinario causada por cálculos ureterales, estáenosis o compresión externa.": "Grades caliectasis and pelviectasis (mild, moderate, severe) to identify urinary tract obstruction caused by ureteral calculi, strictures, or external compression.",
+  "Mide la longitud renal bipolar y evalúa el espesor cortical parenquimatoso y la diferenciación corticomedular para evaluar la enfermedad renal crónica (ERC) o la atrofia.": "Measures bipolar renal length and assesses parenchymal cortical thickness and corticomedullary differentiation to evaluate chronic kidney disease (CKD) or atrophy.",
+  "Traiga una identificación con fotografía válida, su tarjeta de seguro médico (si utiliza un seguro) y cualquier orden médica o formulario de solicitud proporcionado por su médico remitente.": "Please bring a valid photo ID, your health insurance card (if utilizing insurance), and any medical order or requisition form provided by your referring physician.",
+  "Los hallazgos positivos de TVP se tratan con notificación urgente al médico. Un informe de un radiólogo certificado se envía inmediatamente por fax al consultorio del proveedor remitente.": "Positive DVT findings are treated with urgent physician notification. A board-certified radiologist report is faxed immediately to the referring provider's office.",
+  "Su proveedor crea una solicitud de ultrasonido en su libreta de pedidos clínica estáándar, hoja de HCE del hospital o talonario de recetas que especifica la indicación clínica y la CIE-10.": "Your provider creates an ultrasound requisition on your standard clinic order pad, hospital EHR sheet, or prescription pad specifying clinical indication & ICD-10.",
+  "Evaluado por radiólogos certificados con mediciones detalladas de ambos riñones, grosor cortical, clasificación de hidronefrosis y volúmenes de la vejiga antes y después de la micción.": "Evaluated by board-certified radiologists with detailed measurements of both kidneys, cortical thickness, hydronephrosis grading, and pre/post-void bladder volumes.",
+  "Evaluación de las principales vías arteriales y venosas de todo el cuerpo mediante onda de pulso y Doppler color para evaluar la velocidad de la sangre, la estáenosis y la permeabilidad circulatoria.": "Evaluation of major arterial and venous pathways throughout the body using pulse-wave and color Doppler to assess blood velocity, stenosis, and circulatory patency.",
+  "Ultrasonido transabdominal y transvaginal no obstétrico que evalúa los órganos reproductivos, el tracto urinario, el suelo pélvico y detecta afecciones como embarazos ectópicos.": "Non-OB transabdominal and transvaginal ultrasound evaluating reproductive organs, urinary tract, pelvic floor, and checking for conditions like ectopic pregnancies.",
+  "Imágenes ecográficas completas y sin radiación del hígado, la vesícula biliar, el páncreas, los riñones, el bazo y la aorta abdominal evaluadas por radiólogos certificados.": "Comprehensive, radiation-free ultrasound imaging of the liver, gallbladder, pancreas, kidneys, spleen, and abdominal aorta evaluated by board-certified radiologists.",
+  "Un radiólogo certificado evalúa y firma el informe de diagnóstico, que se transmite a su consultorio en un plazo de 24 a 48 horas. Los hallazgos críticos de STAT se comunican de inmediato.": "A board-certified radiologist evaluates and signs the diagnostic report, transmitted to your office within 24–48 hours. STAT critical findings are phoned immediately.",
+  "Distingue definitivamente los quistes benignos simples llenos de líquido (anecoicos con realce posterior) de los quistes complejos o lesiones sólidas que requieren seguimiento radiólogo.": "Definitively distinguishes simple benign fluid-filled cysts (anechoic with posterior enhancement) from complex cysts or solid lesions requiring radiologist follow-up.",
+  "Caracterización ecográfica detallada del tamaño, composición, ecogenicidad, márgenes, forma y microcalcificaciones del nódulo con estáratificación de riesgo radiólogo TI-RADS.": "Detailed sonographic characterization of nodule size, composition, echogenicity, margins, shape, and microcalcifications with TI-RADS radiologist risk stratification.",
+  "El paciente recibe una ecografía exclusiva y sin radiación en nuestáras instalaciones de Chicago. Operar con cita previa solo garantiza cero tiempos de espera y una completa atención al paciente.": "The patient receives a dedicated, radiation-free ultrasound in our Chicago facility. Operating by appointment only ensures zero wait times and complete patient focus.",
+  "Todos los exámenes realizados en Perfect Diagnostic Ultrasound son 100% libres de radiación, no invasivos y evaluados por radiólogos expertos con informes de diagnóstico rápidos y precisos.": "All examinations at Perfect Diagnostic Ultrasound are 100% radiation-free, non-invasive, and evaluated by expert radiologists with prompt, accurate diagnostic reports.",
+  "Al operar estárictamente con cita previa, nos aseguramos de que nuestro equipo clínico estáé completamente preparado para su llegada, eliminando la congestáión de la sala de espera y respetando su tiempo.": "By operating strictly by appointment, we ensure our clinical team is completely prepared for your arrival, eliminating waiting room congestáion and respecting your time.",
+  "Confirmación de embarazo intrauterino, datación precisa de la edad gestáacional mediante la longitud cráneo-rabadilla (CRL), detección temprana de latidos cardíacos fetales y exclusión de embarazo ectópico.": "Confirmation of intrauterine pregnancy, precise gestáational age dating via crown-rump length (CRL), early fetal heartbeat detection, and exclusion of ectopic pregnancy.",
+  "Estudio esencial para pacientes con ataques isquémicos transitorios (AIT), soplos carotídeos, amaurosis fugaz, déficits neurológicos focales, síncope o alto riesgo cardiovascular.": "Essential workup for patients with transient ischemic attacks (TIA), carotid bruits, amaurosis fugax, focal neurological deficits, syncope, or high cardiovascular risk.",
+  "Detección y cuantificación de derrames pericárdicos, medición de las dimensiones de la aorta ascendente y de la raíz aórtica y estáimación de la presión sistólica del ventrículo derecho.": "Detection and quantification of pericardial effusions, measurement of the ascending aorta and aortic root dimensions, and right ventricular systolic pressure estáimation.",
+  "El ecocardiograma transtorácico (ETT) proporciona imágenes no invasivas de las cámaras del corazón, las válvulas y los grandes vasos circundantes para evaluar el rendimiento cardíaco y la hemodinámica.": "Transthoracic echocardiogram (TTE) provides non-invasive imaging of heart chambers, valves, and surrounding great vessels to assess cardiac performance and hemodynamics.",
+  "Evalúa el tamaño, el contorno y la posición del útero. Mapea y mide con precisión los fibromas uterinos (leiomiomas), detecta adenomiosis y evalúa anomalías uterinas congénitas.": "Evaluates uterine size, contour, and position. Accurately maps and measures uterine fibroids (leiomyomas), detects adenomyosis, and assesses congenital uterine anomalies.",
+  "Ecografía transabdominal y endovaginal de alta resolución que evalúa la arquitectura uterina, el revestáimiento endometrial y las estáructuras ováricas para una atención ginecológica integral.": "High-resolution transabdominal and endovaginal sonography assessing uterine architecture, endometrial lining, and ovarian structures for comprehensive gynecological care.",
+  "Monitoreo de los parámetros de crecimiento fetal (BPD, HC, AC, FL), peso fetal estáimado (EFW), posición/presentación fetal, flujo Doppler de la arteria umbilical y volumen de líquido amniótico.": "Monitoring fetal growth parameters (BPD, HC, AC, FL), estáimated fetal weight (EFW), fetal position/presentation, umbilical artery Doppler flow, and amniotic fluid volume.",
+  "Evaluación sistemática de 16 a 17 segmentos de miocardio para identificar hipocinesia, acinesia o discinesia asociada con enfermedad de las arterias coronarias o infarto de miocardio pasado.": "Systematic evaluation of 16-17 myocardial segments to identify hypokinesia, akinesia, or dyskinesia associated with coronary artery disease or past myocardial infarction.",
+  "Las instrucciones de preparación dependen del examen de ultrasonido específico que se estáé realizando. Nuestáro personal clínico brinda instrucciones claras y personalizadas al programar su cita.": "Preparation instructions depend on the specific ultrasound exam being performed. Our clinical staff provides clear, tailored instructions when scheduling your appointment.",
+  "Para garantizar que todos los pacientes se sientan cómodos y completamente comprendidos, estáamos orgullosos de ofrecer servicios en varios idiomas, incluidos inglés, español, ruso, punjabi y urdu.": "To ensure all patients feel comfortable and fully understood, we are proud to offer services in multiple languages, including English, Spanish, Russian, Punjabi, and Urdu.",
+  "Los informes detallados del radiólogo cuantifican el grosor del endometrio y proporcionan mediciones exactas en tres planos de todos los fibromas y quistes ováricos con evaluación del flujo Doppler color.": "Detailed radiologist reports quantify endometrial thickness and provide exact three-plane measurements of all fibroids and ovarian cysts with color Doppler flow assessment.",
+  "Llegue con la vejiga cómodamente llena bebiendo entre 24 y 32 onzas de agua 1 hora antes del examen. No anule antes de que se capturen las mediciones ecográficas iniciales.": "Arrive with a comfortably full bladder by drinking 24–32 oz of water completed 1 hour prior to the exam. Do not void before the initial ultrasound measurements are captured.",
+  "Clínica independiente de ultrasonido de diagnóstico para pacientes ambulatorios en Chicago que brinda ultrasonido clínico evaluado por radiólogos certificados. Operando estárictamente solo con cita previa.": "Independent outpatient diagnostic ultrasound clinic in Chicago providing clinical ultrasound evaluated by board-certified radiologists. Operating strictly by appointment only.",
+  "No es necesario ayunar ni realizar ninguna preparación especial. Use pantalones o pantalones cortos holgados que se puedan enrollar o quitar fácilmente. Continúe con todos los medicamentos, incluidos los anticoagulantes.": "No fasting or special preparation is necessary. Wear loose-fitting trousers or shorts that can be easily rolled up or removed. Continue all medications, including anticoagulants.",
+  "Su socio de confianza en imágenes clínicas en Chicago. Dedicado a la precisión médica, la compasión del paciente y la rápida respuestáa diagnóstica con más de 25 años de experiencia en ecografía.": "Your trusted clinical imaging partner in Chicago. Dedicated to medical precision, patient compassion, and rapid diagnostic turnaround with over 25 years of sonography experience.",
+  "Todos los informes de nódulos tiroideos cuentan con puntuación formal ACR TI-RADS con mediciones milimétricas precisas y documentación vascular Doppler color para guiar las decisiones de seguimiento o biopsia.": "All thyroid nodule reports feature formal ACR TI-RADS scoring with precise millimeter measurements and vascular color Doppler documentation to guide follow-up or biopsy decisions.",
+  "Evaluación integral de la velocidad Doppler color y Doppler espectral de las válvulas aórtica, mitral, tricúspide y pulmonar para detectar estáenosis, regurgitación, prolapso o calcificación.": "Comprehensive color Doppler and spectral Doppler velocity assessment of the aortic, mitral, tricuspid, and pulmonary valves for stenosis, regurgitation, prolapse, or calcification.",
+  "Ecografía prenatal integral evaluada por radiólogos certificados, desde la viabilidad temprana del embarazo hasta estáudios detallados de la anatomía del segundo trimestáre e imágenes fetales electivas en 3D/4D.": "Comprehensive prenatal sonography evaluated by board-certified radiologists, from early pregnancy viability to detailed second-trimestáer anatomy surveys and elective 3D/4D fetal imaging.",
+  "Documentación segmentaria completa con índices de velocidad Doppler, clasificación de formas de onda y localización anatómica de la obstrucción arterial para médicos vasculares y de atención primaria.": "Comprehensive segmental documentation with Doppler velocity ratios, waveform classification, and anatomical localization of arterial obstruction for vascular and primary care physicians.",
+  "Aceptamos órdenes obstétricas en cualquier cuaderno de solicitudes de médico estáándar o en una copia impresa de EHR. Las evaluaciones de embarazos de rutina y de alto riesgo reciben informes rápidos del radiólogo dentro de las 24 a 48 horas.": "We accept obstetrical orders on any standard physician requisition pad or EHR printout. Routine and high-risk pregnancy evaluations receive prompt radiologist reports within 24–48 hours.",
+  "Ideal para pacientes que presentan dolor en el cuadrante superior derecho (RUQ), malestáar epigástrico, LFT elevados o exámenes de detección de rutina. Los informes telefónicos urgentes estáán disponibles para hallazgos quirúrgicos agudos.": "Ideal for patients presenting with right upper quadrant (RUQ) pain, epigastric distress, elevated LFTs, or routine screening. STAT phone reports are available for acute surgical findings.",
+  "Identifica cálculos biliares (colelitiasis), engrosamiento de la pared de la vesícula biliar, líquido pericolecístico indicativo de colecistitis aguda, lodo biliar y mide el calibre del conducto biliar común (CBD).": "Identifies gallstones (cholelithiasis), gallbladder wall thickening, pericholecystic fluid indicative of acute cholecystitis, biliary sludge, and measures the common bile duct (CBD) caliber.",
+  "Evaluación bilateral de dimensiones ováricas, recuento de folículos, detección de quistes simples, quistes hemorrágicos, endometriomas, dermoides (teratomas) y morfología del síndrome de ovario poliquístico (SOP).": "Bilateral evaluation of ovarian dimensions, follicle count, detection of simple cysts, hemorrhagic cysts, endometriomas, dermoids (teratomas), and polycystic ovary syndrome (PCOS) morphology.",
+  "En cada informe final del radiólogo se incluyen cálculos de volumen completos y análisis de residuos posmiccionales, lo que ayuda a los médicos de atención primaria y a los urólogos con la planificación del tratamiento específico.": "Complete volume calculations and post-void residual analysis are included in every final radiologist report, assisting primary care physicians and urologists with targeted treatment planning.",
+  "Las instrucciones de preparación dependen completamente del examen de ultrasonido específico que se estáé realizando. Nuestáro equipo clínico le brinda orientación clara y personalizada directamente al programar su cita.": "Preparation instructions depend entirely on the specific ultrasound exam being performed. Our clinical team provides clear, tailored guidance directly to you when scheduling your appointment.",
+  "Evalúa las dimensiones hepáticas, la infiltración grasa difusa (estáeatosis), la cirrosis, la nodularidad de la superficie, la permeabilidad vascular (venas porta y hepática) e identifica quistes o lesiones hepáticas focales.": "Evaluates hepatic dimensions, diffuse fatty infiltration (steatosis), cirrhosis, surface nodularity, vascular patency (portal and hepatic veins), and identifies focal hepatic lesions or cysts.",
+  "Todos los exámenes de ultrasonido de mama se clasifican de acuerdo con el léxico ACR BI-RADS (Sistema de datos e informes de imágenes de mama) realizados por radiólogos certificados con un tiempo de respuestáa rápido de 24 a 48 horas.": "All breast ultrasound examinations are categorized according to the ACR BI-RADS (Breast Imaging Reporting and Data System) lexicon by board-certified radiologists with prompt 24-48hr turnaround.",
+  "Nuestáro personal o el radiólogo intérprete llaman inmediatamente a su consultorio por teléfono a su consultorio con las pruebas urgentes y los hallazgos críticos (como trombosis venosa profunda aguda, embarazo ectópico o anomalías agudas graves).": "STAT and critical findings (such as acute deep vein thrombosis, ectopic pregnancy, or severe acute abnormalities) are immediately telephoned to your office by our staff or interpreting radiologist.",
+  "Medición precisa del espesor endometrial para evaluar sangrado uterino anormal (SUA), sangrado posmenopáusico, hiperplasia endometrial, pólipos o localización del dispositivo anticonceptivo intrauterino (DIU).": "Precise measurement of endometrial thickness to evaluate abnormal uterine bleeding (AUB), postmenopausal bleeding, endometrial hyperplasia, polyps, or intrauterine contraceptive device (IUD) localization.",
+  "Cada examen de ultrasonido es evaluado e interpretado por radiólogos certificados, lo que garantiza que su médico reciba la información anatómica detallada necesaria para un diagnóstico y una planificación del tratamiento oportunos.": "Every ultrasound examination is evaluated and interpreted by board-certified radiologists, ensuring your physician receives the detailed anatomical insights needed for timely diagnosis and treatment planning.",
+  "Para imágenes de tiroides: use una camisa o blusa cómoda y holgada con cuello abierto; Evite los cuellos de tortuga. Quéítese los collares antes del escaneo. Para imágenes escrotales: no se necesita ninguna preparación especial; use ropa holgada y cómoda.": "For thyroid imaging: Wear a comfortable, loose open-collar shirt or blouse; avoid turtlenecks. Remove necklaces before the scan. For scrotal imaging: No special prep is needed; wear loose, comfortable clothing.",
+  "No se requiere ayuno. Evite fumar, vapear o consumir mucha cafeína durante al menos 2 horas antes del examen, ya que la nicotina y la cafeína inducen vasoconstricción periférica que puede alterar las formas de onda Doppler.": "No fasting required. Avoid smoking, vaping, or consuming heavy caffeine for at least 2 hours before the examination, as nicotine and caffeine induce peripheral vasoconstriction that can alter Doppler waveforms.",
+  "Los informes detallados incluyen descripciones morfológicas de la placa en escala de grises, documentación Doppler color y formas de onda de velocidad espectral que cumplen con los criterios de consenso de la Sociedad de Radiólogos en Ultrasonido (SRU).": "Detailed reports include grayscale plaque morphological descriptions, color Doppler documentation, and spectral velocity waveforms conforming to the Society of Radiologists in Ultrasound (SRU) consensus criteria.",
+  "Asóciese con Perfect Diagnostic Ultrasound para obtener ecografías de diagnóstico de nivel hospitalario, programación rápida de pacientes e informes de radiólogos certificados de 24 a 48 horas, sin demoras hospitalarias ni tarifas excesivas de las instalaciones.": "Partner with Perfect Diagnostic Ultrasound for hospital-grade diagnostic sonography, prompt patient scheduling, and 24–48 hour board-certified radiologist reports — without hospital delays or excessive facility fees.",
+  "Visualización directa y mediciones de velocidad Doppler a lo largo de la arteria femoral común (CFA), la arteria femoral superficial (SFA), la arteria poplítea, la tibial anterior (ATA), la tibial posterior (PTA) y el dorsal del pie (DPA).": "Direct visualization and Doppler velocity measurements along the common femoral artery (CFA), superficial femoral artery (SFA), popliteal artery, anterior tibial (ATA), posterior tibial (PTA), and dorsalis pedis (DPA).",
+  "No se requieren restáricciones dietéticas ni ayuno para un ecocardiograma transtorácico. Utilice un traje cómodo de dos piezas que permita un fácil acceso al pecho. Continúe tomando todos los medicamentos cardíacos habituales según lo prescrito.": "No dietary restárictions or fasting are required for a transthoracic echocardiogram. Please wear a comfortable two-piece outfit that allows easy access to the chestá. Continue taking all regular cardiac medications as prescribed.",
+  "Creemos que todos los pacientes deben tener acceso a atención médica de calidad, independientemente de su cobertura de seguro. Ofrecemos consultas personalizadas para revisar sus solicitudes de imágenes y coordinar informes de diagnóstico con su médico.": "We believe quality healthcare should be accessible to all patients regardless of insurance coverage. We offer personalized consultations to review your imaging requisitions and coordinate diagnostic reports with your physician.",
+  "Sí. Aceptamos cualquier orden médica válida firmada por un médico autorizado (MD/DO), una enfermera practicante (NP) o un asistente médico (PA) que incluya datos demográficos del paciente, examen solicitado e indicación clínica o código ICD-10.": "Yes. We accept any valid medical order signed by a licensed physician (MD/DO), nurse practitioner (NP), or physician assistant (PA) that includes patient demographics, requested examination, and clinical indication or ICD-10 code.",
+  "La ecografía obstétrica monitorea el desarrollo fetal, la anatomía y la salud materna en todos los trimestáres del embarazo. El ultrasonido utiliza ondas sonoras suaves sin radiación ionizante, lo que garantiza una seguridad total tanto para los padres como para el bebé.": "Obstetrical sonography monitors fetal development, anatomy, and maternal health across all trimestáers of pregnancy. Ultrasound uses gentle sound waves with zero ionizing radiation, ensuring complete safety for both parent and baby.",
+  "Evaluación detallada de los órganos fetales, incluidos los ventrículos craneales, el perfil facial, las vistas cardíacas de cuatro cámaras y los tractos de salida, la alineación de la columna, los riñones, la burbuja estáomacal, la vejiga, las extremidades, la ubicación de la placenta y el índice de líquido amniótico.": "Detailed evaluation of fetal organs including cranial ventricles, facial profile, four-chamber cardiac views and outflow tracts, spine alignment, kidneys, stomach bubble, bladder, limbs, placental location, and amniotic fluid index.",
+  "Realizamos ecografías médicas de acuerdo con las recomendaciones y órdenes médicas. Cada exploración es evaluada por radiólogos expertos y se proporcionan informes de diagnóstico rápidos y precisos para usted y su proveedor de atención médica.": "We perform medical ultrasound scans in accordance with doctor recommendations and medical orders. Every scan is evaluated by expert radiologists with prompt, accurate diagnostic reports provided for you and your healthcare provider.",
+  "Se aceptan los principales seguros de salud. Los pacientes sin seguro se benefician de nuestros precios transparentes de pago por cuenta propia sin facturas hospitalarias sorpresa. Nuestáro personal multilingüe brinda atención compasiva en inglés, español, ruso, punjabi y urdu.": "Major health insurances are accepted. Patients without insurance benefit from our transparent self-pay pricing with no surprise hospital bills. Our multilingual staff provides compassionate care in English, Spanish, Russian, Punjabi, and Urdu.",
+  "Sin restáricciones dietéticas. Lleva un conjunto cómodo de dos piezas. No aplique desodorantes, antitranspirantes, talco, lociones o perfumes debajo de los brazos o en el área de los senos el día del examen, ya que los residuos pueden crear artefactos ecográficos.": "No dietary restárictions. Wear a comfortable two-piece outfit. Do not apply deodorants, antiperspirants, talcum powders, lotions, or perfumes under the arms or on the breast area on the day of the exam, as residues can create sonographic artifacts.",
+  "Beba de 24 a 32 onzas de agua terminada 1 hora antes de su cita para que su vejiga urinaria estáé cómodamente distendida. No orine hasta que el ecografista complete las mediciones previas a la evacuación de la vejiga. Luego se le dará tiempo para anular para la evaluación posterior a la anulación.": "Drink 24–32 oz of water finished 1 hour before your appointment so that your urinary bladder is comfortably distended. Do not urinate until the sonographer completes the pre-void bladder measurements. You will then be given time to void for the post-void evaluation.",
+  "La ecografía de diagnóstico de próstata ofrece una evaluación cómoda y no invasiva de la glándula prostática y la base de la vejiga. Ayuda a los médicos a evaluar la hiperplasia prostática benigna (HPB), la obstrucción del flujo urinario y los niveles elevados de PSA sin radiación ni molestáias invasivas.": "Prostate diagnostic ultrasound offers a comfortable, non-invasive assessment of the prostate gland and bladder base. It helps physicians evaluate benign prostatic hyperplasia (BPH), urinary outflow obstruction, and elevated PSA levels without radiation or invasive discomfort.",
+  "Para la porción transabdominal, llegue con la vejiga completamente distendida bebiendo entre 32 y 40 onzas de agua 1 hora antes de la exploración; no anules. Si estáá clínicamente indicado y se acepta una exploración transvaginal, se le indicará que vacíe la vejiga por completo justo antes del procedimiento.": "For the transabdominal portion, arrive with a fully distended bladder by drinking 32–40 oz of water finished 1 hour before your scan; do not void. If a transvaginal scan is clinically indicated and consented to, you will be instructed to empty your bladder completely just before the procedure.",
+  "Para los exámenes del primer trimestáre (<14 semanas), beba 32 oz de agua terminada 1 hora antes de su cita y no vacíe la vejiga. Para los estáudios de anatomía del segundo y tercer trimestáre, se recomienda una hidratación normal, junto con un refrigerio ligero 30 minutos antes para estáimular la actividad fetal.": "For first-trimestáer examinations (< 14 weeks), please drink 32 oz of water finished 1 hour before your appointment and do not empty your bladder. For second- and third-trimestáer anatomy surveys, normal hydration is recommended, along with a light snack 30 minutes prior to encourage fetal activity.",
+  ", brindamos exámenes de ultrasonido de diagnóstico de nivel hospitalario en un ambiente ambulatorio cómodo y personal. Con un compromiso inquebrantable con la precisión, la compasión y la integridad profesional, satisfacemos sus necesidades de imágenes sin las largas esperas ni las altas tarifas de los departamentos de radiología de los hospitales.": ", we provide hospital-grade diagnostic ultrasound examinations in a comfortable, personal outpatient setting. With an unwavering commitment to precision, compassion, and professional integrity, we fulfill your imaging needs without the long waits or high facility fees of hospital radiology departments.",
+  "La ecografía pélvica es una evaluación diagnóstica delicada y compasiva diseñada para proporcionar una visión anatómica detallada del sistema reproductivo femenino. Nuestáras ecografistas certificadas brindan atención privada y respetuosa, utilizando sondas digitales de alta frecuencia evaluadas por radiólogos certificados.": "Pelvic ultrasound is a delicate, compassionate diagnostic evaluation designed to provide detailed anatomical insight into the female reproductive system. Our certified female sonographers provide respectful, private care, utilizing high-frequency digital probes evaluated by board-certified radiologists.",
+  "La ecografía renal y vesical es una prueba de diagnóstico no invasiva y sin radiación que evalúa las vías urinarias superiores e inferiores. Es el estáudio de imagen inicial de elección para evaluar el dolor en el flanco, la sospecha de cálculos renales, la hematuria (sangre en la orina), las infecciones recurrentes del tracto urinario y la insuficiencia renal.": "Renal and bladder ultrasound is a non-invasive, radiation-free diagnostic testá assessing the upper and lower urinary tracts. It is the initial imaging study of choice for evaluating flank pain, suspected kidney stones, hematuria (blood in urine), recurrent urinary tract infections, and renal impairment.",
+  "Las sondas de ultrasonido lineal de alta frecuencia brindan una resolución espacial extraordinaria para estáructuras superficiales de tejidos blandos ubicadas cerca de la superficie de la piel. Nuestára clínica se especializa en ecografía detallada de la glándula tiroides, los ganglios linfáticos del cuello y las estáructuras escrotales evaluadas por radiólogos certificados.": "High-frequency linear ultrasound probes deliver extraordinary spatial resolution for superficial soft-tissue structures located close to the skin surface. Our clinic specializes in detailed sonography of the thyroid gland, neck lymph nodes, and scrotal structures evaluated by board-certified radiologists.",
+  "La ecografía dúplex carotídea combina imágenes en modo B de alta resolución con Doppler espectral de onda de pulso y Doppler color para medir la velocidad de la sangre y visualizar las paredes de las arterias carótidas. Es el método no invasivo de referencia para detectar el estárechamiento de la arteria carótida y prevenir el accidente cerebrovascular isquémico.": "Carotid duplex sonography combines high-resolution B-mode imaging with pulse-wave spectral Doppler and color Doppler to measure blood velocity and visualize the walls of the carotid arteries. It is the gold standard, non-invasive method for detecting carotid artery narrowing and preventing ischemic stroke.",
+  "La trombosis venosa profunda (TVP) es una afección potencialmente mortal en la que se forma un coágulo de sangre en las venas profundas de las piernas, lo que supone un riesgo de embolia pulmonar (EP). Nuestára clínica ofrece evaluaciones venosas dúplex rápidas y basadas en citas realizadas con ecografía de compresión y análisis de flujo Doppler espectral.": "Deep vein thrombosis (DVT) is a potentially life-threatening condition where a blood clot forms in the deep veins of the legs, posing a risk of pulmonary embolism (PE). Our clinic provides prompt, appointment-based venous duplex evaluations performed with compression sonography and spectral Doppler flow analysis.",
+  "La ecografía abdominal proporciona una visualización transversal de alta resolución de órganos sólidos y estáructuras vasculares importantes dentro de la cavidad peritoneal y retroperitoneal. Es el examen de diagnóstico de primera línea para dolor abdominal inexplicable, pruebas de función hepática anormales, ictericia y masas abdominales palpables.": "Abdominal ultrasound provides high-resolution cross-sectional visualization of solid organs and major vascular structures within the peritoneal and retroperitoneal cavity. It is the primary frontline diagnostic exam for unexplained abdominal pain, abnormal liver function testás, jaundice, and palpable abdominal masses.",
+  "Es estárictamente necesario ayunar (NPO) durante 6 a 8 horas antes de su examen. No coma, beba ni mastique chicle. El ayuno asegura una distensión óptima de la vesícula biliar y reduce el gas intestáinal suprayacente para una visualización clara del páncreas y la aorta. Se permiten pequeños sorbos de agua para los medicamentos recetados necesarios.": "Fasting (NPO) for 6 to 8 hours prior to your examination is strictly required. Do not eat, drink, or chew gum. Fasting ensures optimal distension of the gallbladder and reduces overlying bowel gas for clear visualization of the pancreas and aorta. Small sips of water are permitted for necessary prescription medications.",
+  "Un ecocardiograma utiliza ondas sonoras acústicas para generar imágenes en movimiento en tiempo real de las cámaras del corazón, las paredes musculares y las válvulas cardíacas. Evaluados por especialistas certificados, nuestros ecocardiogramas brindan a los médicos de atención primaria, cardiólogos y cirujanos los datos hemodinámicos completos necesarios para guiar el manejo clínico.": "An echocardiogram uses acoustic sound waves to generate real-time moving images of heart chambers, muscular walls, and cardiac valves. Evaluated by board-certified specialists, our echocardiograms provide primary care physicians, cardiologists, and surgeons with the comprehensive hemodynamic data needed to guide clinical management.",
+  "La ecografía mamaria de diagnóstico utiliza ondas sonoras acústicas de alta frecuencia para inspeccionar áreas específicas del tejido mamario con gran detalle. Está completamente libre de radiación ionizante y sirve como una herramienta de diagnóstico esencial para evaluar bultos palpables, aclarar los hallazgos mamográficos y diferenciar las lesiones quísticas de las masas sólidas.": "Diagnostic breast ultrasound uses high-frequency acoustic sound waves to inspect targeted areas of breast tissue in high detail. It is completely free of ionizing radiation and serves as an essential diagnostic tool for evaluating palpable lumps, clarifying mammographic findings, and differentiating cystic lesions from solid masses.",
+  "La ecografía dúplex arterial de las extremidades inferiores evalúa el flujo sanguíneo a través del suministro arterial de las piernas y los pies. Proporciona evidencia diagnóstica crítica para la enfermedad arterial periférica (EAP), ayuda a determinar la gravedad del estárechamiento arterial y guía las decisiones de tratamiento para pacientes que sufren dolor en las piernas, extremidades frías o mala cicatrización de heridas.": "Lower extremity arterial duplex sonography evaluates blood flow through the arterial supply of the legs and feet. It provides critical diagnostic evidence for peripheral arterial disease (PAD), helps determine the severity of arterial narrowing, and guides treatment decisions for patients suffering from leg pain, cold extremities, or poor wound healing.",
+  "La ecografía obstétrica es una modalidad de diagnóstico por imágenes no invasiva y sin radiación que se utiliza para controlar el embarazo, evaluar el crecimiento fetal y el desarrollo anatómico y garantizar la salud materna. Cada examen en Perfect Diagnostic Ultrasound se realiza utilizando sistemas avanzados de ecografía digital y es interpretado por radiólogos certificados con entrega rápida de informes a su obstetra o partera en 24 a 48 horas.": "Obstetrical ultrasound is a non-invasive, radiation-free diagnostic imaging modality used to monitor pregnancy, assess fetal growth and anatomical development, and ensure maternal health. Every examination at Perfect Diagnostic Ultrasound is performed using advanced digital sonography systems and interpreted by board-certified radiologists with rapid 24–48hr report delivery to your obstetrician or midwife.",
+  "Se proporcionan informes diagnósticos rápidos y precisos para el seguimiento médico.": "Prompt, accurate diagnostic reports are provided for physician follow-up.",
+  "Referencias Médicas y Órdenes de Doctores": "Physician Referrals & Doctor Orders",
+  "Órdenes Médicas y Resultados Rápidos": "Physician Orders & Fast Turnaround",
+  "Orden Médica / Requisición": "Physician Order / Requisition",
+  "¿Necesita Ayuda para Programar?": "Need Assistance Scheduling?",
+  "Seleccione una Modalidad de Ultrasonido": "Select an Ultrasound Modality",
+  "Seleccionar y Reservar": "Select & Book",
+  "Programar en Línea": "Schedule Online",
+  "(872) 227-2321": "(872) 227-2321",
+  "Fax: (708) 671-6711": "Fax: (708) 671-6711",
+  "info@perfectdiagnosticultrasound.com": "info@perfectdiagnosticultrasound.com",
+  "Hogar": "Home",
+  "Acerca de": "About",
+  "médicos": "Physicians",
+  "Preparación del paciente": "Patient Prep",
+  "Preguntas frecuentes": "FAQ",
+  "Reserva": "Booking",
+  "Ecografía diagnóstica de precisión en Chicago.": "Precision Diagnostic Ultrasound in Chicago.",
+  "Ecografía diagnóstica de precisión en Chicago": "Precision Diagnostic Ultrasound in Chicago.",
+  "Ecografía médica diagnóstica no invasiva y sin radiación, evaluada por radiólogos expertos. Aceptamos las principales aseguradoras médicas, ofrecemos consultas personalizadas y atención multilingüe en inglés, español, ruso, punjabi y urdu.": "Non-invasive, radiation-free medical diagnostic ultrasound evaluated by expert radiologists. We accept major health insurances, provide personalized health consults, and proud to offer multilingual care in English, Spanish, Russian, Punjabi, and Urdu.",
+  "Análisis del radiólogo": "Radiologist Analysis",
+  "Informes diagnósticos rápidos": "Prompt Diagnostic Reports",
+  "Se aceptan las principales aseguradoras.": "Major Insurances Accepted",
+  "Opciones de pago directo disponibles": "Self-Pay Options Available",
+  "Más de 10 años": "10+ Years",
+  "Ofrecemos una gama completa de servicios de ultrasonido diagnóstico no invasivos y sin radiación, utilizando tecnologías avanzadas de imagen 2D, 3D/4D y Doppler.": "We offer a comprehensive range of non-invasive, radiation-free diagnostic ultrasound services using advanced 2D, 3D/4D, and Doppler imaging technologies.",
+  "Todos los servicios": "All Services",
+  "Abdominal y renal": "Abdominal & Renal",
+  "Estudios vasculares": "Vascular Studies",
+  "Ecocardiograma (cardíaco)": "Echocardiogram (Cardiac)",
+  "Partes pequeñas y próstata": "Small Parts & Prostate",
+  "Enviar Requisición en Línea": "Submit Requisition Online",
+  "Imprimir Formulario de Requisición": "Print Requisition Form",
+  "Orden Clínica Oficial": "Official Clinical Order",
+  "Formulario de Requisición de Ultrasonido Médico": "Physician Ultrasound Requisition Form",
+  "Envíe las órdenes clínicas electrónicamente o imprímalas para firmarlas en la oficina. Fax directo:": "Submit clinical orders electronically or print for office signature. Direct Fax:",
+  "Imprimir Formulario de Orden": "Print Order Form",
+  "Información del Médico Remitente y Consultorio": "Referring Physician & Practice Information",
+  "Nombre Completo del Médico *": "Physician Full Name *",
+  "Nombre de la Clínica / Consultorio *": "Clinic / Practice Name *",
+  "Número NPI del Médico": "Physician NPI Number",
+  "Teléfono del Consultorio *": "Office Phone *",
+  "Número de Fax para Informes *": "Report Fax Number *",
+  "Contacto / Correo del Consultorio": "Office Contact / Email",
+  "Información del Paciente": "Patient Information",
+  "Nombre Completo del Paciente *": "Patient Full Name *",
+  "Fecha de Nacimiento *": "Date of Birth (DOB) *",
+  "Teléfono del Paciente *": "Patient Phone Number *",
+  "Tipo de Seguro / Facturación": "Insurance / Billing Type",
+  "Seguro médico comercial": "Commercial Health Insurance",
+  "Seguro médico del estáado": "Medicare",
+  "Seguro de enfermedad": "Medicaid",
+  "Autopago/facturación directa": "Self-Pay / Direct Billing",
+  "Compensación laboral/lesiones personales": "Workers Comp / Personal Injury",
+  "Modalidad de Ultrasonido Solicitada (Marque las que correspondan) *": "Ultrasound Modality Requested (Check All That Apply) *",
+  "Seleccione los exámenes anatómicos específicos a realizar y evaluar:": "Select specific anatomical examination(s) to be performed and evaluated:",
+  "Abdominales y Renales:": "Abdominal & Renal:",
+  "Abdomen completo": "Abdomen Complete",
+  "RUQ / Vesícula Biliar": "RUQ / Gallbladder",
+  "Vejiga renal y urinaria": "Renal & Urinary Bladder",
+  "Aorta (pantalla AAA)": "Aorta (AAA Screen)",
+  "Obstétrica y pélvica:": "Obstetrical & Pelvic:",
+  "Viabilidad OB del primer trimestáre": "OB 1st Trimestáer Viability",
+  "Anatomía del segundo trimestáre de obstetricia": "OB 2nd Trimestáer Anatomy",
+  "OB Crecimiento del tercer trimestáre": "OB 3rd Trimestáer Growth",
+  "Pélvica (Transabdominal)": "Pelvic (Transabdominal)",
+  "Pélvica (Transvaginal)": "Pelvic (Transvaginal)",
+  "Vasculares y cardíacas:": "Vascular & Cardiac:",
+  "Ecocardiograma (Eco)": "Echocardiogram (Echo)",
+  "Extensión inferior. Venosa (TVP)": "Lower Ext. Venous (DVT)",
+  "Extensión inferior. Dúplex arterial": "Lower Ext. Arterial Duplex",
+  "Piezas pequeñas y tejidos blandos:": "Small Parts & Soft Tissue:",
+  "Nódulos de tiroides y cuello": "Thyroid & Neck Nodes",
+  "Escrotal y testáicular": "Scrotal & Testáicular",
+  "Tejido blando/masa palpable": "Soft Tissue / Palpable Mass",
+  "Indicaciones Clínicas, Síntomas y Prioridad del Informe": "Clinical Indications, Symptoms & Report Priority",
+  "Indicaciones Clínicas / Síntomas / Código ICD-10 *": "Clinical Indications / Symptoms / ICD-10 Code *",
+  "Prioridad de Entrega del Informe:": "Report Turnaround Priority:",
+  "Rutina:": "Routine:",
+  "Informe radiólogo escrito en 24 a 48 horas": "Written Radiologist Report in 24–48 Hours",
+  "ESTADÍSTICO/Urgente:": "STAT / Urgent:",
+  "Exploración el mismo día y llamada telefónica verbal inmediata para hallazgos agudos": "Same-day scan & immediate verbal phone call for acute findings",
+  "Cargar Requisición Firmada / Recetario Médico (Opcional)": "Upload Signed Requisition / Prescription Pad (Optional)",
+  "Haga clic para cargar el recetario médico firmado o la hoja de referencia": "Click to upload signed physician order pad or referral sheet",
+  "PDF, JPG, PNG hasta 10MB": "PDF, JPG, PNG up to 10MB",
+  "Certifico que soy un proveedor de atención médica con licencia (o miembro autorizado del personal clínico) que ordena imágenes de ultrasonido diagnóstico para el paciente indicado de acuerdo con la necesidad médica.": "I certify that I am a licensed healthcare provider (or authorized clinical staff member) ordering diagnostic ultrasound imaging for the patient indicated above in accordance with medical necessity.",
+  "¡Requisición Médica Recibida con Éxito!": "Physician Requisition Received Successfully!",
+  "Nuestáro equipo de coordinación clínica se comunicará con el paciente a la brevedad para programar la cita. Los informes oficiales de los radiólogos se enviarán por fax directamente al número proporcionado.": "Our clinical scheduling team will contact the patient promptly to coordinate appointment booking. Official radiologist reports will be faxed directly to the number provided.",
+  "Transmitir Orden de Requisición de Forma Segura": "Transmit Requisition Order Securely",
+  "¿Prefiere el fax en papel? Envíe por fax los pedidos firmados directamente a": "Prefer paper fax? Fax signed orders directly to",
+  "STAT / Urgente:": "STAT / Urgent:",
+  "STAT / Urgente": "STAT",
+  "Medicare": "Medicare",
+  "Medicaid": "Medicaid",
+  "Seguro Médico Comercial": "Commercial Health Insurance",
+  "Pago Directo / Cuenta Propia": "Self-Pay / Direct Billing",
+  "Compensación Laboral / Accidente": "Workers Comp / Personal Injury",
+  "Aorta Abdominal (Despistaje de AAA)": "Aorta (AAA Screen)",
+  "Venoso Extremidad Inferior (TVP)": "Lower Ext. Venous (DVT)",
+  "Dúplex Arterial Extremidad Inferior": "Lower Ext. Arterial Duplex",
+  "Partes Pequeñas y Tejidos Blandos:": "Small Parts & Soft Tissue:",
+  "Tejido Blando / Masa Palpable": "Soft Tissue / Palpable Mass",
+  "OB 1er Trimestáre Viabilidad": "OB 1st Trimestáer Viability",
+  "OB 2do Trimestáre Anatomía": "OB 2nd Trimestáer Anatomy",
+  "OB 3er Trimestáre Crecimiento": "OB 3rd Trimestáer Growth",
+  "CSI / Vesícula Biliar (RUQ)": "RUQ / Gallbladder",
+  "Tiroides y Ganglios Cervicales": "Thyroid & Neck Nodes",
+  "Informe Escrito del Radiólogo en 24–48 Horas": "Written Radiologist Report in 24–48 Hours",
+  "Estudio el mismo día y llamada telefónica inmediata por hallazgos agudos": "Same-day scan & immediate verbal phone call for acute findings",
+  "Transmitiendo Orden de Requisición...": "Transmitting Requisition Order...",
+  "N.° de Seguimiento de Requisición: ": "Requisition Tracking #: "
+};
+
+// Helper function to resolve translation with arrow / whitespace tolerance
+function resolveTranslation(text, targetLang) {
+  if (!text) return null;
+  var clean = text.trim();
+  if (!clean) return null;
+
+  var dict = (targetLang === 'es') ? DICT_EN_TO_ES : DICT_ES_TO_EN;
+  if (dict[clean]) return dict[clean];
+
+  // Check arrow variants
+  if (clean.endsWith(' →') || clean.endsWith(' ->')) {
+    var base = clean.replace(/(\s*(→|->))$/, '').trim();
+    if (dict[base]) return dict[base] + ' →';
+  }
+  return null;
+}
+
+// Kill all Google Translate cookies to stop Google Chrome translation bar
+function killGoogleTranslateCookies() {
+  try {
+    var host = window.location.hostname;
+    var domain = host.replace(/^www\./, '');
+    var paths = ['/', '/en', '/es'];
+    paths.forEach(function(p) {
+      document.cookie = 'googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=' + p + ';';
+      document.cookie = 'googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=' + p + '; domain=' + host + ';';
+      document.cookie = 'googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=' + p + '; domain=.' + domain + ';';
+    });
+  } catch(e) {}
+}
+
+// Master Bulletproof Bilingual Engine (100% Reversible EN <-> ES, Zero Remnants)
+window.setSiteLanguage = function(lang) {
+  if (lang !== 'es' && lang !== 'en') lang = 'en';
+
+  // 1. Storage persistence
+  try { localStorage.setItem('pd_lang', lang); } catch (e) {}
+
+  // 2. Kill Google cookies
+  killGoogleTranslateCookies();
+
+  document.documentElement.lang = lang;
+
+  // 6. Dynamic Iframe Language Switcher (Booking & Form Widgets)
+  try {
+    var iframes = document.querySelectorAll('iframe[data-src-en], iframe[data-src-es]');
+    iframes.forEach(function(el) {
+      var enSrc = el.getAttribute('data-src-en');
+      var esSrc = el.getAttribute('data-src-es');
+      var target = (lang === 'es' && esSrc) ? esSrc : enSrc;
+      if (target && el.src !== target) {
+        el.src = target;
+      }
+    });
+  } catch (err) {}
+
+
+  // 3. Update buttons visual state
+  document.querySelectorAll('.lang-btn').forEach(function(btn) {
+    if (btn.getAttribute('data-lang') === lang) {
+      btn.classList.add('active');
+    } else {
+      btn.classList.remove('active');
+    }
+  });
+
+  // 4. Translate explicit data-en/data-es elements
+  document.querySelectorAll('[data-en][data-es]').forEach(function(el) {
+    var text = el.getAttribute('data-' + lang);
+    if (text) el.textContent = text;
+  });
+
+  // 5. Unified leaf element translation & bulletproof restáoration
+  var candidateSelectors = 'h1, h2, h3, h4, h5, h6, p, span, a, button, label, li, strong, b, em, th, td, .badge-pill, .box-title, .box-desc';
+  document.querySelectorAll(candidateSelectors).forEach(function(el) {
+    if (el.hasAttribute('data-en') && el.hasAttribute('data-es')) return;
+    if (el.classList.contains('lang-btn') || el.classList.contains('lang-native') || el.classList.contains('notranslate')) return;
+
+    // Elements with ONLY an SVG icon + direct text
+    var svg = el.querySelector('svg');
+    if (svg && el.children.length === 1) {
+      if (!el.hasAttribute('data-pd-orig')) {
+        var clone = el.cloneNode(true);
+        var cSvg = clone.querySelector('svg');
+        if (cSvg) cSvg.remove();
+        el.setAttribute('data-pd-orig', clone.textContent.trim());
+      }
+      var origText = el.getAttribute('data-pd-orig');
+      if (lang === 'es') {
+        var tr = resolveTranslation(origText, 'es');
+        if (tr) {
+          el.innerHTML = '';
+          el.appendChild(svg);
+          el.appendChild(document.createTextNode(' ' + tr));
+        }
+      } else if (lang === 'en') {
+        el.innerHTML = '';
+        el.appendChild(svg);
+        el.appendChild(document.createTextNode(' ' + origText));
+      }
+      return;
+    }
+
+    // Text leaves (elements without child tags)
+    if (el.children.length === 0) {
+      var raw = el.textContent.trim();
+      if (!raw) return;
+
+      if (!el.hasAttribute('data-pd-orig')) {
+        if (DICT_ES_TO_EN[raw]) {
+          el.setAttribute('data-pd-orig', DICT_ES_TO_EN[raw]);
+        } else {
+          el.setAttribute('data-pd-orig', raw);
+        }
+      }
+      var origEn = el.getAttribute('data-pd-orig');
+
+      if (lang === 'es') {
+        var tr = resolveTranslation(origEn, 'es');
+        if (tr) el.textContent = tr;
+      } else if (lang === 'en') {
+        if (origEn) {
+          el.textContent = origEn;
+        } else if (DICT_ES_TO_EN[raw]) {
+          el.textContent = DICT_ES_TO_EN[raw];
+        }
+      }
+    }
+  });
+
+  // 6. TreeWalker for mixed containers (only elements NOT already handled by leaf logic)
+  if (document.body) {
+    var walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, null, false);
+    var node;
+    while (node = walker.nextNode()) {
+      var parent = node.parentElement;
+      if (!parent) continue;
+      if (parent.children.length === 0 && parent.hasAttribute('data-pd-orig')) continue;
+
+      var tag = parent.tagName.toLowerCase();
+      if (tag === 'script' || tag === 'style' || tag === 'noscript' || tag === 'svg' || tag === 'path') continue;
+      if (parent.classList.contains('lang-btn') || parent.classList.contains('lang-native') || parent.classList.contains('notranslate')) continue;
+
+      var rawVal = node.nodeValue;
+      var trimmed = rawVal.trim();
+      if (!trimmed || trimmed.length <= 1) continue;
+
+      if (node.__pdOrig === undefined) {
+        if (DICT_ES_TO_EN[trimmed]) {
+          node.__pdOrig = DICT_ES_TO_EN[trimmed];
+        } else {
+          node.__pdOrig = trimmed;
+        }
+      }
+
+      if (lang === 'es') {
+        var trNode = resolveTranslation(node.__pdOrig, 'es');
+        if (trNode) {
+          var lead = rawVal.match(/^\s*/)[0];
+          var trail = rawVal.match(/\s*$/)[0];
+          node.nodeValue = lead + trNode + trail;
+        }
+      } else if (lang === 'en') {
+        var targetEn = node.__pdOrig || DICT_ES_TO_EN[trimmed];
+        if (targetEn) {
+          var leadEn = rawVal.match(/^\s*/)[0];
+          var trailEn = rawVal.match(/\s*$/)[0];
+          node.nodeValue = leadEn + targetEn + trailEn;
+        }
+      }
+    }
+  }
+};
+
+// ==========================================================================
+// Global Interactive Delegation (FAQ, Drawer, Filters, Requisitions)
+// ==========================================================================
+
+// 1. FAQ Accordion Click Handler
+document.addEventListener('click', function(e) {
+  var trigger = e.target.closest('.faq-question-btn, .faq-trigger, .faq-header');
+  if (!trigger) return;
+  // If button already handled by direct inline onclick, prevent duplicate toggle
+  if (trigger.getAttribute('onclick')) return;
+
+  e.preventDefault();
+  var currentItem = trigger.closest('.faq-item');
+  if (!currentItem) return;
+
+  var isOpen = currentItem.classList.contains('active');
+  var parentContainer = currentItem.closest('.faq-accordion, .faq-accordion-group') || document;
+
+  parentContainer.querySelectorAll('.faq-item').forEach(function(item) {
+    if (item !== currentItem) {
+      item.classList.remove('active');
+      var btn = item.querySelector('.faq-question-btn');
+      if (btn) btn.setAttribute('aria-expanded', 'false');
+    }
+  });
+
+  if (isOpen) {
+    currentItem.classList.remove('active');
+    trigger.setAttribute('aria-expanded', 'false');
+  } else {
+    currentItem.classList.add('active');
+    trigger.setAttribute('aria-expanded', 'true');
+  }
+});
+
+// 2. Language Switcher Buttons
+document.addEventListener('click', function(e) {
+  var btn = e.target.closest('.lang-btn');
+  if (btn) {
+    var lang = btn.getAttribute('data-lang');
+    if (lang && window.setSiteLanguage) {
+      e.preventDefault();
+      window.setSiteLanguage(lang);
+    }
+  }
+});
+
+// 3. Mobile Navigation Drawer
+document.addEventListener('click', function(e) {
+  var toggleBtn = e.target.closest('.mobile-toggle-btn');
+  if (toggleBtn) {
+    e.preventDefault();
+    var drawer = document.querySelector('.mobile-drawer');
+    var overlay = document.querySelector('.mobile-drawer-overlay');
+    if (drawer && overlay) {
+      drawer.classList.toggle('open');
+      overlay.classList.toggle('open');
+      document.body.classList.toggle('drawer-open');
+    }
+  }
+  var closeBtn = e.target.closest('.mobile-drawer-close, .mobile-drawer-overlay, .mobile-nav-link');
+  if (closeBtn) {
+    var drawer = document.querySelector('.mobile-drawer');
+    var overlay = document.querySelector('.mobile-drawer-overlay');
+    if (drawer && overlay) {
+      drawer.classList.remove('open');
+      overlay.classList.remove('open');
+      document.body.classList.remove('drawer-open');
+    }
+  }
+});
+
+// 4. Service Category Filter Tabs
+document.addEventListener('click', function(e) {
+  var filterBtn = e.target.closest('.filter-btn');
+  if (!filterBtn) return;
+
+  e.preventDefault();
+  var category = filterBtn.getAttribute('data-filter');
+  var filterNav = filterBtn.closest('.services-filter-nav') || document;
+  var allBtns = filterNav.querySelectorAll('.filter-btn');
+  var serviceCards = document.querySelectorAll('.service-card');
+
+  allBtns.forEach(function(btn) { btn.classList.remove('active'); });
+  filterBtn.classList.add('active');
+
+  if (!serviceCards.length) return;
+
+  serviceCards.forEach(function(card) {
+    var cardCategories = (card.getAttribute('data-category') || '').split(' ');
+    var isMatch = category === 'all' || cardCategories.indexOf(category) !== -1;
+    card.style.display = isMatch ? 'flex' : 'none';
+  });
+});
+
+// 5. Physician Requisition Form Handlers
+window.updateRequisitionFileName = function(input) {
+  var label = document.getElementById('requisition-file-text');
+  if (input.files && input.files[0]) {
+    label.textContent = 'Selected: ' + input.files[0].name;
+    label.style.color = 'var(--color-primary)';
+    label.style.fontWeight = 'bold';
+  } else {
+    label.textContent = 'PDF, JPG, PNG up to 10MB';
+    label.style.color = 'var(--color-text-muted)';
+    label.style.fontWeight = 'normal';
+  }
+};
+
+
+// Requisition Form Print Synchronizer
+window.syncRequisitionFormToPrint = function() {
+  var form = document.getElementById('physicianRequisitionForm');
+  var printSheet = document.querySelector('.print-sheet');
+  if (!form || !printSheet) return;
+
+  function setPrintVal(selector, val, defaultText) {
+    var el = printSheet.querySelector(selector);
+    if (!el) return;
+    var trimmed = (val || '').trim();
+    if (trimmed) {
+      el.textContent = trimmed;
+      el.style.borderBottom = '1px solid #02424E';
+      el.style.fontWeight = 'bold';
+      el.style.color = '#02424E';
+      el.style.padding = '0 4px';
+    } else {
+      el.textContent = defaultText;
+      el.style.borderBottom = 'none';
+      el.style.fontWeight = 'normal';
+      el.style.color = 'inherit';
+      el.style.padding = '0';
+    }
+  }
+
+  // 1. Doctor & Practice Information
+  var doc = form.querySelector('[name="physician_name"]');
+  setPrintVal('.print-val-physician', doc ? doc.value : '', '_________________________________');
+  var prac = form.querySelector('[name="practice_name"]');
+  setPrintVal('.print-val-practice', prac ? prac.value : '', '_________________________________');
+  var npi = form.querySelector('[name="npi_number"]');
+  setPrintVal('.print-val-npi', npi ? npi.value : '', '______________');
+  var ph = form.querySelector('[name="office_phone"]');
+  setPrintVal('.print-val-phone', ph ? ph.value : '', '___________________');
+  var fx = form.querySelector('[name="office_fax"]');
+  setPrintVal('.print-val-fax', fx ? fx.value : '', '___________________');
+  var em = form.querySelector('[name="office_email"]');
+  setPrintVal('.print-val-email', em ? em.value : '', '___________________________');
+
+  // 2. Patient Demographics
+  var pt = form.querySelector('[name="patient_name"]');
+  setPrintVal('.print-val-patient', pt ? pt.value : '', '_________________________________');
+  var dob = form.querySelector('[name="patient_dob"]');
+  setPrintVal('.print-val-dob', dob ? dob.value : '', '______________');
+  var ptph = form.querySelector('[name="patient_phone"]');
+  setPrintVal('.print-val-patientphone', ptph ? ptph.value : '', '___________________');
+  var bill = form.querySelector('[name="billing_type"]');
+  setPrintVal('.print-val-insurance', bill ? bill.value : '', '____________________________________________________________________');
+
+  // 3. Clinical Indications & Notes
+  var ind = form.querySelector('[name="clinical_indications"]');
+  setPrintVal('.print-val-indications', ind ? ind.value : '', '_________________________________________________________________________________');
+  var notes = form.querySelector('[name="clinical_notes"]');
+  setPrintVal('.print-val-notes', notes ? notes.value : '', '_____________________________________________________________________________________');
+
+  // 4. Priority Selection
+  var statInput = form.querySelector('input[name="priority"][value="STAT"]');
+  var isStat = statInput && statInput.checked;
+  var routineEl = printSheet.querySelector('.print-priority-routine');
+  var statEl = printSheet.querySelector('.print-priority-stat');
+  if (routineEl && statEl) {
+    if (isStat) {
+      routineEl.innerHTML = '[ &nbsp; ] ROUTINE (24–48hr report)';
+      statEl.innerHTML = '<strong>[&times;] STAT / URGENT</strong> (Immediate call)';
+      statEl.style.color = '#c53030';
+    } else {
+      routineEl.innerHTML = '<strong>[&times;] ROUTINE</strong> (24–48hr report)';
+      statEl.innerHTML = '[ &nbsp; ] STAT / URGENT (Immediate call)';
+      statEl.style.color = 'inherit';
+    }
+  }
+
+  // 5. Modalities Checkboxes
+  var checkedBoxes = Array.from(form.querySelectorAll('input[name="modality"]:checked')).map(function(cb) {
+    return cb.value.toLowerCase();
+  });
+  var printItems = printSheet.querySelectorAll('.print-check-item');
+  printItems.forEach(function(item) {
+    var baseText = item.getAttribute('data-name') || item.textContent.replace(/^\[[ xX\s&;]*\]\s*/, '').trim();
+    if (!item.getAttribute('data-name')) {
+      item.setAttribute('data-name', baseText);
+    }
+    var matches = checkedBoxes.some(function(v) {
+      var lowBase = baseText.toLowerCase();
+      return v.indexOf(lowBase) !== -1 || lowBase.indexOf(v.substring(0, 8)) !== -1;
+    });
+    if (matches) {
+      item.innerHTML = '<strong>[&times;]</strong> <strong>' + baseText + '</strong>';
+      item.style.color = '#02424E';
+    } else {
+      item.innerHTML = '[ &nbsp; ] ' + baseText;
+      item.style.color = 'inherit';
+    }
+  });
+};
+
+window.addEventListener('beforeprint', function() {
+  if (window.syncRequisitionFormToPrint) {
+    window.syncRequisitionFormToPrint();
+  }
+});
+
+
+// Requisition Form Dedicated Printer
+window.printRequisitionOrder = function() {
+  if (typeof window.syncRequisitionFormToPrint === 'function') {
+    window.syncRequisitionFormToPrint();
+  }
+
+  var printSheet = document.querySelector('.print-sheet');
+  if (!printSheet) {
+    window.print();
+    return;
+  }
+
+  try {
+    var iframe = document.getElementById('pd_requisition_print_frame');
+    if (!iframe) {
+      iframe = document.createElement('iframe');
+      iframe.id = 'pd_requisition_print_frame';
+      iframe.style.position = 'fixed';
+      iframe.style.top = '-9999px';
+      iframe.style.left = '-9999px';
+      iframe.style.width = '1px';
+      iframe.style.height = '1px';
+      iframe.style.border = 'none';
+      document.body.appendChild(iframe);
+    }
+
+    var doc = iframe.contentWindow.document;
+    doc.open();
+    doc.write('<!DOCTYPE html><html><head><title>Physician Ultrasound Requisition - Perfect Diagnostic Ultrasound</title>');
+    doc.write('<meta charset="utf-8">');
+    doc.write('<style>');
+    doc.write('@page { size: letter portrait; margin: 8mm 12mm; }');
+    doc.write('*, *:before, *:after { box-sizing: border-box; -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }');
+    doc.write('html, body { margin: 0; padding: 0; background: #ffffff; color: #102226; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; font-size: 8pt; line-height: 1.25; }');
+    doc.write('.print-sheet { display: block !important; width: 100%; }');
+    doc.write('div, p, span, table { page-break-inside: avoid; break-inside: avoid; }');
+    doc.write('</style>');
+    doc.write('</head><body>');
+    doc.write('<div class="print-sheet" style="display: block !important;">' + printSheet.innerHTML + '</div>');
+    doc.write('</body></html>');
+    doc.close();
+
+    setTimeout(function() {
+      iframe.contentWindow.focus();
+      iframe.contentWindow.print();
+    }, 250);
+    return;
+  } catch (err) {
+    console.warn('Iframe print error:', err);
+  }
+
+  window.print();
+};
+
+window.handleRequisitionSubmit = function(e) {
+  e.preventDefault();
+  var form = e.target;
+  var btn = document.getElementById('requisitionSubmitBtn');
+  var successMsg = document.getElementById('requisitionSuccessMessage');
+  var refEl = document.getElementById('requisitionRefNumber');
+
+  var checked = form.querySelectorAll('input[name="modality"]:checked');
+  if (checked.length === 0) {
+    alert('Please select at least one diagnostic ultrasound modality.');
+    return;
+  }
+
+  if (btn) {
+    btn.disabled = true;
+    btn.innerHTML = '<span>Transmitting Requisition Order...</span>';
+  }
+
+  setTimeout(function() {
+    var ref = 'ORD-' + Math.floor(100000 + Math.random() * 900000);
+    if (refEl) refEl.textContent = 'Requisition Tracking #: ' + ref;
+    if (successMsg) successMsg.style.display = 'block';
+    if (btn) btn.style.display = 'none';
+    form.reset();
+    var fileLabel = document.getElementById('requisition-file-text');
+    if (fileLabel) fileLabel.textContent = 'PDF, JPG, PNG up to 10MB';
+    successMsg.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }, 900);
+};
+
+// 6. Header Glass Scroll Effect
+window.addEventListener('scroll', function() {
+  var header = document.querySelector('.site-header');
+  if (header) {
+    if (window.scrollY > 20) {
+      header.classList.add('scrolled');
+    } else {
+      header.classList.remove('scrolled');
+    }
+  }
+}, { passive: true });
+
+// 7. Auto-run on load & suppress rogue Google banners
+(function() {
+  killGoogleTranslateCookies();
+  var cleanUpGoogle = function() {
+    var banner = document.querySelector('.goog-te-banner-frame');
+    if (banner) banner.remove();
+    var gtEl = document.getElementById('google_translate_element');
+    if (gtEl) gtEl.remove();
+    if (document.body && document.body.style.top && document.body.style.top !== '0px') {
+      document.body.style.top = '0px';
+    }
+  };
+  
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', function() {
+      cleanUpGoogle();
+      var saved = 'en';
+      try { saved = localStorage.getItem('pd_lang') || 'en'; } catch(e) {}
+      if (saved !== 'en') window.setSiteLanguage(saved);
+    });
+  } else {
+    cleanUpGoogle();
+    var saved = 'en';
+    try { saved = localStorage.getItem('pd_lang') || 'en'; } catch(e) {}
+    if (saved !== 'en') window.setSiteLanguage(saved);
+  }
+  setInterval(cleanUpGoogle, 300);
+})();
+
+// Inline/Global FAQ Accordion Toggle Function
+window.toggleFaq = function(btn) {
+  if (window.event) window.event.stopPropagation();
+  var item = btn.closest('.faq-item');
+  if (!item) return;
+  var isOpen = item.classList.contains('active');
+  var parent = item.closest('.faq-accordion') || document;
+  parent.querySelectorAll('.faq-item').forEach(function(el) {
+    if (el !== item) {
+      el.classList.remove('active');
+      var b = el.querySelector('.faq-question-btn');
+      if (b) b.setAttribute('aria-expanded', 'false');
+    }
+  });
+  if (isOpen) {
+    item.classList.remove('active');
+    btn.setAttribute('aria-expanded', 'false');
+  } else {
+    item.classList.add('active');
+    btn.setAttribute('aria-expanded', 'true');
+  }
+};
+
+
+// 8. Navigation Dropdown and #preparation Hash Handler
+document.addEventListener('click', function(e) {
+  var dropdownBtn = e.target.closest('.nav-dropdown-btn');
+  if (dropdownBtn) {
+    e.preventDefault();
+    e.stopPropagation();
+    var item = dropdownBtn.closest('.nav-dropdown-item');
+    var wasOpen = item.classList.contains('open');
+    document.querySelectorAll('.nav-dropdown-item.open').forEach(function(el) {
+      el.classList.remove('open');
+      var b = el.querySelector('.nav-dropdown-btn');
+      if (b) b.setAttribute('aria-expanded', 'false');
+    });
+    if (!wasOpen) {
+      item.classList.add('open');
+      dropdownBtn.setAttribute('aria-expanded', 'true');
+    }
+  } else if (!e.target.closest('.nav-dropdown-menu')) {
+    document.querySelectorAll('.nav-dropdown-item.open').forEach(function(el) {
+      el.classList.remove('open');
+      var b = el.querySelector('.nav-dropdown-btn');
+      if (b) b.setAttribute('aria-expanded', 'false');
+    });
+  }
+});
+
+function handlePreparationHash() {
+  if (window.location.hash === '#preparation' || window.location.hash === '#prep') {
+    var prepItem = document.getElementById('preparation') || document.getElementById('prep');
+    if (prepItem) {
+      var faqItem = prepItem.classList.contains('faq-item') ? prepItem : prepItem.closest('.faq-item');
+      if (faqItem) {
+        faqItem.classList.add('active');
+        var btn = faqItem.querySelector('.faq-question-btn');
+        if (btn) btn.setAttribute('aria-expanded', 'true');
+      }
+      setTimeout(function() {
+        prepItem.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }, 150);
+    }
+  }
+}
+window.addEventListener('hashchange', handlePreparationHash);
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', handlePreparationHash);
+} else {
+  handlePreparationHash();
+}
+
+// ==========================================================================
+// Progressive Enhancement Scroll Reveal Engine (Precision Imaging Inspired)
+// ==========================================================================
+function initScrollReveals() {
+  if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    return;
+  }
+  document.documentElement.classList.add('js-reveal-ready');
+
+  var targets = document.querySelectorAll('.has-reveal, .reveal-on-scroll, .section-header, .service-card, .review-stat-box, .review-page-card, .faq-item');
+  
+  var parentGroups = new Map();
+  targets.forEach(function(el) {
+    var p = el.parentElement;
+    if (!parentGroups.has(p)) {
+      parentGroups.set(p, []);
+    }
+    parentGroups.get(p).push(el);
+  });
+
+  parentGroups.forEach(function(children) {
+    if (children.length > 1) {
+      children.forEach(function(child, idx) {
+        var delay = ((idx % 4) * 0.08).toFixed(2);
+        child.style.transitionDelay = delay + 's';
+      });
+    }
+  });
+
+  if (!('IntersectionObserver' in window)) {
+    targets.forEach(function(el) {
+      el.classList.add('is-revealed', 'revealed');
+    });
+    return;
+  }
+
+  var observer = new IntersectionObserver(function(entries, obs) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-revealed', 'revealed');
+        obs.unobserve(entry.target);
+      }
+    });
+  }, {
+    rootMargin: '0px 0px -30px 0px',
+    threshold: 0.1
+  });
+
+  targets.forEach(function(el) {
+    var rect = el.getBoundingClientRect();
+    if (rect.top < window.innerHeight && rect.bottom > 0) {
+      el.classList.add('is-revealed', 'revealed');
+    } else {
+      observer.observe(el);
+    }
+  });
+}
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initScrollReveals);
+} else {
+  initScrollReveals();
+}

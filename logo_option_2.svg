@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 60" width="360" height="60" fill="none">
+  <!-- Circular Acoustic Waves Emblem -->
+  <g transform="translate(6, 6)">
+    <circle cx="24" cy="24" r="23" fill="#EBF4F6" stroke="#D3E2E5" stroke-width="1.5"/>
+    <!-- Concentric Doppler Sonar Arcs -->
+    <path d="M12 16 A 14 14 0 0 1 12 32" stroke="#0A808C" stroke-width="2.5" stroke-linecap="round"/>
+    <path d="M17 19 A 8 8 0 0 1 17 29" stroke="#5E9297" stroke-width="2.2" stroke-linecap="round"/>
+    <!-- Central Transducer Sensor -->
+    <rect x="22" y="16" width="10" height="16" rx="3" fill="#02424E"/>
+    <!-- Medical Cross / Pulse in Sensor -->
+    <path d="M27 20 L27 28 M23 24 L31 24" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round"/>
+    <path d="M34 19 A 8 8 0 0 1 34 29" stroke="#5E9297" stroke-width="2.2" stroke-linecap="round"/>
+    <path d="M38 16 A 14 14 0 0 1 38 32" stroke="#0A808C" stroke-width="2.5" stroke-linecap="round"/>
+  </g>
+
+  <!-- Typography -->
+  <text x="62" y="27" font-family="'Outfit', 'Plus Jakarta Sans', system-ui, sans-serif" font-size="20.5" font-weight="800" fill="#02424E">Perfect Diagnostic</text>
+  <text x="63" y="47" font-family="'Plus Jakarta Sans', system-ui, sans-serif" font-size="12.5" font-weight="700" fill="#0A808C" letter-spacing="4.2">ULTRASOUND</text>
+  <circle cx="228" cy="43" r="2.5" fill="#5E9297"/>
+  <text x="238" y="46" font-family="'Plus Jakarta Sans', system-ui, sans-serif" font-size="10.5" font-weight="600" fill="#6F9EA3" letter-spacing="1">CHICAGO</text>
+</svg>

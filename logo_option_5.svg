@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 70" width="420" height="70" fill="none">
+  <!-- Outer Capsule Border & Transducer Arc Integration -->
+  <rect x="2" y="3" width="414" height="64" rx="32" fill="#F4FAFA" stroke="#055E6E" stroke-width="2"/>
+  
+  <!-- Transducer Head on the Left Core -->
+  <path d="M24 16 C34 16, 42 24, 42 35 C42 46, 34 54, 24 54 Z" fill="#02424E"/>
+  <rect x="12" y="25" width="14" height="20" rx="3" fill="#0A808C"/>
+  <line x1="8" y1="35" x2="14" y2="35" stroke="#02424E" stroke-width="3" stroke-linecap="round"/>
+
+  <!-- Radiating Acoustic Waves Integrated into Capsule Frame -->
+  <path d="M48 20 A 20 20 0 0 1 48 50" stroke="#0A808C" stroke-width="3" stroke-linecap="round"/>
+  <path d="M56 15 A 28 28 0 0 1 56 55" stroke="#5E9297" stroke-width="2.5" stroke-linecap="round"/>
+
+  <!-- Integrated Typography: PERFECT -->
+  <text x="74" y="36" font-family="'Outfit', 'Plus Jakarta Sans', sans-serif" font-size="25" font-weight="900" fill="#02424E" letter-spacing="1.5">PERFECT</text>
+
+  <!-- Integrated Pill Container for DIAGNOSTIC ULTRASOUND -->
+  <rect x="74" y="43" width="324" height="18" rx="9" fill="#02424E"/>
+  <text x="236" y="56" text-anchor="middle" font-family="'Plus Jakarta Sans', sans-serif" font-size="10.5" font-weight="800" fill="#FFFFFF" letter-spacing="3.2">DIAGNOSTIC ULTRASOUND</text>
+
+  <!-- Right Pulse Accent Tick -->
+  <circle cx="388" cy="27" r="3.5" fill="#0A808C"/>
+</svg>

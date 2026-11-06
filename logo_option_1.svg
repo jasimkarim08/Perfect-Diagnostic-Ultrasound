@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 60" width="360" height="60" fill="none">
+  <!-- Ultrasound Probe & Acoustic Sound Waves Icon -->
+  <g transform="translate(4, 6)">
+    <!-- Acoustic Sound Arcs (Mint/Teal) -->
+    <path d="M4 14 A 18 18 0 0 1 4 34" stroke="#0A808C" stroke-width="3" stroke-linecap="round"/>
+    <path d="M10 9 A 24 24 0 0 1 10 39" stroke="#5E9297" stroke-width="2.8" stroke-linecap="round"/>
+    <path d="M16 4 A 30 30 0 0 1 16 44" stroke="#6F9EA3" stroke-width="2.5" stroke-linecap="round"/>
+    <!-- Transducer Head (Deep Midnight Teal) -->
+    <path d="M22 15 C22 13 24 11 26 11 L34 11 C36 11 38 13 38 15 L38 33 C38 35 36 37 34 37 L26 37 C24 37 22 35 22 33 Z" fill="#02424E"/>
+    <!-- Transducer Face (Acoustic Lens) -->
+    <path d="M21 16 C20 20 20 28 21 32" stroke="#0A808C" stroke-width="2.5" stroke-linecap="round"/>
+    <!-- Transducer Handle / Cable -->
+    <path d="M38 21 L43 21 C45 21 46 22 46 24 L46 24 C46 26 45 27 43 27 L38 27" fill="#5E9297"/>
+    <!-- EKG Cardiac Pulse Line inside icon -->
+    <path d="M25 24 L28 24 L30 19 L32 29 L34 22 L36 24" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+
+  <!-- Typography: Bold, Crisp, High-Contrast -->
+  <!-- Line 1: PERFECT DIAGNOSTIC -->
+  <text x="58" y="27" font-family="'Outfit', 'Plus Jakarta Sans', system-ui, sans-serif" font-size="20" font-weight="800" fill="#02424E" letter-spacing="0.3">PERFECT DIAGNOSTIC</text>
+  
+  <!-- Line 2: ULTRASOUND with accent line -->
+  <text x="58" y="47" font-family="'Plus Jakarta Sans', system-ui, sans-serif" font-size="13" font-weight="800" fill="#0A808C" letter-spacing="3.8">ULTRASOUND</text>
+  <line x1="230" y1="43" x2="350" y2="43" stroke="#D3E2E5" stroke-width="1.5" stroke-linecap="round"/>
+</svg>

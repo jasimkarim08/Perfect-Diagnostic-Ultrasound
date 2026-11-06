@@ -1,0 +1,24 @@
+User-agent: *
+Allow: /
+
+# AI & LLM Search Engine Crawlers (AEO / Answer Engine Optimization)
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Applebot
+Allow: /
+
+Sitemap: https://perfectdiagnosticultrasound.com/sitemap.xml
+

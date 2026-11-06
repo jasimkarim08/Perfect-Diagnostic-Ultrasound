@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="en" class="notranslate" translate="no">
+<head>
+  <meta name="google" content="notranslate">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Logo Concepts & Variations - Perfect Diagnostic Ultrasound</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --color-primary: #02424E;
+      --color-primary-dark: #012D35;
+      --color-teal-accent: #0A808C;
+      --color-teal-soft: #5E9297;
+      --color-teal-pale: #EBF4F6;
+      --color-text-body: #334E54;
+      --color-white: #FFFFFF;
+      --color-bg-light: #F8FAFB;
+      --color-border: #E2ECEE;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background: var(--color-bg-light);
+      color: var(--color-text-body);
+      padding: 40px 20px;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .header-banner {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    h1 {
+      font-family: 'Outfit', sans-serif;
+      font-size: 2.2rem;
+      font-weight: 800;
+      color: var(--color-primary);
+      margin-bottom: 8px;
+    }
+
+    p.subtitle {
+      font-size: 1.05rem;
+      color: var(--color-teal-soft);
+      max-width: 720px;
+      margin: 0 auto 24px;
+    }
+
+    .badge-bar {
+      display: inline-flex;
+      background: var(--color-white);
+      border: 1px solid var(--color-border);
+      border-radius: 50px;
+      padding: 6px 18px;
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: var(--color-teal-accent);
+      margin-bottom: 24px;
+    }
+
+    .category-divider {
+      margin: 48px 0 24px;
+      padding-bottom: 12px;
+      border-bottom: 2px solid var(--color-border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .category-divider h2 {
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.5rem;
+      color: var(--color-primary);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .category-tag {
+      background: var(--color-teal-pale);
+      color: var(--color-primary);
+      font-size: 0.75rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      padding: 4px 10px;
+      border-radius: 4px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(520px, 1fr));
+      gap: 28px;
+    }
+
+    @media (max-width: 600px) {
+      .grid { grid-template-columns: 1fr; }
+    }
+
+    .card {
+      background: var(--color-white);
+      border: 1.5px solid var(--color-border);
+      border-radius: 12px;
+      padding: 24px;
+      box-shadow: 0 4px 14px rgba(2, 66, 78, 0.04);
+      transition: all 0.2s ease;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .card:hover {
+      border-color: var(--color-teal-accent);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(2, 66, 78, 0.08);
+    }
+
+    .card.featured {
+      border: 2px solid var(--color-teal-accent);
+      position: relative;
+    }
+
+    .featured-pill {
+      position: absolute;
+      top: -12px;
+      right: 20px;
+      background: var(--color-teal-accent);
+      color: white;
+      font-size: 0.72rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      padding: 3px 10px;
+      border-radius: 50px;
+    }
+
+    .card-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.15rem;
+      font-weight: 800;
+      color: var(--color-primary);
+      margin-bottom: 6px;
+    }
+
+    .card-desc {
+      font-size: 0.88rem;
+      color: var(--color-text-body);
+      line-height: 1.5;
+      margin-bottom: 18px;
+    }
+
+    .preview-box {
+      background: #FFFFFF;
+      border: 1px solid var(--color-border);
+      border-radius: 8px;
+      padding: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100px;
+      margin-bottom: 12px;
+    }
+
+    .preview-box.dark {
+      background: var(--color-primary-dark);
+      border-color: #01242A;
+    }
+
+    .preview-box img {
+      max-width: 100%;
+      height: 52px;
+      object-fit: contain;
+    }
+
+    .preview-box.dark img {
+      filter: brightness(0) invert(1);
+    }
+
+    .preview-label {
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--color-teal-soft);
+      margin-bottom: 4px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+
+    <!-- ==============================================================
+         NEW INLINE VARIATIONS: ALL TEXT INLINE ON TOP OF SIGNAL LINE
+         ============================================================== -->
+    <div class="category-divider">
+      <h2>
+        <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+        <span>New Inline Variations — Text on Top of Flat Signal Line</span>
+      </h2>
+      <span class="category-tag" style="background: var(--color-teal-accent); color: #fff;">Latest Update</span>
+    </div>
+
+    <div class="grid">
+      <!-- Option 1: Inline Clean Baseline -->
+      <div class="card featured" style="border: 2.5px solid var(--color-teal-accent);">
+        <span class="featured-pill" style="background: var(--color-teal-accent); color: #fff;">Recommended (Exact Request)</span>
+        <div class="card-title">Option 1: Clean Baseline Under All Inline Text, Pulse at Right</div>
+        <div class="card-desc">All text ("PERFECT DIAGNOSTIC ULTRASOUND") is inline on one continuous horizontal row, sitting directly on top of the flat/beginning part of the signal line. The Doppler pulse wavelet emerges smoothly at the right.</div>
+        
+        <div class="preview-label">Light Header Preview:</div>
+        <div class="preview-box">
+          <img src="logo_inline.svg" alt="Option 1 Light" style="max-width: 100%; height: 50px;">
+        </div>
+
+        <div class="preview-label">Dark Footer Preview:</div>
+        <div class="preview-box dark" style="background: #01242B;">
+          <img src="logo_dark.svg" alt="Option 1 Dark" style="max-width: 100%; height: 50px;">
+        </div>
+      </div>
+
+      <!-- Option 2: Full Span from Acoustic Arcs -->
+      <div class="card featured" style="border: 2px solid var(--color-primary);">
+        <span class="featured-pill">Full Span Variant</span>
+        <div class="card-title">Option 2: Signal Line Extends from Acoustic Arcs</div>
+        <div class="card-desc">The flat signal baseline begins under the soundwave arcs on the left, extends continuously across all inline text, and finishes with the pulse wavelet on the right.</div>
+        
+        <div class="preview-label">Light Header Preview:</div>
+        <div class="preview-box">
+          <img src="scratch/opt2.svg" alt="Option 2 Light" style="max-width: 100%; height: 50px;">
+        </div>
+      </div>
+
+      <!-- Option 3: Pulse Between Words -->
+      <div class="card">
+        <div class="card-title">Option 3: Pulse Wavelet Between "PERFECT" and "DIAGNOSTIC ULTRASOUND"</div>
+        <div class="card-desc">"PERFECT" sits on the flat beginning segment; the pulse spike acts as a heartbeat bridge in the gap, and the flat line continues under "DIAGNOSTIC ULTRASOUND".</div>
+        
+        <div class="preview-label">Light Header Preview:</div>
+        <div class="preview-box">
+          <img src="scratch/opt3.svg" alt="Option 3 Light" style="max-width: 100%; height: 50px;">
+        </div>
+      </div>
+    </div>
+
+    <div class="header-banner">
+      <div class="badge-bar">Vector SVG Clinic Logos &bull; Fixed 48–60px Header Height</div>
+      <h1>Perfect Diagnostic Ultrasound Logo Suite</h1>
+      <p class="subtitle">
+        Explore 8 distinct vector logo variations designed for high legibility, clinical trust, and modern diagnostic aesthetics. Options 5–8 feature integrated typography seamlessly built into the emblem.
+      </p>
+    </div>
+
+    <!-- TARGETED VARIATIONS REFINING OPTION 6 -->
+    <div class="category-divider" style="border-bottom: 2px solid var(--color-teal-accent); margin-top: 10px;">
+      <h2 style="color: var(--color-teal-accent);">Refining Option 6: Specialized Waveform & Doppler Variations</h2>
+      <span class="category-tag" style="background: var(--color-teal-accent); color: #fff;">Selected Direction</span>
+    </div>
+
+    <div class="grid" style="margin-bottom: 48px;">
+      <!-- Original Option 6 -->
+      <div class="card featured" style="border: 2px solid var(--color-teal-accent);">
+        <span class="featured-pill" style="background: var(--color-teal-accent); color: #fff;">Baseline Favorite</span>
+        <div class="card-title">Option 6 (Original): Waveform Core Wordmark</div>
+        <div class="card-desc">The baseline concept you liked: ultrasound Doppler waveform sweeps through "PERFECT" with a live pulse line above "DIAGNOSTIC ULTRASOUND" framed by precision caliper ticks.</div>
+        
+        <div class="preview-label">Light Header Preview:</div>
+        <div class="preview-box">
+          <img src="logo_option_6.svg" alt="Option 6 Light">
+        </div>
+
+        <div class="preview-label">Dark Footer Preview:</div>
+        <div class="preview-box dark">
+          <img src="logo_option_6.svg" alt="Option 6 Dark">
+        </div>
+      </div>
+
+      <!-- Option 6A -->
+      <div class="card featured" style="border: 2px solid var(--color-primary);">
+        <span class="featured-pill">New Variation</span>
+        <div class="card-title">Option 6A: Seamless Pulse Bridge & Crosshairs</div>
+        <div class="card-desc">Features a micro transducer probe tip emitting concentric sonar arcs, a continuous Doppler pulse line with a coordinate ring endpoint, and dual precision crosshair calipers (`+ . . . +`).</div>
+        
+        <div class="preview-label">Light Header Preview:</div>
+        <div class="preview-box">
+          <img src="logo_option_6a.svg" alt="Option 6A Light">
+        </div>
+
+        <div class="preview-label">Dark Footer Preview:</div>
+        <div class="preview-box dark">
+          <img src="logo_option_6a.svg" alt="Option 6A Dark">
+        </div>
+      </div>
+
+      <!-- Option 6B (Updated: No T-Calipers) -->
+      <div class="card featured" style="border: 2.5px solid var(--color-teal-accent);">
+        <span class="featured-pill" style="background: var(--color-teal-accent); color: #fff;">Selected Choice (Updated)</span>
+        <div class="card-title">Option 6B (Clean): Flush Left Typography (No T-Shapes)</div>
+        <div class="card-desc">Removed the "T"-shaped calipers per your feedback. Features clean, letter-spaced typography flush-aligned directly with "PERFECT" and the sleek ultrasound divider baseline.</div>
+        
+        <div class="preview-label">Light Header Preview:</div>
+        <div class="preview-box">
+          <img src="logo_option_6b.svg" alt="Option 6B Light">
+        </div>
+
+        <div class="preview-label">Dark Footer Preview:</div>
+        <div class="preview-box dark">
+          <img src="logo_option_6b.svg" alt="Option 6B Dark">
+        </div>
+      </div>
+
+      <!-- Option 6B Variation 2 (Centered Typography) -->
+      <div class="card featured" style="border: 2px solid var(--color-teal-accent);">
+        <span class="featured-pill" style="background: var(--color-teal-accent); color: #fff;">Clean Centered Variation</span>
+        <div class="card-title">Option 6B.2: Centered Subtitle with Anchor Points</div>
+        <div class="card-desc">Another variation without "T"-shapes: "DIAGNOSTIC ULTRASOUND" is centered with wide tracking across the full baseline, anchored by mini pulse terminal dots on the divider.</div>
+        
+        <div class="preview-label">Light Header Preview:</div>
+        <div class="preview-box">
+          <img src="logo_option_6b_v2.svg" alt="Option 6B v2 Light">
+        </div>
+
+        <div class="preview-label">Dark Footer Preview:</div>
+        <div class="preview-box dark">
+          <img src="logo_option_6b_v2.svg" alt="Option 6B v2 Dark">
+        </div>
+      </div>
+
+      <!-- Option 6C -->
+      <div class="card featured" style="border: 2px solid var(--color-primary);">
+        <span class="featured-pill">New Variation</span>
+        <div class="card-title">Option 6C: Contrast Foundation Pill with Doppler Pulse</div>
+        <div class="card-desc">Combines the top dynamic Doppler pulse line with an integrated solid teal contrast foundation pill anchoring "DIAGNOSTIC ULTRASOUND", giving it a high-end medical badge finish.</div>
+        
+        <div class="preview-label">Light Header Preview:</div>
+        <div class="preview-box">
+          <img src="logo_option_6c.svg" alt="Option 6C Light">
+        </div>
+
+        <div class="preview-label">Dark Footer Preview:</div>
+        <div class="preview-box dark">
+          <img src="logo_option_6c.svg" alt="Option 6C Dark">
+        </div>
+      </div>
+
+      <!-- Option 6D -->
+      <div class="card featured" style="border: 2px solid var(--color-primary);">
+        <span class="featured-pill">New Variation</span>
+        <div class="card-title">Option 6D: Harmonic Waveform Loop & Coordinate Calipers</div>
+        <div class="card-desc">Dual-frequency cardiac Doppler waveform with an active upper line and soft harmonic echo trace, paired with precision coordinate crosshair caliper brackets.</div>
+        
+        <div class="preview-label">Light Header Preview:</div>
+        <div class="preview-box">
+          <img src="logo_option_6d.svg" alt="Option 6D Light">
+        </div>
+
+        <div class="preview-label">Dark Footer Preview:</div>
+        <div class="preview-box dark">
+          <img src="logo_option_6d.svg" alt="Option 6D Dark">
+        </div>
+      </div>
+    </div>
+
+    <!-- NEW INTEGRATED LOGOS (OPTIONS 5 - 8) -->
+    <div class="category-divider">
+      <h2>New Integrated Concepts: Words Built Directly Into Logo Mark</h2>
+      <span class="category-tag">Integrated Wordmarks</span>
+    </div>
+
+    <div class="grid">
+      <!-- Option 5 -->
+      <div class="card featured">
+        <span class="featured-pill">Integrated Wordmark</span>
+        <div class="card-title">Option 5: The Sonography Capsule Badge</div>
+        <div class="card-desc">Features an enclosed clinical capsule with a transducer probe on the left, radiating soundwaves framing "PERFECT", and a solid teal foundation pill anchoring "DIAGNOSTIC ULTRASOUND".</div>
+        
+        <div class="preview-label">Light Header Preview:</div>
+        <div class="preview-box">
+          <img src="logo_option_5.svg" alt="Option 5 Light">
+        </div>
+
+        <div class="preview-label">Dark Footer Preview:</div>
+        <div class="preview-box dark">
+          <img src="logo_option_5.svg" alt="Option 5 Dark">
+        </div>
+      </div>
+
+
+
+      <!-- Option 7 -->
+      <div class="card featured">
+        <span class="featured-pill">Integrated Wordmark</span>
+        <div class="card-title">Option 7: The Ultrasound Sector Beam Frame</div>
+        <div class="card-desc">An ultrasound probe apex emits radiant soundbeam vectors that form the left and top framing brackets. The words "PERFECT DIAGNOSTIC" sit inside the focal zone, over a solid teal clinic bar.</div>
+        
+        <div class="preview-label">Light Header Preview:</div>
+        <div class="preview-box">
+          <img src="logo_option_7.svg" alt="Option 7 Light">
+        </div>
+
+        <div class="preview-label">Dark Footer Preview:</div>
+        <div class="preview-box dark">
+          <img src="logo_option_7.svg" alt="Option 7 Dark">
+        </div>
+      </div>
+
+      <!-- Option 8 -->
+      <div class="card featured">
+        <span class="featured-pill">Integrated Wordmark</span>
+        <div class="card-title">Option 8: Monogram 'PD' Acoustic Shield Crest</div>
+        <div class="card-desc">An authoritative hexagonal medical shield with interlocking 'PD' and concentric ultrasound ripples. The words connect directly to the shield with a sleek divider line and wide letter-spaced foundation.</div>
+        
+        <div class="preview-label">Light Header Preview:</div>
+        <div class="preview-box">
+          <img src="logo_option_8.svg" alt="Option 8 Light">
+        </div>
+
+        <div class="preview-label">Dark Footer Preview:</div>
+        <div class="preview-box dark">
+          <img src="logo_option_8.svg" alt="Option 8 Dark">
+        </div>
+      </div>
+    </div>
+
+
+    <!-- CLEAN STANDALONE MARKS (OPTIONS 1 - 4) -->
+    <div class="category-divider">
+      <h2>Clean Contemporary Marks: Separate Emblem & Typography</h2>
+      <span class="category-tag">Emblem + Text</span>
+    </div>
+
+    <div class="grid">
+      <!-- Option 1 -->
+      <div class="card">
+        <div class="card-title">Option 1: Modern Geometric Clinical (High Contrast Stacked)</div>
+        <div class="card-desc">Ultrasound transducer probe emitting acoustic arcs on the left, paired with bold stacked typography and generous letter-spacing.</div>
+        <div class="preview-box"><img src="logo_option_1.svg" alt="Option 1"></div>
+        <div class="preview-box dark"><img src="logo_option_1.svg" alt="Option 1 Dark"></div>
+      </div>
+
+      <!-- Option 2 -->
+      <div class="card">
+        <div class="card-title">Option 2: Waveform Pulse Signature (Title Case + Sonar Mark)</div>
+        <div class="card-desc">Circular sonar crest with an acoustic cross, paired with balanced Title Case and clean letter-spaced subtitle.</div>
+        <div class="preview-box"><img src="logo_option_2.svg" alt="Option 2"></div>
+        <div class="preview-box dark"><img src="logo_option_2.svg" alt="Option 2 Dark"></div>
+      </div>
+
+      <!-- Option 3 -->
+      <div class="card">
+        <div class="card-title">Option 3: Horizontal Medical Beam (Dual-Tone Wordmark)</div>
+        <div class="card-desc">Clean sonography beam mark with two-tone 'PERFECT DIAGNOSTIC' and tracked 'ULTRASOUND'.</div>
+        <div class="preview-box"><img src="logo_option_3.svg" alt="Option 3"></div>
+        <div class="preview-box dark"><img src="logo_option_3.svg" alt="Option 3 Dark"></div>
+      </div>
+
+      <!-- Option 4 -->
+      <div class="card">
+        <div class="card-title">Option 4: Precision Minimalist & Shield Cross</div>
+        <div class="card-desc">Medical shield emblem with integrated pulse cross and clean boxed badge for 'ULTRASOUND'.</div>
+        <div class="preview-box"><img src="logo_option_4.svg" alt="Option 4"></div>
+        <div class="preview-box dark"><img src="logo_option_4.svg" alt="Option 4 Dark"></div>
+      </div>
+    </div>
+
+  </div>
+
+</body>
+</html>
