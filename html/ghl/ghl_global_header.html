@@ -322,6 +322,237 @@ body {
     min-height: 34px !important;
   }
 }
+
+
+/* ==========================================================================
+   Precision Mobile Polish: Multilingual Card, Contact Cards, Footer & Printable Form
+   ========================================================================== */
+
+/* 1. Screen & Print Styling for Physician Requisition Paper Sheet */
+.print-sheet {
+  display: block !important;
+  width: 100%;
+  max-width: 860px;
+  margin: 0 auto;
+  background: #ffffff !important;
+  color: #102226 !important;
+  box-sizing: border-box;
+}
+
+@media screen and (max-width: 768px) {
+  .requisition-card {
+    padding: 16px 12px !important;
+    border-radius: var(--radius-md) !important;
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+  }
+  .print-sheet {
+    min-width: 580px !important;
+  }
+}
+
+@media print {
+  .site-header,
+  .mobile-bottom-bar,
+  .site-footer,
+  .no-print,
+  .requisition-header-bar,
+  .btn {
+    display: none !important;
+  }
+  #requisition-form {
+    padding: 0 !important;
+    margin: 0 !important;
+    background: transparent !important;
+  }
+  #requisition-form .container,
+  .requisition-card {
+    padding: 0 !important;
+    margin: 0 !important;
+    border: none !important;
+    box-shadow: none !important;
+    background: transparent !important;
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+  .print-sheet {
+    display: block !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: unset !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+  }
+}
+
+/* 2. Multilingual Care Banner & Language Chips Mobile Tuning */
+@media (max-width: 768px) {
+  .multilingual-banner {
+    padding: 24px 16px !important;
+    border-radius: var(--radius-md) !important;
+    box-sizing: border-box !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    overflow: hidden !important;
+  }
+  .multilingual-grid {
+    grid-template-columns: 1fr !important;
+    gap: 22px !important;
+    width: 100% !important;
+  }
+  .multilingual-banner .btn {
+    width: 100% !important;
+    max-width: 100% !important;
+    padding: 12px 14px !important;
+    font-size: 0.92rem !important;
+    white-space: normal !important;
+    justify-content: center !important;
+    text-align: center !important;
+    box-sizing: border-box !important;
+    display: flex !important;
+    align-items: center !important;
+  }
+}
+
+@media (max-width: 600px) {
+  .multilingual-banner {
+    padding: 20px 14px !important;
+  }
+  .multilingual-banner .lang-chips-grid {
+    grid-template-columns: 1fr !important;
+    gap: 8px !important;
+    width: 100% !important;
+  }
+  .multilingual-banner .lang-chip {
+    padding: 10px 14px !important;
+    gap: 12px !important;
+    grid-column: span 1 !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+  }
+  .multilingual-banner .lang-chip:hover {
+    transform: none !important;
+  }
+}
+
+@media (max-width: 380px) {
+  .multilingual-banner {
+    padding: 18px 10px !important;
+  }
+  .multilingual-banner .btn {
+    font-size: 0.86rem !important;
+    padding: 10px 8px !important;
+  }
+  .multilingual-banner .lang-name {
+    font-size: 0.9rem !important;
+  }
+  .multilingual-banner .lang-native {
+    font-size: 0.78rem !important;
+  }
+}
+
+/* 3. Contact Page Cards & GHL Form Mobile Tuning */
+@media (max-width: 768px) {
+  .contact-two-col-grid {
+    grid-template-columns: 1fr !important;
+    gap: 24px !important;
+    width: 100% !important;
+  }
+  .contact-card-box,
+  .contact-form-wrapper {
+    padding: 22px 16px !important;
+    border-radius: var(--radius-md) !important;
+    box-sizing: border-box !important;
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+  .contact-info-tile {
+    padding: 12px 14px !important;
+    gap: 12px !important;
+    box-sizing: border-box !important;
+    width: 100% !important;
+  }
+  .contact-tile-icon {
+    width: 38px !important;
+    height: 38px !important;
+    min-width: 38px !important;
+  }
+  .contact-tile-val {
+    font-size: 0.95rem !important;
+    word-break: break-word !important;
+    overflow-wrap: anywhere !important;
+  }
+  .contact-tile-note {
+    font-size: 0.78rem !important;
+    word-break: break-word !important;
+    overflow-wrap: anywhere !important;
+  }
+  .contact-box-heading {
+    font-size: 1.4rem !important;
+  }
+  .contact-box-sub {
+    font-size: 0.9rem !important;
+    margin-bottom: 20px !important;
+  }
+  .ghl-form-container {
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+  }
+  .ghl-form-container iframe {
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .contact-card-box,
+  .contact-form-wrapper {
+    padding: 18px 12px !important;
+  }
+  .contact-info-tile {
+    padding: 10px 10px !important;
+    gap: 10px !important;
+  }
+  .contact-tile-icon {
+    width: 34px !important;
+    height: 34px !important;
+    min-width: 34px !important;
+  }
+  .contact-tile-val {
+    font-size: 0.88rem !important;
+  }
+  .contact-tile-label {
+    font-size: 0.75rem !important;
+  }
+  .contact-box-heading {
+    font-size: 1.25rem !important;
+  }
+}
+
+/* 4. Footer Legal Links Word Wrap Polish */
+@media (max-width: 600px) {
+  .footer-bottom-flex {
+    flex-direction: column !important;
+    text-align: center !important;
+    gap: 12px !important;
+  }
+  .footer-legal-links {
+    flex-wrap: wrap !important;
+    justify-content: center !important;
+    align-items: center !important;
+    gap: 6px 12px !important;
+    font-size: 0.78rem !important;
+    line-height: 1.5 !important;
+  }
+  .footer-legal-links span {
+    white-space: nowrap !important;
+  }
+}
+
 </style>
 
 
