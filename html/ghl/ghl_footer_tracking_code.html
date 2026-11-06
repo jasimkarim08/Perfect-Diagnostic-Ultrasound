@@ -1549,26 +1549,35 @@ document.addEventListener('click', function(e) {
   }
 });
 
-// 3. Mobile Navigation Drawer
+// 3. Mobile Navigation Drawer (Toggles both 'active' and 'open' classes)
 document.addEventListener('click', function(e) {
-  var toggleBtn = e.target.closest('.mobile-toggle-btn');
+  var toggleBtn = e.target.closest('.mobile-toggle-btn, .mobile-toggle');
   if (toggleBtn) {
     e.preventDefault();
+    e.stopPropagation();
     var drawer = document.querySelector('.mobile-drawer');
     var overlay = document.querySelector('.mobile-drawer-overlay');
     if (drawer && overlay) {
-      drawer.classList.toggle('open');
-      overlay.classList.toggle('open');
-      document.body.classList.toggle('drawer-open');
+      var isOpen = drawer.classList.contains('active') || drawer.classList.contains('open');
+      if (isOpen) {
+        drawer.classList.remove('active', 'open');
+        overlay.classList.remove('active', 'open');
+        document.body.classList.remove('drawer-open');
+      } else {
+        drawer.classList.add('active', 'open');
+        overlay.classList.add('active', 'open');
+        document.body.classList.add('drawer-open');
+      }
     }
+    return;
   }
   var closeBtn = e.target.closest('.mobile-drawer-close, .mobile-drawer-overlay, .mobile-nav-link');
   if (closeBtn) {
     var drawer = document.querySelector('.mobile-drawer');
     var overlay = document.querySelector('.mobile-drawer-overlay');
     if (drawer && overlay) {
-      drawer.classList.remove('open');
-      overlay.classList.remove('open');
+      drawer.classList.remove('active', 'open');
+      overlay.classList.remove('active', 'open');
       document.body.classList.remove('drawer-open');
     }
   }

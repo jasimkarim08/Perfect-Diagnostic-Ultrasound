@@ -189,7 +189,141 @@ body {
   font-weight: 600;
 }
 
+
+/* Responsive Mobile Header & Drawer Overrides */
+@media (max-width: 991px) {
+  .site-header {
+    min-height: 62px !important;
+    height: auto !important;
+    padding: 6px 0 !important;
+  }
+  body {
+    padding-top: 62px !important;
+  }
+  .site-header .container {
+    padding-left: 12px !important;
+    padding-right: 12px !important;
+    max-width: 100% !important;
+  }
+  .nav-wrap {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    width: 100% !important;
+    min-width: 0 !important;
+    gap: 8px !important;
+  }
+  .brand-link {
+    flex: 0 1 auto !important;
+    min-width: 0 !important;
+    max-width: calc(100% - 126px) !important;
+    overflow: hidden !important;
+    display: flex !important;
+    align-items: center !important;
+  }
+  .brand-logo-img {
+    height: 25px !important;
+    max-height: 26px !important;
+    width: auto !important;
+    max-width: 100% !important;
+    object-fit: contain !important;
+  }
+  .nav-menu,
+  .phone-quick-btn,
+  .nav-book-btn {
+    display: none !important;
+  }
+  .header-cta-group {
+    flex: 0 0 auto !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 8px !important;
+    margin-left: auto !important;
+  }
+  .mobile-toggle-btn,
+  .mobile-toggle {
+    display: inline-flex !important;
+    width: 38px !important;
+    height: 38px !important;
+    min-width: 38px !important;
+    min-height: 38px !important;
+    padding: 0 !important;
+    border-radius: var(--radius-sm, 8px) !important;
+    background: var(--color-teal-pale, #ebf4f6) !important;
+    color: var(--color-primary, #02424E) !important;
+    border: 1px solid rgba(10, 128, 140, 0.2) !important;
+    align-items: center !important;
+    justify-content: center !important;
+    cursor: pointer !important;
+    flex-shrink: 0 !important;
+  }
+  .lang-switch-wrap {
+    padding: 3px 6px !important;
+    gap: 4px !important;
+    flex-shrink: 0 !important;
+  }
+  .lang-btn {
+    padding: 3px 6px !important;
+    font-size: 0.78rem !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .site-header {
+    min-height: 58px !important;
+  }
+  body {
+    padding-top: 58px !important;
+  }
+  .site-header .container {
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+  }
+  .brand-link {
+    max-width: calc(100% - 114px) !important;
+  }
+  .brand-logo-img {
+    height: 23px !important;
+    max-height: 24px !important;
+  }
+  .header-cta-group {
+    gap: 6px !important;
+  }
+  .mobile-toggle-btn,
+  .mobile-toggle {
+    width: 36px !important;
+    height: 36px !important;
+    min-width: 36px !important;
+    min-height: 36px !important;
+  }
+  .lang-switch-wrap {
+    padding: 2px 5px !important;
+    gap: 3px !important;
+  }
+  .lang-btn {
+    padding: 2px 5px !important;
+    font-size: 0.74rem !important;
+  }
+}
+
+@media (max-width: 360px) {
+  .brand-link {
+    max-width: calc(100% - 104px) !important;
+  }
+  .brand-logo-img {
+    height: 21px !important;
+    max-height: 22px !important;
+  }
+  .mobile-toggle-btn,
+  .mobile-toggle {
+    width: 34px !important;
+    height: 34px !important;
+    min-width: 34px !important;
+    min-height: 34px !important;
+  }
+}
 </style>
+
 
 <header class="site-header">
     <div class="container nav-wrap">
@@ -260,19 +394,6 @@ body {
       </div>
       <a href="https://blog.perfectdiagnosticultrasound.com/home" class="mobile-nav-link" target="_blank" rel="noopener noreferrer" data-i18n="nav_blog" data-en="Blog" data-es="Blog"><span>Blog</span> <span>&rarr;</span></a>
       <a href="contact.html" class="mobile-nav-link " data-i18n="nav_contact"><span>Contact</span> <span>&rarr;</span></a>
-    </div>
-        <div class="mobile-dropdown-list">
-          <a href="about.html" class="mobile-sub-link" data-en="About Us" data-es="Sobre Nosotros"><span>About Us</span> <span>&rarr;</span></a>
-          <a href="index.html#testimonials" class="mobile-sub-link" data-en="Testimonials" data-es="Testimonios"><span>Testimonials</span> <span>&rarr;</span></a>
-          <a href="index.html#preparation" class="mobile-sub-link" data-en="Patient Preparation Guide" data-es="Guía de Preparación"><span>Patient Preparation Guide</span> <span>&rarr;</span></a>
-        </div>
-      </div>
-
-      <a href="physicians.html" class="mobile-nav-link" data-i18n="nav_physicians"><span>Physicians</span> <span>&rarr;</span></a>
-      <a href="index.html#faq" class="mobile-nav-link" data-i18n="nav_faq"><span>FAQ</span> <span>&rarr;</span></a>
-      <a href="https://blog.perfectdiagnosticultrasound.com/home" class="mobile-nav-link" target="_blank" rel="noopener noreferrer" data-en="Blog" data-es="Blog"><span>Blog</span> <span>&rarr;</span></a>
-      <a href="contact.html" class="mobile-nav-link" data-i18n="nav_contact"><span>Contact Us</span> <span>&rarr;</span></a>
-      <a href="booking.html" class="mobile-nav-link" data-i18n="nav_booking"><span>Book Appointment</span> <span>&rarr;</span></a>
     </div>
     <div class="mobile-drawer-contact">
       <a href="tel:8722272321" class="btn btn-primary" style="width: 100%;">
@@ -1826,24 +1947,33 @@ document.addEventListener('click', function(e) {
 
 // 3. Mobile Navigation Drawer
 document.addEventListener('click', function(e) {
-  var toggleBtn = e.target.closest('.mobile-toggle-btn');
+  var toggleBtn = e.target.closest('.mobile-toggle-btn, .mobile-toggle');
   if (toggleBtn) {
     e.preventDefault();
+    e.stopPropagation();
     var drawer = document.querySelector('.mobile-drawer');
     var overlay = document.querySelector('.mobile-drawer-overlay');
     if (drawer && overlay) {
-      drawer.classList.toggle('open');
-      overlay.classList.toggle('open');
-      document.body.classList.toggle('drawer-open');
+      var isOpen = drawer.classList.contains('active') || drawer.classList.contains('open');
+      if (isOpen) {
+        drawer.classList.remove('active', 'open');
+        overlay.classList.remove('active', 'open');
+        document.body.classList.remove('drawer-open');
+      } else {
+        drawer.classList.add('active', 'open');
+        overlay.classList.add('active', 'open');
+        document.body.classList.add('drawer-open');
+      }
     }
+    return;
   }
   var closeBtn = e.target.closest('.mobile-drawer-close, .mobile-drawer-overlay, .mobile-nav-link');
   if (closeBtn) {
     var drawer = document.querySelector('.mobile-drawer');
     var overlay = document.querySelector('.mobile-drawer-overlay');
     if (drawer && overlay) {
-      drawer.classList.remove('open');
-      overlay.classList.remove('open');
+      drawer.classList.remove('active', 'open');
+      overlay.classList.remove('active', 'open');
       document.body.classList.remove('drawer-open');
     }
   }
